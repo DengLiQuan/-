@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>编辑简历</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/job.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/js.js"></script>
+    <script src="js/imgsize.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/axios.config.js"></script>
+    <script src="js/iview.js"></script>
+
+
+
+    <script type="text/javascript">
+        function mainPage() {
+            $(".page").hide();
+            $("#main_page").show()
+        }
+
+        function skillEdit() {
+            $(".page").hide();
+            $("#skill_edit").show()
+        }
+    </script>
+</head>
+
+<body>
+<div class="page" id="app">
+
+    <!--<div class="header">-->
+    <!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+    <!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+    <!--<h1 class="title">编辑简历</h1>-->
+    <!--</div>-->
+
+    <!--<div class="content" style="padding: .79rem 0 .96rem 0;" >-->
+    <div class="content">
+        <div class="order_headname">个人信息</div>
+        <div class="order_issure1">
+            <ul class="ttip_mod">
+                <li class="item">
+                    <div class="tpp">姓名</div>
+                    <div class="right"><input type="text" class="txt" placeholder="请输入姓名"
+                                              v-model="patchData.name"
+                                              :value="info_name"
+                                             />
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">日本在留资格</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.immigration">
+                            <option v-for="statu in status" :key="statu.id" :value="statu.name">{{ statu.name }}
+                            </option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">最终学历</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.education">
+                            <option v-for="educa in educational" :key="educa.id" :value="educa.name">{{
+                                educa.name
+                                }}
+                            </option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">求职状态</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.job_status">
+                            <option v-for="jobSta in job_status" :key="jobSta.id" :value="jobSta.name">{{
+                                jobSta.name }}
+                            </option>
+                        </select>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <!--<div class="order_headname">添加照片</div>-->
+        <!--<div class="order_issure1">-->
+        <!--<ul class="ttip_mod">-->
+        <!--<li class="item">-->
+        <!--<div class="face-upload">-->
+        <!--<img :src="photo.head_portrait" @click.stop="uploadHeadImg">-->
+        <!--<input type="file" v-model="patchData.head_portrait" @change="handleFile" class="hiddenInput"/>-->
+        <!--</div>-->
+        <!--</li>-->
+
+        <!--</ul>-->
+        <!--<img src="images/ticket_3.png" class="ticket-bg">-->
+        <!--</div>-->
+
+
+        <div class="order_headname">添加照片</div>
+        <div class="order_issure1">
+            <ul class="ttip_mod">
+                <li class="item">
+                    <div class="face-upload">
+                        <img :src="userInfo.avatar" @click.stop="uploadHeadImg">
+                        <!--<img :src="userInfo.avatar" @click.stop="uploadHeadImg">-->
+                        <input type="file" v-model="patchData.head_portrait" @change="handleFile"
+                               class="hiddenInput"/>
+                    </div>
+                </li>
+
+            </ul>
+            <img src="images/ticket_3.png" class="ticket-bg">
+        </div>
+
+    </div>
+
+
+    <div class="popu-join-btn">
+        <!--<a href="" class="btn-join btn-gray" @click.prevent="updateFunc()">保存</a>-->
+        <button type="button" class="btn btn-lg btn-join" @click="updateFunc()">保存</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                photo: [], // 用来保存头像
+
+                userInfo: {
+                    avatar: 'https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=62d46c39067b020818c437b303b099b6/d4628535e5dde7119c3d076aabefce1b9c1661ba.jpg'
+                },
+                postData: {
+                    resume_name: "",// 简历名称
+                    name: "",// 姓名
+                    phonetic_notation: "",// 日语注音
+                    gender: "",// 性别: male男 female女
+                    mobile: "",//  电话号码
+                    mail: "",//  电子邮箱
+                    address: "",//  详细地址
+                    motivation: "",//  求职动机
+                    professional_skill: "",//  专业技能
+                    interests: "",//  兴趣爱好
+                    birthday: "",//  生日
+                    spouse: "",// 配偶
+                    // head_portrait : "",// 头像
+                    province: "",// 现住地一级行政区ID
+                    city: "",// 现住地下级地区ID
+                    metro_name: "",// 最寄駅线路名称
+                    metro_station: "",// 最寄駅站点名称
+                    census_register: "",// 户籍所在地
+                    immigration: "",// 日本在留资格
+                    stay_time: "",// 来日年数
+                    family_num: "",// 抚养家族数
+                    japanese_grade: "",// 日语水平
+                    language_ability: "",// 日语能力试验
+                    education: "",// 最终学历
+                    job_status: "",// 求职状态
+                    nature_work: "",// 工作性质
+                    edu_exp: [],// 教育经历
+                    work_exp: [],// 工作经验
+                },
+
+                patchData: {
+                    name: "",// 姓名
+                    immigration: "",// 日本在留资格
+                    education: "",// 最终学历
+                    job_status: "",// 求职状态
+                    head_portrait: "" // 头像
+                },
+
+                resume_name: '', // 	简历名称
+                info_name: '',  // 姓名
+                phonetic_notation: '', // 日语注音
+                mobile: '', // 联系电话
+                mail: '', //电子邮箱
+                head_portrait: '', // 头像
+                address: '', // 详细地址
+                motivation: '',// 求职动机
+                professional_skill: '', //专业技能
+                interests: '', // 兴趣爱好
+                birthday: '', // 生日
+
+
+                info: [], // 用来保存所有的信息
+                status: [], // 日本再留资格
+                days: [], //来日年数
+                family: [], // 抚养家族数
+                Japan: [],  // 日语口语水平
+                language: [], // 日语能力试验
+                educational: [], // 最终学历
+                job_status: [],  // 求职状态
+                pay_type: [], //  支付方式
+                welfare: [], //  福利
+                job_category: [], //  工作性质
+                area: [], // 现住所1级
+                area2: [], // 现住所2级
+                metro: [], // 地铁1级
+                metro2: [], // 地铁2级
+                census: [], // 户籍所在地 地址
+                id: '', // 判断id是不是等于1，如果是为正社员简历，2为小时工简历
+                show: true,
+
+            }
+        },
+        created() {
+
+            this.IMMIGRATION();
+            this.EDUCATION();
+            this.JOB_STATUS();
+            this.judgeID();
+            this.getUrlId();
+
+            this.getOneResume();
+
+        },
+        methods: {
+
+            // 日本在留资格请求
+            IMMIGRATION() {
+                this.$axios.get('/param_data/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'IMMIGRATION'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.status = res.data;
+                        // console.log(res.data);
+                        this.postData.immigration = this.status[0].name; // 日本在留资格请求 默认值
+                    })
+                    .catch(error => {
+                        alert('请求日本在留资格失败');
+                    })
+            },
+            // 最终学历
+            EDUCATION() {
+                this.$axios.get('/param_data/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'EDUCATION'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.educational = res.data;
+                        // console.log(res.data);
+                        this.postData.education = this.educational[0].name; // 日语能力试验 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 求职状态
+            JOB_STATUS() {
+                this.$axios.get('/param_data/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'JOB_STATUS'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.job_status = res.data;
+                        // console.log(res.data);
+                        this.postData.job_status = this.job_status[0].name; // 求职状态 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            getUrlId() {
+                if (getUrlParam('id') == 1) {
+                    this.postData.nature_work = "EMPLOYEE"
+                } else {
+                    this.postData.nature_work = "HOURS_EMPLOYEE"
+                }
+            },
+
+            judgeID() {  // 判断id是不是等于1，如果是为正社员简历，2为小时工简历
+                this.id = getUrlParam('id');
+                console.log(this.id);
+                if (this.id == 2) {
+                    this.show = !this.show;
+                }
+            },
+
+
+            // 图片 头像上传
+            // 打开图片上传
+            uploadHeadImg() {
+                this.$el.querySelector('.hiddenInput').click()
+            },
+            handleFile(e) {
+                let $target = e.target || e.srcElement;
+                let file = $target.files[0];
+                var reader = new FileReader();
+                reader.onload = (data) => {
+                    let res = data.target || data.srcElement;
+                    this.userInfo.avatar = res.result
+                };
+                reader.readAsDataURL(file);
+                this.files = file;
+            },
+
+            updateFunc() {
+                // console.log(this.files);
+                let param = new FormData();
+                for (let key in this.patchData) {
+                    if (key == "edu_exp" || key == "work_exp") {
+                        param.append(key, JSON.stringify(this.patchData[key]));
+                    } else {
+                        param.append(key, this.patchData[key]);
+                    }
+                }
+                if (this.files) {
+                    param.append("head_portrait", this.files);
+                }
+
+                axios.patch("/resume/" + getUrlParam('id') + "/", param, {
+                    headers: {
+                        // "Content-Type":"application/x-www-form-urlencoded",
+                        "Content-Type": "multipart/form-data",
+                        "Authorization": "JWT " + localStorage.getItem("usertoken")
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data);
+                        alert('更新成功');
+                        console.log(checkWebview());
+                        if (checkWebview() == 'ios') {
+                            window.webkit.messageHandlers.goBack.postMessage(null); // 移动端返回上一页
+
+                        }else {
+                            window.android.goBack(); // android移动端返回上一页
+                        }
+                        // setTimeout(() => {
+                        //     history.go(-1);
+                        // }, 1500)
+                    }).catch(error => {
+                        alert('保存失败');
+                        console.log(error);
+                        try {
+                            alert(JSON.stringify(error.response.data))
+                        } catch (e) {
+                            alert(e)
+                        }
+                        for (let d in error.response.data) {
+                            alert(error.response.data[d]);
+                            break;
+                        }
+                })
+            }, // 点击保存更新简历
+
+            getOneResume() {
+                this.$axios.get('/resume/' + getUrlParam('id') + '/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })
+                    .then(res => {
+                        console.log(res.data);
+                        this.patchData.name = res.data.name; // 姓名
+                        this.patchData.immigration = res.data.immigration; // 日本在留资格
+                        // debugger;
+                        this.patchData.education = res.data.education; // 最终学历
+                        this.patchData.job_status = res.data.job_status; // 求职状态
+                        this.userInfo.avatar = res.data.head_portrait; // 头像的默认值 之前的头像
+
+                    })
+                    .catch(error => {
+                        alert('请求单个简历信息失败');
+                    })
+            }, // 这里是上面 文本中的单个简历请求； 然后渲染成默认值
+        },
+    });
+
+
+    //通过正则匹配获取当前页面的url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r != null) {
+            strValue = unescape(r[2]);
+        }
+        return strValue;
+    }
+
+    // 返回 ios还是android
+    function checkWebview() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        if (sUserAgent.match(/MicroMessenger/i) == "micromessenger") {
+            return "wxweb";
+        }
+        else {
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            if (bIsIpad || bIsIphoneOs) {  //ios
+                return "ios";
+            } else if (bIsAndroid) {         //android
+                return "android";
+            }
+        }
+        return "web";
+    }
+
+
+</script>
+
+</body>
+</html>

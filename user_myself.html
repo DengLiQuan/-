@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<style>
+.ttip_mod .item:last-child{ border-bottom:none;}
+.order_issure{ margin-bottom:.2rem;}
+.order_issure:last-child{ margin-bottom:0;}
+</style>
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<a href="javascript:history.go(-1)" class="btn_back">返回</a>
+		<h1 class="title">个人信息</h1>
+	</div>
+	<div class="content m2">
+        <div class="order_issure">
+            <ul class="ttip_mod">
+                <li class="item">
+            		<div class="tpp">姓名</div>
+                	<div class="right"><input type="text" class="txt" placeholder="您的昵称"/></div>
+                </li>
+                <li class="item">
+            		<div class="tpp">电话</div>
+                	<div class="right"><input type="text" class="txt" placeholder="您的姓名"/></div>
+                </li>
+            </ul>
+        </div>
+	</div>
+    <div class="popu-join-btn">
+		<a href="" class="btn-join">保存信息</a>
+	</div>
+    <!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+<!--弹窗-->
+<div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc"><img src="images/alert_icon1.png" class="icon" />保存成功</p>
+            <a href="javascript:dialogClose()" class="close_window"><img src="images/alert_close.png" class="icon"/></a>
+			<!--<div class="ctr">
+				<a href="javascript:dialogClose()" class="btn_cannel">取消</a>
+				<a href="joinus.html" class="btn_confirm">确定</a>
+			</div>-->
+		</div>
+	</div>
+</div>
+<div class="dialog" id="d2">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc"><img src="images/alert_icon2.png" class="icon" />保存失败</p>
+            <a href="javascript:dialogClose()" class="close_window"><img src="images/alert_close.png" class="icon"/></a>
+			<!--<div class="ctr">
+				<a href="javascript:dialogClose()" class="btn_cannel">取消</a>
+				<a href="joinus.html" class="btn_confirm">确定</a>
+			</div>-->
+		</div>
+	</div>
+</div>
+</body>
+</html>

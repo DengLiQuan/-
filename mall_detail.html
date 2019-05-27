@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//显示隐藏购物车
+		$(".cart2").click(
+			function(){
+				$(".popup-contents").show();
+				$(".popup-contents").animate({bottom:'0'});
+				$(".mymask1").show();
+				//购物车滚动条
+				$(".cart_scroll .swiper-slide").height($(".cart_scroll .cart_item").height());
+				var swiper2 = new Swiper('.cart_scroll', {
+						scrollbar: '.cart_scroll .swiper-scrollbar',
+						direction: 'vertical',
+						slidesPerView: 'auto',
+						mousewheelControl: true,
+						freeMode: true,
+				});
+			}
+		)
+		$(".mymask1").click(function(){
+			$(".popup-contents").animate({bottom:'-10rem'});
+			$(".mymask1").hide();
+			setTimeout(function(){$(".popup-contents").hide()},500);
+		});
+		$(".close-btn").click(function(){
+			$(".popup-contents").animate({bottom:'-10rem'});
+			$(".mymask1").hide();
+			setTimeout(function(){$(".popup-contents").hide()},500);
+		});
+	})
+</script>
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<a href="javascript:mainPage()" class="btn_back">返回</a>
+		<h1 class="title">商品详情</h1>
+	</div>
+	<div class="content m2">
+		<!--banner-->
+		<div class="pro_banner showpic">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="images/b1.jpg" class="pic"/>
+					</div>
+					<div class="swiper-slide"><img src="images/b1.jpg" class="pic"/></div>
+					<div class="swiper-slide"><img src="images/b1.jpg" class="pic"/></div>
+					<div class="swiper-slide"><img src="images/b1.jpg" class="pic"/></div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
+			<script>
+			$(function(){
+				var swiper1 = new Swiper('.pro_banner .swiper-container', {
+					pagination: '.swiper-pagination',
+					loop:true,
+					autoplay:2000,
+					paginationType: 'fraction'
+				});
+			})
+			</script>
+		</div>		
+		<div class="goods-infomation">
+			<div class="name">奶油爆浆甜筒</div>
+			<div class="des">让香浓奶油滋味在口中爆炸</div>
+			<div class="price">￥12.80</div>
+		</div>
+		<div class="goods-detail">
+			<div class="goods-headname">
+				<h1>商品详情</h1>
+				<h2>Details</h2>
+				<i class="line"></i>
+			</div>
+			<div class="commodity">
+				<img src="images/b1.jpg">
+			</div>
+		</div>
+		<!--底部信息new-->
+		<div class="popu-join-btn">
+			<a class="btn-join1 cart2">立即购买</a>
+		</div>
+		<!--规格详情-->
+		<div class="mymask1"></div>
+		<div class="popup-contents" style="display: none;">
+			<a class="close-btn"></a>
+			<div class="popfreepic">
+				<div class="pic"><img src="images/b1.jpg"></div>
+				<div class="info">
+					<div class="t2">奶油爆浆甜筒</div>
+					<div class="t1">￥12.80</div>
+				</div>
+			</div>
+			<div class="popfreelist">
+				<div class="pop-tit">选择规格</div>
+				<div class="size-box">
+					<a class="on">奶油味</a>
+					<a>芝士味</a>
+				</div>
+			</div>
+			<div class="popfreelist">
+				<div class="pop-tit">购买数量</div>
+				<div class="countbuy">
+					<div class="num_total">
+						<span class="btn_min"></span>
+						<span class="count">0</span>
+						<span class="btn_add"></span>
+					</div>
+				</div>
+			</div>
+			<div class="popup-join-btn"><a href="cart_order.html">立即购买</a></div>
+		</div>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+
+
+</body>
+</html>

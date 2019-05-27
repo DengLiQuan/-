@@ -1,0 +1,994 @@
+@charset "utf-8";
+/*banner*/
+.user-basic-box{
+    background: url("../images/user_bg.png") no-repeat center center;
+    background-size: cover;
+    width: 7.5rem;
+    height: 2.99rem;
+}
+.user-basic-box p{
+    font-size: .4rem;
+    line-height: .5rem;
+    height: .5rem;
+    color: #fff;
+    font-weight: bold;
+    padding: .62rem .2rem 0 .2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.user-give-box{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    padding: 0 .2rem;
+    position: relative;
+    margin-top: -.9rem;
+    z-index: 2;
+}
+.user-give-box .fl{
+    position: relative;
+}
+.user-give-box .fl .myface{
+    width: 1.46rem;
+    height: 1.46rem;
+    display: block;
+    border-radius: 50%;
+    -moz-box-shadow:0 .04rem .1rem rgba(0,0,0,0.2); 
+    -webkit-box-shadow:0 .04rem .1rem rgba(0,0,0,0.2); 
+    box-shadow:0 .04rem .1rem rgba(0,0,0,0.2); 
+    margin-bottom: .1rem;
+    position: relative;
+    overflow: hidden;
+}
+.user-give-box .fl .myface img{
+    width: 100%;
+    height: 100%;
+}
+.user-give-box .fl .myface input[type="file"]{ 
+    width:100%; 
+    height:100%; 
+    position:absolute; 
+    left:0; 
+    top:0; 
+    opacity:0; 
+    cursor:pointer;
+}
+/*个人标签*/
+.user-give-box .fl i{
+    display: block;
+    width: .5rem;
+    height: .35rem;
+    position: absolute;
+    bottom: .1rem;
+    right: 0;
+}
+.user-give-box .fl i.c1{
+    background: url("../images/slogan_1.png") no-repeat center center;
+    background-size: .5rem .35rem;
+}
+.user-give-box .fl i.c2{
+    background: url("../images/slogan_2.png") no-repeat center center;
+    background-size: .5rem .35rem;
+}
+.user-give-box .fr{
+    width: calc(100% - 2rem);
+    text-align: right;
+    padding-top: .2rem;
+}
+.user-give-box .fr .fr1{
+    font-size: .28rem;
+    color: #666666;
+}
+.user-give-box .fr .fr1 span{
+    font-size: .68rem;
+    font-weight: bold;
+    margin-right: .04rem;
+    color: #e0291d;
+}
+.user-give-box .fr .fr2{
+    font-size: .32rem;
+    color: #333333;
+    line-height: .4rem;
+}
+
+
+/*首页功能*/
+.user-function-box{
+    padding: .6rem .2rem 0 .2rem;
+}
+.user-function-box .item{
+    line-height: .9rem;
+    height: .9rem;
+    border-bottom: #d9d9d9 1px solid;
+    padding: 0 .6rem;
+    position: relative;
+    display: block;
+    font-size: .32rem;
+    color: #333333;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.user-function-box .item::after{
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/btn_next.png") no-repeat right center;
+    background-size: .13rem .24rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -.2rem;
+    content:""; 
+}
+.user-function-box .item .icon{
+    width: .4rem;
+    height: .4rem;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -.2rem;
+}
+
+
+/*应聘简历*/
+.resume-menu-mod{
+    background: #fff;
+    padding: 0 .2rem;
+    margin-top: .2rem;
+}
+.resume-menu-mod .item{
+    border-bottom: #ccc 1px solid;
+    padding: .2rem 0 .38rem 0;
+}
+.resume-menu-mod .item:last-child{
+    border-bottom: none;
+}
+.resume-menu-mod .item .resume-name{
+    padding: 0 0 0 1.1rem;
+    position: relative;
+    min-height: 1rem;
+}
+.resume-menu-mod .item .resume-name .pic{
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.resume-menu-mod .item .resume-name .rr1{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    line-height: .5rem;
+    height: .5rem;
+}
+.resume-menu-mod .item .resume-name .rr1 h1{
+    width: 2.6rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    font-size: .32rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: left
+}
+.resume-menu-mod .item .resume-name .rr1 h2{
+    text-align: right;
+    max-width: calc(100% - 2.8rem);
+    text-align: right;
+    font-size: #999999;
+    font-size: .28rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.resume-menu-mod .item .resume-name .rr1 h2 span{
+    font-size: .32rem;
+    color: #2d55a5;
+    font-weight: bold;
+    margin-left: .1rem;
+}
+.resume-menu-mod .item .property{
+    display: flex;
+    display: -webkit-flex;
+    font-size: .28rem;
+    line-height: .36rem;
+    height: .36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-top: .1rem;
+}
+.resume-menu-mod .item .property dt{
+    padding: 0 .1rem;
+    border-right: #666666 1px solid;
+    color: #666;
+}
+.resume-menu-mod .item .property dt:nth-child(1){
+    padding-left: 0;
+}
+.resume-menu-mod .item .property dt:last-child{
+    border-right: none;
+}
+
+.resume-menu-mod .item .myeduction{
+    margin-top: .2rem;
+}
+.resume-menu-mod .item .myeduction dt{
+    font-size: .3rem;
+    color: #333333;
+    line-height: .5rem;
+    height: .5rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding-left: .5rem;
+    position: relative;
+}
+.resume-menu-mod .item .myeduction dt:nth-child(1)::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 50%;
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/icon_jobtag.png") no-repeat 0 0;
+    background-size: .4rem .8rem;
+    margin-top: -.2rem;
+}
+.resume-menu-mod .item .myeduction dt:nth-child(2)::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 50%;
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/icon_jobtag.png") no-repeat 0 -.4rem;
+    background-size: .4rem .8rem;
+    margin-top: -.2rem;
+}
+.resume-menu-mod .item .mycollect{
+    display: block;
+    width: 1.6rem;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: .04rem;
+    font-size: .28rem;
+    color: #fff;
+    text-align: center;
+    background: #e0291d;
+    margin-top: .2rem;
+}
+
+/*个人简历编辑*/
+.goedit{
+    padding-right: .4rem;
+    position: relative;
+}
+.goedit::after{
+    content: '';
+    position: absolute;
+    background: url("../images/btn_next.png") no-repeat right center;
+    background-size: .13rem .24rem;
+    width: .13rem;
+    height: .24rem;
+    right: 0;
+    top: 50%;
+    margin-top: -.12rem;
+}
+
+.eddr-btn{
+    width: 3.8rem;
+    height: .6rem;
+    line-height: .6rem;
+    color: #e0291d;
+    border: #e0291d 1px solid;
+    border-radius: .6rem;
+    display: block;
+    text-align: center;
+    font-size: .3rem;
+    margin: .5rem auto .3rem auto;
+}
+
+
+
+/*个人简历*/
+.myresume-menu-box{
+    background: #fff;
+    padding: 0 .2rem;
+}
+.myresume-menu-box .myr-box{
+    position: relative;
+    padding: .36rem 0;
+    border-bottom: #ccc 1px solid;
+    display: block;
+}
+.myresume-menu-box .myr-box:last-child{
+    border-bottom: none;
+}
+.myresume-menu-box .myr-box1{
+    padding: .4rem 0 .6rem 0;
+}
+.myresume-menu-box .myr-box .resume-name{
+    padding: 0 0 0 1.1rem;
+    position: relative;
+    min-height: 1rem;
+}
+.myresume-menu-box .myr-box .resume-name .pic{
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.myresume-menu-box .myr-box .resume-name .rr1{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    font-size: .32rem;
+    font-weight: bold !important;
+    color: #000000;
+    line-height: .5rem;
+    height: .5rem;
+}
+.myresume-menu-box .myr-box .property{
+    display: flex;
+    display: -webkit-flex;
+    font-size: .28rem;
+    line-height: .36rem;
+    height: .36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-top: .1rem;
+}
+.myresume-menu-box .myr-box .property dt{
+    padding: 0 .1rem;
+    border-right: #666666 1px solid;
+    color: #666;
+}
+.myresume-menu-box .myr-box .property dt:nth-child(1){
+    padding-left: 0;
+}
+.myresume-menu-box .myr-box .property dt:last-child{
+    border-right: none;
+}
+.myresume-menu-box .myr-box .myeduction{
+    margin-top: .2rem;
+}
+.myresume-menu-box .myr-box .myeduction dt{
+    font-size: .3rem;
+    color: #333333;
+    line-height: .5rem;
+    height: .5rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    padding-left: .5rem;
+    position: relative;
+}
+.myresume-menu-box .myr-box .myeduction dt:nth-child(1)::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 50%;
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/icon_jobtag1.png") no-repeat 0 0;
+    background-size: .4rem .8rem;
+    margin-top: -.2rem;
+}
+.myresume-menu-box .myr-box .myeduction dt:nth-child(2)::before{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 50%;
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/icon_jobtag1.png") no-repeat 0 -.4rem;
+    background-size: .4rem .8rem;
+    margin-top: -.2rem;
+}
+
+.myresume-menu-box .myr-box .all-bigtit{
+    margin-bottom: .3rem;
+}
+.myresume-menu-box .myr-box .needconditions li{
+    font-size: .32rem;
+    line-height: .4rem;
+    margin-bottom: .2rem;
+}
+.myresume-menu-box .myr-box .needconditions li:last-child{
+    margin-bottom: 0;
+}
+.myresume-menu-box .myr-box .needconditions li span{
+    color: #808080;
+}
+.myresume-menu-box .workexper{
+
+}
+.myresume-menu-box .workexper .wor-item{
+    margin-bottom: .3rem;
+}
+.myresume-menu-box .workexper .wor-item:last-child{
+    margin-bottom: 0;
+}
+.myresume-menu-box .workexper .wor-item h1{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    font-size: .32rem;
+    font-weight: bold !important;
+    color: #000000;
+    line-height: .5rem;
+    height: .5rem;
+}
+.myresume-menu-box .workexper .wor-item dl{
+    display: flex;
+    display: -webkit-flex;
+    font-size: .28rem;
+    line-height: .36rem;
+    height: .36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    margin-top: .1rem;
+}
+.myresume-menu-box .workexper .wor-item dl dt{
+    padding: 0 .1rem;
+    border-right: #666666 1px solid;
+    color: #666;
+}
+.myresume-menu-box .workexper .wor-item dl dt:nth-child(1){
+    padding-left: 0;
+}
+.myresume-menu-box .workexper .wor-item dl dt:last-child{
+    border-right: none;
+}
+.myresume-menu-box .workexper .wor-item p{
+    font-size: .3rem;
+    color: #333333;
+    margin-top: .2rem;
+}
+
+
+
+
+
+/*信息列表*/
+.order_headname{
+    padding: 0 .2rem;
+    line-height: 1.24rem;
+    height: 1.24rem;
+    font-size: .46rem;
+    color: #000000;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}   
+.order_issure{
+    margin: 0 auto;
+    background: url("../images/ticket_1.png") no-repeat top center;
+    background-size: 7.1rem .92rem;
+    padding: .12rem 0 0 0;
+    width: 7.1rem;
+}
+.order_issure .headname{
+    font-size: .36rem;
+    color: #333333;
+    line-height: .8rem;
+    height: .8rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 6.3rem;
+    margin: 0 auto;
+    font-weight: bold;
+    border-bottom: #d5d5d5 1px solid;
+    padding: 0 .1rem;
+}
+.order_issure .ttip_mod{
+    margin: 0;
+    background:url("../images/ticket_2.png") repeat-y top center;
+    background-size: 7.1rem .02rem;
+    width: 7.1rem;
+    padding-bottom: .4rem;
+}
+.order_issure .ttip_mod .item{ 
+    overflow:hidden; 
+    font-size:.3rem; 
+    overflow:hidden; 
+    border-bottom:#d9d9d9 1px solid;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    width: 6.3rem;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 .1rem;
+}
+.order_issure .ttip_mod1 .item{
+    border-bottom: none;
+}
+.order_issure .ttip_mod1{
+    padding: .2rem 0 .4rem 0;
+}
+.order_issure .ttip_mod .item:last-child{
+    border-bottom: none;
+}
+.order_issure .ttip_mod .item .tpp{ 
+    width:1.3rem; 
+    display:inline-block; 
+    color:#808080;
+    line-height:.36rem !important;
+    font-size:.3rem;
+    margin-left:0 !important; 
+    margin: .26rem 0;
+
+}
+.order_issure .ttip_mod .item .tpp1{ 
+    line-height:1rem; 
+    height: 1rem;
+    width:1.3rem; 
+    display:inline-block; 
+    color:#808080;
+    font-size:.3rem; 
+    margin-left:0 !important; 
+    font-weight:lighter;
+}
+.order_issure .ttip_mod .item .tpo { 
+    width:.8rem; 
+    height:.8rem; 
+    display:block; 
+    float:left; 
+    position: relative; 
+    margin: .1rem 0; 
+    border-radius: 50%;
+}
+.order_issure .ttip_mod .item .tpo .file input[type="file"]{ 
+    width:100%; 
+    height:100%; 
+    position:absolute; 
+    left:0; 
+    top:0; 
+    opacity:0; 
+    cursor:pointer;
+}
+.order_issure .ttip_mod .item .tpo .face{ 
+    display: block; 
+    width: 100%;
+}
+.order_issure .ttip_mod .item .right{ 
+    width:calc(100% - 1.4rem)
+}
+.order_issure .ttip_mod .item .txt{ 
+    width: 100%;
+    box-shadow: none !important; 
+    -webkit-appearance: none;
+    padding: 0 .1rem;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border:none; 
+    font-size:.3rem !important; 
+    margin: .14rem 0;
+}
+.order_issure .ttip_mod .item .sel{
+    width:100%;
+    box-shadow: none !important; 
+    -webkit-appearance: none; 
+    padding: 0 0.4rem 0 .1rem;
+    height: .6rem;
+    line-height: .6rem;
+    border-radius: none; 
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    border:none;
+    font-size: .3rem;
+    background: url(../images/btn_next.png) no-repeat 96% center;
+    background-size: .3rem .4rem; 
+    margin: .14rem 0;
+}
+.order_issure .ttip_mod .item .area{
+    padding:0 .2rem; 
+    margin: .24rem 0;
+    line-height:.36rem; 
+    height:1.08rem; 
+    width: 100%;
+    box-sizing:border-box; 
+    -webkit-box-sizing:border-box; 
+    font-size:.3rem; 
+    border:none;
+    resize:none;
+    outline:none;
+}
+.order_issure .ticket-bg{
+    width: 7.1rem;
+    height: .4rem;
+    display: block;
+    margin: 0 auto;
+}
+.order_issure .ttip_mod .item .tpp2{ 
+    width:1.3rem; 
+    color:#808080;
+    line-height:.6rem !important;
+    font-size:.3rem;
+    margin-left:0 !important; 
+    height: .6rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.order_issure .ttip_mod .item .right1{ 
+    width:calc(100% - 1.4rem); 
+    color:#000;
+    line-height:.6rem !important;
+    font-size:.3rem;
+    margin-left:0 !important; 
+    height: .6rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.order_issure .ttip_mod .item .get_yzm{ 
+    font-size:.22rem;
+    width:2.2rem; 
+    height:.6rem; 
+    line-height:.6rem; 
+    text-align:center; 
+    display:block; 
+    float:right; 
+    background:#e5e5e5; 
+    border:#d9d9d9 1px solid; 
+    border-radius:4px; 
+    margin:.13rem 0 .13rem 0;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */ 
+    position: absolute;
+    right:0;
+    top: 0;
+}
+
+
+/*信息列表1*/
+.order_issure1{
+    margin: 0 auto;
+    background: url("../images/ticket_1.png") no-repeat top center;
+    background-size: 7.1rem .92rem;
+    padding: .12rem 0 0 0;
+    width: 7.1rem;
+}
+.order_issure1 .ttip_mod{
+    margin: 0;
+    background:url("../images/ticket_2.png") repeat-y top center;
+    background-size: 7.1rem .02rem;
+    width: 7.1rem;
+}
+.order_issure1 .ttip_mod .item{ 
+    font-size:.28rem; 
+    padding:.26rem .1rem; 
+    overflow:hidden; 
+    border-bottom:#d9d9d9 1px solid;
+    width: 6.3rem;
+    margin: 0 auto;
+    position: relative;
+}
+.order_issure1 .ttip_mod .item:last-child{
+    border-bottom: none;
+}
+.order_issure1 .ttip_mod .item .tpp{ 
+    color:#666666;
+    line-height:.36rem !important;
+    font-size:.3rem;
+    height: .36rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.order_issure1 .ttip_mod .item .right{ 
+    padding: .2rem 0 .14rem 0;
+}
+.order_issure1 .ttip_mod .item .right1{
+    position: relative;
+    padding-right: .4rem;
+}
+.order_issure1 .ttip_mod .item .right1::after{
+    content: '';
+    width: .13rem;
+    height: .24rem;
+    position: absolute;
+    background: url("../images/btn_next.png") no-repeat center center;
+    background-size: .13rem .24rem;
+    right: 0;
+    top: 50%;
+    margin-top: -.12rem;
+}
+.order_issure1 .ttip_mod .item .txt{ 
+    width: 100%;
+    box-shadow: none !important; 
+    -webkit-appearance: none;
+    padding: 0 0;
+    height: 100%;
+    line-height: 100%;
+    border-radius: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border:none; 
+    font-size:.34rem !important; 
+    color: #000 !important;
+    font-weight: bold !important;
+}
+.order_issure1 .ttip_mod .item .area{
+    padding:0 .2rem; 
+    margin: .24rem 0;
+    line-height:.36rem; 
+    height:1.08rem; 
+    width: 100%;
+    box-sizing:border-box; 
+    -webkit-box-sizing:border-box; 
+    border:none;
+    resize:none;
+    outline:none;
+    font-size:.34rem !important; 
+    color: #000 !important;
+    font-weight: bold !important;
+}
+.order_issure1 .ticket-bg{
+    width: 7.1rem;
+    height: .4rem;
+    display: block;
+    margin: 0 auto;
+}
+.order_issure1 .face-upload{
+    width: 1.4rem;
+    height: 1.4rem;
+    display: block;
+    border-radius: 50%;
+    margin-bottom: .1rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: .2rem;
+}
+.order_issure1 .face-upload img{
+    width: 100%;
+    height: 100%;
+}
+.order_issure1 .face-upload input[type="file"]{ 
+    width:100%; 
+    height:100%; 
+    position:absolute; 
+    left:0; 
+    top:0; 
+    opacity:0; 
+    cursor:pointer;
+}
+.order_issure1 .ttip_mod .item .sel{
+    width:100%;
+    box-shadow: none !important; 
+    -webkit-appearance: none; 
+    padding: 0;
+    height: .42rem;
+    line-height: .42rem;
+    border-radius: none; 
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    border:none;
+    font-size:.34rem !important; 
+    color: #000 !important;
+    font-weight: bold !important;
+}
+.order_issure1 .ttip_mod .item .site{
+    padding-right: .4rem;
+    line-height: .42rem;
+    height: .42rem;
+    font-size:.34rem !important; 
+    color: #000 !important;
+    font-weight: bold !important;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.order_issure1 .ttip_mod .item .site::after{
+    content: '';
+    width: .28rem;
+    height: .34rem;
+    position: absolute;
+    background: url("../images/icon_site1.png") no-repeat center center;
+    background-size: .28rem .34rem;
+    right: 0;
+    top: 50%;
+    margin-top: -.17rem;
+}
+.order_issure1 .ttip_mod .item .func{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}
+.order_issure1 .ttip_mod .item .func li{
+    background: #f5f5f5;
+    padding: 0 .16rem;
+    line-height: .5rem;
+    height: .5rem;
+    font-size: .28rem;
+    color: #666666;
+    margin-right: .1rem;
+    display: inline-block;
+    margin-bottom: .1rem;
+}
+
+
+/*上传图片*/
+.upload-pic-menu{
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    margin: .3rem 0 .2rem 0;
+}
+.upload-pic-menu .dt1{
+    margin:0 .1rem .2rem 0; 
+    position:relative; 
+    width:3.55rem; 
+    height:2.46rem;
+    overflow:hidden; 
+    text-align:center; 
+    border-radius:.04rem;
+    border: #d5d5d5 1px solid;
+}
+.upload-pic-menu .dt2{
+    margin:0 .1rem .2rem 0; 
+    position:relative; 
+    width:2.8rem; 
+    height:2.8rem; 
+    overflow:hidden; 
+    text-align:center; 
+    border-radius:.04rem;
+    border: #d5d5d5 1px solid;
+}
+.upload-pic-menu img{ 
+    display:block; 
+    width:100%; 
+    overflow:hidden;
+}
+.upload-pic-menu input[type="file"]{ 
+    width:100%; 
+    height:100%; 
+    position:absolute; 
+    left:0; 
+    top:0; 
+    opacity:0; 
+    cursor:pointer;
+}
+
+
+
+
+
+/*登录*/
+.mylogin-box{
+    padding: 1.9rem .2rem 0 .2rem;
+}
+.mylogin-box .mylogo{
+    display: block;
+    width: 7.1rem;
+    height: .62rem;
+    margin: 0 auto;
+}
+.mylogin-box dt{
+    margin-top: 1.74rem;
+}
+.mylogin-box dt .btn-login{
+    width: 7.1rem;
+    height: .9rem;
+    line-height: .9rem;
+    background: #e0291d;
+    border-radius: 5rem;
+    display: block;
+    margin: 0 auto .2rem auto;
+    font-size: .34rem;
+    color: #fff;
+    text-align: center;
+    border: #e0291d 1px solid
+}
+.mylogin-box dt .btn-reg{
+    width: 7.1rem;
+    height: .9rem;
+    line-height: .9rem;
+    background: #fff;
+    border-radius: 5rem;
+    display: block;
+    margin: 0 auto .2rem auto;
+    font-size: .34rem;
+    color: #e0291d;
+    text-align: center;
+    border: #e0291d 1px solid;
+}
+.mylogin-box dt .btn-forget{
+    width: 7.1rem;
+    height: .9rem;
+    line-height: .9rem;
+    background: none;
+    border-radius: 5rem;
+    display: block;
+    margin: 0 auto .2rem auto;
+    font-size: .3rem;
+    color: #333333;
+    text-align: center;
+    border: #fff 1px solid;
+}
+
+.thelogin-box{
+    padding: .56rem .2rem 0 .2rem;
+}
+.thelogin-box .login-name{
+    font-size: .46rem;
+    color:#000;
+}
+.thelogin-box .list{ 
+    margin:1.12rem 0 0 0;
+}
+.thelogin-box .list .item{ 
+    overflow:hidden;
+    position: relative;
+}
+.thelogin-box .list .item .ipt_txt{ 
+    padding:.2rem .2rem .2rem 0; 
+    line-height:.88rem; 
+    height:.88rem; 
+    background:#f5f5f5; 
+    width: 100%;
+    box-sizing:border-box; 
+    -webkit-box-sizing:border-box; 
+    font-size:.3rem; 
+    border:none;
+    border-bottom: #d9d9d9 .02rem solid;
+}
+.thelogin-box .list .item .ipt_txt:active,
+.thelogin-box .list .item .ipt_txt:focus{
+    border-bottom: #1382c0 .02rem solid;
+}
+.thelogin-box .list .item .ipt_txt1{
+    padding-right: 1.4rem !important;
+}
+.thelogin-box .list .item .ipt_txt2{
+    padding-right: 2.5rem !important;
+}
+.thelogin-box .btn_login{
+    margin:.94rem .0 0 .0;
+}
+.thelogin-box .btn_login .btn_submit{ 
+    width:100%; 
+    padding:0 0; 
+    line-height:.8rem; 
+    height:.8rem; 
+    border-radius:0;  
+    background:#e0291d; 
+    border:none;
+    font-size:.32rem;
+    color:#fff;
+    display: block;
+    text-align: center;
+    border-radius: .6rem;
+}
+
+.thelogin-box .btn-reg{
+    line-height: .8rem;
+    height: .8rem;
+    color: #000;
+    font-size: .28rem;
+    text-align: center;
+}
+.thelogin-box .btn-reg a{
+    display: inline-block;
+}

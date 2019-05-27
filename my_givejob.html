@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>我的简历</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/job.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/axios.config.js"></script>
+<script src="js/iview.js"></script>
+
+</head>
+
+<body>
+<div class="page" id="app">
+	<!--<div class="header">-->
+		<!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+		<!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+		<!--<h1 class="title" >我的简历</h1>-->
+	<!--</div>-->
+	<div class="tab-mycase">
+		<a @click="toggleitem(0)" :class="['item', {on: show0 }]">
+			<span>我的简历</span>
+		</a>
+		<a @click="toggleitem(1)" :class="['item', {on: show1 }]">
+			<span>已投递简历</span>
+		</a>
+	</div>
+	<!--<div class="content" style="padding:1.59rem 0 0 0;">-->
+	<div class="content" style="padding: 0.85rem 0 0 0;">
+		<div class="jobPage">
+			<div class="invite-job-mod box" v-if="show0">
+				<!--<a href="my_resume.html" class="item">-->
+				<a href="my_resumeedit.html?id=1" class="item" @click="resume(index)" style="text-decoration: none">
+					<h1>创建正社员简历</h1>
+					<img src="images/job_recuit1.png" class="pic">
+				</a>
+				<!--<a href="my_resume.html" class="item">-->
+				<a href="my_resumeedit.html?id=2" class="item" style="text-decoration: none">
+					<h1>创建小时工简历</h1>
+					<img src="images/job_recuit2.png" class="pic">
+				</a>
+
+				<a :href="'my_resume.html?id=' + title.id" class="item" v-for="title in ResumeList" :key="title.id" style="text-decoration: none">
+					<h1>{{ title.resume_name }}</h1>
+					<!--<img src="images/job_recuit1.png" class="pic">-->
+					<!--<img :src="is_nature_work.imagePhoto" class="pic">-->
+					<img :src="title.nature_work == '正社员' ? 'images/job_recuit1.png' : 'images/job_recuit2.png'" class="pic"/>
+					<!--<img :src="切换条件 ? require('xxx.png') : require('xxx.png')" />-->
+					<!-- 三元表达式 这句话真的是太棒了 -->
+				</a>
+
+
+			</div>
+			<!--<div class="box" style="display: none;">-->
+			<div class="box" v-if="show1">
+				<dl class="recruit-list-mod">
+					<dt v-for="info in deliveredInfo" :key="info.id">
+						<a :href="'job_detail.html?id=' + delivered_id" class="info" style="text-decoration: none">
+							<div class="fl">
+								<h1>{{ info.recruitment.name }}</h1>
+								<h2>{{ info.recruitment.company_name }}</h2>
+								<ul class="list">
+									<li>
+										<span class="s1">{{ info.recruitment.province + info.recruitment.city + info.recruitment.address }}</span>
+									</li>
+									<li>
+										<span class="s4">{{ info.status }}</span>
+									</li>
+								</ul>
+							</div>
+							<div class="fr">
+								<h1>日币</h1>
+								<h2>{{ info.recruitment.wage }}</h2>
+								<h3>{{ info.recruitment.pay_type ? info.recruitment.pay_type : '月给'}}</h3>
+								<div class="type">{{ info.recruitment.nature_work }}</div>
+							</div>
+						</a>
+					</dt>
+					<!--<dt>-->
+						<!--<a href="job_detail.html" class="info">-->
+							<!--<div class="fl">-->
+								<!--<h1>会计经理</h1>-->
+								<!--<h2>福州锐掌网络科技有限公司</h2>-->
+								<!--<ul class="list">-->
+									<!--<li>-->
+										<!--<span class="s1">福建省福州市鼓楼区软件园大道</span>-->
+									<!--</li>-->
+									<!--<li>-->
+										<!--<span class="s4">已投递</span>-->
+									<!--</li>-->
+								<!--</ul>-->
+							<!--</div>-->
+							<!--<div class="fr">-->
+								<!--<h1>日币</h1>-->
+								<!--<h2>22万-70万</h2>-->
+								<!--<h3>月给</h3>-->
+								<!--<div class="type type1">小时工</div>-->
+							<!--</div>-->
+						<!--</a>-->
+					<!--</dt>-->
+				</dl>
+
+				<!--以投递侧边栏-->
+				<div class="resume-rightbar">
+					<a href="" class="item" @click.prevent="all_state()" id="all_state" style="text-decoration: none">
+						<span style="line-height: .98rem;">全部</span>
+					</a>
+					<a href="" class="item" @click.prevent="been_delivered()" id="been_delivered" style="text-decoration: none">
+						<span style="line-height: .36rem; height: .72rem; padding:.13rem 0;">已<br>投递</span>
+					</a>
+					<a href="" class="item" @click.prevent="interview()" id="interview" style="text-decoration: none">
+						<span style="line-height: .98rem;">面试</span>
+					</a>
+					<a href="" class="item" @click.prevent="suitable" id="suitable" style="text-decoration: none">
+						<span style="line-height: .36rem; height: .72rem; padding:.13rem 0;">不<br>合适</span>
+					</a>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+
+	
+	var vm = new Vue({
+		el: '#app',
+		data() {
+		    return {
+                // styleObject1: {
+                //     display: 'block',
+				// },
+                // styleObject2: {
+                //     display: 'none',
+				// },
+                deliveredInfo: [], // 用来保存投递记录 的信息
+                state: '', // 用来存储状态。已投递、面试、不合适
+				show0:getUrlParam("id")==0||getUrlParam("id")==null,
+                show1:getUrlParam("id")==1,
+                ResumeList: [], // 简历列表 标题信息
+                delivered_id: '', // 已投递的id，通过id查看招聘信息
+			}
+		},
+		created() {
+		    this.getToken()
+
+		},
+		methods: {
+			// 判断。如果是从我的个人中心点进来的时候，浏览器会多个id
+            deliveredList() {
+                axios({
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    method: 'get',
+                    url: '/submit/',
+                }).then(res => {
+                    // window.location.reload(); // 重新加载当前文档
+                    console.log(res.data);
+                    var zhao_pin_info = [];
+                    this.deliveredInfo = res.data;
+                    for (var i = 0; i< res.data.length; i++) {
+                        // this.state = res.data[i].status;
+                        zhao_pin_info.push(res.data[i].recruitment);
+					}
+
+					for (let j = 0 ; j< zhao_pin_info.length; j++) {
+					    this.delivered_id = zhao_pin_info[j].id;
+					    console.log(this.delivered_id)
+					}
+					console.log(this.state);
+                    // console.log(res.data.status);
+					// this.state = res.data.status;
+
+					// console.log(res.data.recruitment);
+
+                })
+                    .catch(error => {
+                        //alert('获取投递列表失败');
+                        console.log('获取投递列表失败');
+                    });
+			}, // 已投递的简历列表
+
+            toggleitem(i){  // 点击切换
+                if(i==0){
+					this.show0=true;
+					this.show1=false;
+                }
+                else if (i==1){
+                    this.show0=false;
+                    this.show1=true;
+                }
+            }, // 点击切换
+
+			getResumeList() {
+                axios({
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    method: 'get',
+                    url: '/resume/',
+                }).then(res => {
+                    // window.location.reload(); // 重新加载当前文档
+                    console.log(res.data.results);
+                    this.ResumeList = res.data.results;
+
+                })
+                    .catch(error => {
+                        alert('获取简历列表失败');
+                    });
+			},
+
+
+            // 我的简历全部状态
+            all_state() {
+                $("#all_state").addClass("bgc-on").siblings("a").removeClass("bgc-on");
+                axios({
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    method: 'get',
+                    url: '/submit/',
+                }).then(res => {
+                    // window.location.reload(); // 重新加载当前文档
+                    console.log(res.data);
+                    var zhao_pin_info = [];
+                    this.deliveredInfo = res.data;
+                    for (var i = 0; i< res.data.length; i++) {
+                        // this.state = res.data[i].status;
+                        zhao_pin_info.push(res.data[i].recruitment);
+                    }
+
+                    for (let j = 0 ; j< zhao_pin_info.length; j++) {
+                        this.delivered_id = zhao_pin_info[j].id;
+                        console.log(this.delivered_id)
+                    }
+                    console.log(this.state);
+
+                    // $("#been_delivered").removeattr("style");
+                    // $("#interview").removeattr("style");
+                    // $("#suitable").removeattr("style");
+                    // console.log(res.data.status);
+                    // this.state = res.data.status;
+
+                    // console.log(res.data.recruitment);
+
+                })
+                    .catch(error => {
+                        alert('获取全部简历投递状态失败');
+                    });
+            },
+
+
+            // 已投递的简历列表    已投递状态
+            been_delivered() {
+                $("#been_delivered").addClass("bgc-on").siblings("a").removeClass("bgc-on");
+                this.$axios.get('/submit/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        status: 'SEND'
+                    }
+                })
+                    .then(res => {
+                        // window.location.reload(); // 重新加载当前文档
+                        console.log(res.data);
+                        var zhao_pin_info = [];
+                        this.deliveredInfo = res.data;
+                        for (var i = 0; i< res.data.length; i++) {
+                            // this.state = res.data[i].status;
+                            zhao_pin_info.push(res.data[i].recruitment);
+                        }
+
+                        for (let j = 0 ; j< zhao_pin_info.length; j++) {
+                            this.delivered_id = zhao_pin_info[j].id;
+                            console.log(this.delivered_id)
+                        }
+                        console.log(this.state);
+
+                        // console.log(res.data.status);
+                        // this.state = res.data.status;
+
+                        // console.log(res.data.recruitment);
+                    })
+                    .catch(error => {
+                        alert('获取已投递列表失败');
+                    })
+			},
+
+			// 已投递的简历列表   面试状态
+            interview() {
+                $("#interview").addClass("bgc-on").siblings("a").removeClass("bgc-on");
+                this.$axios.get('/submit/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        status: 'INTERVIEW'
+                    }
+                })
+                    .then(res => {
+                        // window.location.reload(); // 重新加载当前文档
+                        console.log(res.data);
+                        var zhao_pin_info = [];
+                        this.deliveredInfo = res.data;
+                        for (var i = 0; i< res.data.length; i++) {
+                            // this.state = res.data[i].status;
+                            zhao_pin_info.push(res.data[i].recruitment);
+                        }
+
+                        for (let j = 0 ; j< zhao_pin_info.length; j++) {
+                            this.delivered_id = zhao_pin_info[j].id;
+                            console.log(this.delivered_id)
+                        }
+                        console.log(this.state);
+
+                        // console.log(res.data.status);
+                        // this.state = res.data.status;
+
+                        // console.log(res.data.recruitment);
+
+                        console.log('没有  面试数据')
+                    })
+                    .catch(error => {
+                        alert('获取已投递面试列表失败');
+                    })
+			},
+
+			// 已投递的简历列表   不合适
+            suitable() {
+                $("#suitable").addClass("bgc-on").siblings("a").removeClass("bgc-on");
+                this.$axios.get('/submit/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        status: 'INAPPROPRIATE'
+                    }
+                })
+                    .then(res => {
+                        // window.location.reload(); // 重新加载当前文档
+                        console.log(res.data);
+                        var zhao_pin_info = [];
+                        this.deliveredInfo = res.data;
+                        for (var i = 0; i< res.data.length; i++) {
+                            // this.state = res.data[i].status;
+                            zhao_pin_info.push(res.data[i].recruitment);
+                        }
+
+                        for (let j = 0 ; j< zhao_pin_info.length; j++) {
+                            this.delivered_id = zhao_pin_info[j].id;
+                            console.log(this.delivered_id)
+                        }
+                        console.log(this.state);
+
+                        // console.log(res.data.status);
+                        // this.state = res.data.status;
+
+                        // console.log(res.data.recruitment);
+
+                        console.log('没有  不合适数据')
+                    })
+                    .catch(error => {
+                        alert('获取不合适列表失败');
+                    })
+			},
+            getToken() {
+                wb_token = getUrlParam('token');
+                console.log(wb_token);
+                if (wb_token) {
+                    axios({
+                        method: 'get',
+                        url: '/user/get_new_token/'+ wb_token + '/',
+                    })
+                        .then(res => {
+                            var usertoken = res.data.token;
+                            console.log(res);
+                            console.log(usertoken);
+                            localStorage.setItem("usertoken",usertoken);
+                            this.deliveredList();
+                            this.getResumeList();
+                        })
+                        .catch(error => {
+                            console.log(error.response.status);
+                            if (error.response.status == '428') {
+                                localStorage.removeItem("usertoken");
+                                console.log('请登入');
+
+                                // window.location.href = '';
+                            }
+
+                        });
+                }else {
+                    localStorage.removeItem("usertoken");
+                    console.log('请登入');
+                    // window.location.href = '';
+                }
+
+            }  // 获取本地Token，
+
+        }
+
+	});
+
+    //通过正则匹配获取当前页面的url中的参数
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var r =  window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r!=null){
+            strValue= unescape(r[2]);
+        }
+        return strValue;
+    }
+
+</script>
+</body>
+</html>

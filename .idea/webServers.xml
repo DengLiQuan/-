@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c5c0f966-6128-43bb-b532-1d432b0b9b07" name="wb" url="http://test.wangbo.ie1e.com:8001/">
+        <fileTransfer host="47.107.169.40" port="22" rootFolder="/root/wbzp/static/" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

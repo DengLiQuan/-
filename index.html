@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<h1 class="title">网博</h1>
+	</div>
+	<div class="content m2">
+		<div class="findshop-search">
+			<input type="text" class="ipt" placeholder="搜索您想搜索的活动">
+			<input type="button" class="btn">
+		</div>
+		<!--栏目类别 swiper-->
+		<div class="tab-menu-box">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide on">技能培训</div>
+					<div class="swiper-slide">职业培训</div>
+					<div class="swiper-slide">出国签证</div>
+					<div class="swiper-slide">工作岗位</div>
+					<div class="swiper-slide">工作岗位</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var swiper = new Swiper('.tab-menu-box .swiper-container', {
+				slidesPerView: 'auto',
+				paginationClickable: true,
+				spaceBetween: 10
+			});
+		</script>
+		<!--banner-->
+		<div class="banner">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><a href=""><img src="images/banner.jpg" class="pic"/></a></div>
+					<div class="swiper-slide"><a href=""><img src="images/banner.jpg" class="pic"/></a></div>
+					<div class="swiper-slide"><a href=""><img src="images/banner.jpg" class="pic"/></a></div>
+					<div class="swiper-slide"><a href=""><img src="images/banner.jpg" class="pic"/></a></div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
+			<script>
+			$(function(){
+				var swiper1 = new Swiper('.banner .swiper-container', {
+					pagination: '.swiper-pagination',
+					paginationClickable: true,
+					autoplay:2000,
+				});
+			})
+			</script>
+		</div>
+		<!--活动列表-->
+		<div class="activity-list">
+			<a href="activity_detail.html" class="items">
+				<img src="images/p1.jpg" class="pic">
+				<div class="info">
+					<h1 class="name">活动名称活动名称活动名称</h1>
+					<p class="des">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+					<div class="time">2018-09-20</div>
+					<span class="sign_up">我要报名</span>
+				</div> 
+			</a>
+			<a href="activity_detail.html" class="items">
+				<img src="images/p1.jpg" class="pic">
+				<div class="info">
+					<h1 class="name">活动名称活动名称活动名称</h1>
+					<p class="des">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+					<div class="time">2018-09-20</div>
+					<span class="sign_up">我要报名</span>
+					
+				</div> 
+			</a>
+		</div>
+	</div>
+	<!--底部-->
+    <div class="footer">
+		<div class="nav">
+			<a class="item on" href="index.html"><img src="images/nav1_on.png" class="pic"/>首页</a>
+			<a class="item" href="phone.html"><img src="images/nav4.png" class="pic"/>拨号</a>
+			<a class="item" href="mall.html"><img src="images/nav5.png" class="pic"/>积分商城</a>
+			<a class="item" href="distribution.html"><img src="images/nav2.png" class="pic"/>分销</a>
+			<a class="item" href="user.html"><img src="images/nav3.png" class="pic"/>我的</a>
+		</div>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+
+
+</body>
+</html>

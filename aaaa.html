@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>编辑简历</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/job.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/js.js"></script>
+    <script src="js/imgsize.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/axios.config.js"></script>
+    <script src="js/iview.js"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="init()">
+
+<script type="text/javascript">
+    // console.log(data);
+    // console.log(getUrlParam('id'));
+
+    function  init() {
+        aa()
+    }
+
+    function aa(){
+
+        alert("cccc")
+        axios.patch("",{}).then(res=>{
+            alert("oooooo")
+        }).catch((error=>{
+            alert("bbbbb")
+        }))
+
+
+
+
+        axios.patch("/resume/" + getUrlParam('id') + "/", param, {
+            headers: {
+                // "Content-Type":"application/x-www-form-urlencoded",
+                "Content-Type": "multipart/form-data",
+                "Authorization": "JWT " + localStorage.getItem("usertoken")
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+                alert('更新成功');
+                console.log(checkWebview());
+                if (checkWebview() == 'ios') {
+                    window.webkit.messageHandlers.goBack.postMessage(null);
+
+                }else {
+                    window.android.goBack();
+                }
+                // setTimeout(() => {
+                //     history.go(-1);
+                // }, 1500)
+            }).catch(error => {
+            alert('保存失败');
+            console.log(error);
+            try {
+                alert(JSON.stringify(error.response.data))
+            } catch (e) {
+                alert(e)
+            }
+            for (let d in error.response.data) {
+                alert(error.response.data[d]);
+                break;
+            }
+        })
+    }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+<script type="text/javascript">
+	function addrList(){
+		$(".page").hide()
+		$("#addr_list").show()
+	}
+	
+	function mainPage(){
+		$(".page").hide()
+		$("#main_page").show()
+	}
+
+
+</script>
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<a href="javascript:mainPage()" class="btn_back">返回</a>
+		<h1 class="title">订单支付</h1>
+	</div>
+	<div class="content m2">
+		<!--地址-->
+		<div class="address_bar" onClick="addrList()">
+			<div class="inner">
+				<h1 class="name">收件人：小蜜蜂 13856915547</h1>
+				<p class="addr">收货地址：福建省福州市晋安区王庄街道长乐北路117号紫阳国际商贸中心23层锐掌网络</p>
+			</div>
+			<img src="images/address_bg.png" class="bg" />
+		</div>
+		<div class="cart-product">
+			<div class="order-cartlist">
+				<div class="order-detail" style="background: #fafafa;">
+					<img src="images/b1.jpg" class="pic"></image>
+					<div class="cartinfo">
+						<p class="name">名称名称名称</p>
+						<p class="about">型号</p>
+						<p class="num">x1</p>
+						<p class="price">￥1280</p>
+					</div>
+				</div>
+			</div>
+			<ul class="list">
+				<li class="items">
+					<label>配送方式：</label>
+					<p class="say">快递 10元</p>
+				</li>
+				<li class="items">
+					<label>买家留言：</label>
+					<input type="text" class="txt" placeholder="我们来满足您的所有要求" placeholder-style="color:#c8c7c7;"/>
+				</li>
+				<li class="price-total">
+					共1件商品 合计：<span>￥210.00</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--底部-->
+	<div class="cart_bottom">
+		<a href="cart_order.html" class="btn_buy btn_gray">去结算</a>
+		<div class="total">总计：<span class="price">200</span>元<br>共计<span class="all">1</span>件</div>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+
+
+<div class="page" id="addr_list">
+	<div class="header">
+		<a href="javascript:mainPage()" class="btn_back">返回</a>
+		<h1 class="title">编辑地址信息</h1>
+	</div>
+	<div class="content m2">
+		<div class="order_issure">
+			<ul class="ttip_mod">
+				<li class="item">
+					<div class="tpp">收货人</div>
+					<div class="right"><input type="text" class="txt" placeholder="收货人姓名"/></div>
+				</li>
+				<li class="item">
+					<div class="tpp">手机号</div>
+					<div class="right"><input type="text" class="txt" placeholder="联系人电话"/></div>
+				</li>
+			</ul>
+		</div>
+		<div class="order_issure">
+			<ul class="ttip_mod">
+				<li class="item">
+					<div class="tpp">省份</div>
+					<div class="right">
+						<select class="sel">
+							<option>请选择省份</option>
+							<option>福建省</option>
+							<option>广东省</option>
+							<option>河北省</option>
+							<option>浙江省</option>
+						</select>
+					</div>
+				</li>
+				<li class="item">
+					<div class="tpp">城市</div>
+					<div class="right">
+						<select class="sel">
+							<option>请选择城市</option>
+							<option>福州市</option>
+							<option>厦门市</option>
+							<option>三明市</option>
+							<option>龙岩市</option>
+						</select>
+					</div>
+				</li>
+				<li class="item">
+					<div class="tpp">地区</div>
+					<div class="right">
+						<select class="sel">
+							<option>请选择地区</option>
+							<option>晋安区</option>
+							<option>鼓楼区</option>
+							<option>台江区</option>
+							<option>金山区</option>
+						</select>
+					</div>
+				</li>
+				<li class="item">
+					<div class="tpp">详细地址</div>
+					<div class="right"><input type="text" class="txt" placeholder="请输入详细地址"/></div>
+				</li>
+				<li class="item">
+					<div class="tpp">邮编</div>
+					<div class="right"><input type="text" class="txt" placeholder="请输入邮编"/></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!--底部-->
+	<div class="popu-join-btn">
+		<a href="" class="btn-join">保存信息</a>
+	</div>
+</div>
+
+
+</body>
+</html>

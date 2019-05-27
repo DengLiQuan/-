@@ -1,0 +1,182 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+
+</head>
+
+<body>
+<div class="page" style="background: #fff;">
+	<div class="header">
+		<a href="javascript:history.go(-1)" class="btn_back">返回</a>
+		<h1 class="title">登录</h1>
+	</div>
+	<div class="content m">
+		<div class="login-box">
+			<div class="login-name">请输入帐号密码</div>
+			<ul class="list">
+				<li class="item">
+					<input type="text" placeholder="请输入手机号码" class="ipt_txt">
+				</li>
+				<li class="item">
+					<input type="text" placeholder="请输入密码" class="ipt_txt">
+				</li>
+			</ul>
+			<div class="btn_login"><a class="btn_submit" onClick="dialog('#d1')">登录</a></div>
+			<div class="btn-reg">
+				<a href="reg.html">用短信验证码注册</a>
+				<a href="find_pwd.html">忘记密码</a>
+			</div>
+		</div>
+	</div> -->
+	<!--侧边栏-->
+	<!-- <div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div> -->
+<!-- </div> -->
+<!--弹窗-->
+<!-- <div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="dialog" id="d2">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">取消</a>
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+ -->
+
+
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/axios.config.js"></script>
+
+</head>
+
+<body>
+<div class="page" style="background: #fff;" id="app">
+	<div class="header">
+		<a href="javascript:history.go(-1)" class="btn_back">返回</a>
+		<h1 class="title">登录</h1>
+	</div>
+	<div class="content m">
+		<div class="login-box">
+			<div class="login-name">请输入帐号密码</div>
+			<ul class="list">
+				<li class="item">
+					<input type="text" placeholder="请输入手机号码" id="username" class="ipt_txt" v-model="formdata.username">
+				</li>
+				<li class="item">
+					<input type="text" placeholder="请输入密码" class="ipt_txt" v-model="formdata.password">
+				</li>
+			</ul>
+			<!--<div class="btn_login"><a class="btn_submit" onClick="dialog('#d1')">登录</a></div>-->
+			<div class="btn_login"><a class="btn_submit" @click="getInfo()">登录</a></div>
+			<div class="btn-reg">
+				<a href="reg.html">用短信验证码注册</a>
+				<a href="find_pwd.html">忘记密码</a>
+			</div>
+		</div>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+<!--弹窗-->
+<div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="dialog" id="d2">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">取消</a>
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+				formdata:{
+				    username:'',
+                    password:''
+				}
+            }
+        },
+        created() {
+           this.getInfo();
+        },
+        methods:{
+            getInfo() {
+                this.$axios.post("/login/",this.formdata)
+					.then(res => {
+					    console.log(res);
+						if (res.data.token != ''){
+							localStorage.setItem("username",$('#username').val());
+                            localStorage.setItem("usertoken",res.data.token);
+                            window.location.href = 'job.html'; // 重定向到首页
+						}
+                    }).catch(error => {
+                    	alert('请求详细信息失败');
+                })
+            }
+		}
+    })
+</script>
+</body>
+</html>

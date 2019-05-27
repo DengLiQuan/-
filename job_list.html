@@ -1,0 +1,808 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>招聘列表</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/job.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/js.js?v=2"></script>
+    <script src="js/imgsize.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/axios.config.js"></script>
+
+</head>
+
+<body>
+<div id="app">
+    <div class="page">
+        <!--<div class="header">-->
+        <!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+        <!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+        <!--<h1 class="title">招聘列表</h1>-->
+        <!--</div>-->
+        <div class="tab-recruit">
+            <a href="javascript:;" class="item item1" style="text-decoration: none">
+                <span>{{ area }}</span>
+                <!--<span>工作地区</span>-->
+            </a>
+            <a href="javascript:;" class="item item2" style="text-decoration: none">
+                <span>{{ metro }}</span>
+            </a>
+            <a href="javascript:;" class="item item3" style="text-decoration: none">
+                <span>{{ title }}</span>
+            </a>
+        </div>
+        <!--<div class="content" style="padding:1.59rem 0 0 0;">-->
+        <div class="content" style="margin-top: .79rem;">
+            <dl class="recruit-list-mod">
+                <dt v-for="job in allJob" :key="job.id">
+                    <a :href="'job_detail.html?url=recruitment_info&id='+ job.id" class="info"
+                       style="text-decoration: none">
+                        <div class="fl">
+                            <h1>{{ job.name }}</h1>
+                            <h2>{{ job.company_name }}</h2>
+                            <ul class="list">
+                                <li>
+                                    <span class="s1">福建省福州市鼓楼区软件园大道{{ job.province + job.city + job.address }}</span>
+                                </li>
+                                <li>
+                                    <span class="s2">{{ formatDate(job.publish_time) }}</span>
+                                    <span class="s3">{{ job.visitor_volume}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr">
+                            <h1>日币</h1>
+                            <h2>{{ job.wage }}</h2>
+                            <h3>月给</h3>
+                            <div class="type">{{ job.nature_work }}</div>
+                        </div>
+                    </a>
+                </dt>
+                <!--<dt>-->
+                <!--<a href="job_detail.html" class="info">-->
+                <!--<div class="fl">-->
+                <!--<h1>会计经理</h1>-->
+                <!--<h2>福州锐掌网络科技有限公司</h2>-->
+                <!--<ul class="list">-->
+                <!--<li>-->
+                <!--<span class="s1">福建省福州市鼓楼区软件园大道</span>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<span class="s2">10小时前</span>-->
+                <!--<span class="s3">1000</span>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="fr">-->
+                <!--<h1>日币</h1>-->
+                <!--<h2>22万-70万</h2>-->
+                <!--<h3>月给</h3>-->
+                <!--<div class="type type1">小时工</div>-->
+                <!--</div>-->
+                <!--</a>-->
+                <!--</dt>-->
+
+            </dl>
+        </div>
+    </div>
+
+    <!--遮罩-->
+    <div class="sitejapan-mask" style="height: calc(100vh - 1.59rem); top: 1.59rem;" id="mask1"></div>
+    <div class="sitejapan-mask" style="height: calc(100vh - 1.59rem); top: 1.59rem;" id="mask2"></div>
+    <div class="sitejapan-mask" style="height: calc(100vh - 1.59rem); top: 1.59rem;" id="mask3"></div>
+    <!--工作地区-->
+    <div class="sitejapan-box" style="top: .79rem;">
+        <!--<a href="javascript:;" :class="[{on:index == oneOn},'item']" v-for="(area,index) in areas" :key="index" @click="areaSetOn(area,index)" ref="value1">{{ area.name }}</a>-->
+        <a href="javascript:;" class="item" id="area_set_on" @click="area_set_on" style="text-decoration: none">全部地区</a>
+        <!--<a href="javascript:;" class="item"  @click="areaSetOn('','')">全部</a>-->
+        <a href="javascript:;" :class="['item']" v-for="(area,index) in areas" :key="index"
+           @click="areaSetOn(area,index)" ref="value1" style="text-decoration: none">{{ area.name }}</a>
+        <!--<a href="javascript:;" class="item">横滨</a>-->
+
+    </div>
+    <!--地铁线路-->
+    <div class="sitejapan-box1" style="top: .79rem;;">
+        <a href="javascript:;" class="sub-item1 sub-item" id="subway_set_on" @click.stop="subway_set_on" style="text-decoration: none">全部路线</a>
+
+        <div class="subway">
+            <!--<a href="javascript:;" class="on main sub-item" @click.stop="sbwSetOn('','')">全部</a>-->
+            <!--<a href="javascript:;" :class="[{on:index == twoOn},'main','sub-item']" v-for="(sbw,index) in subs" :key="index" @click.stop="sbwSetOn(sbw,index)">{{ sbw.name }}</a>-->
+
+            <!--<a href="javascript:;" class="main sub-item" id="remOn">全部</a>-->
+            <a href="javascript:;" :class="[{on: index == activeClass },'main','sub-item']" v-for="(sbw,index) in subs"
+               :key="index" @click.stop="sbwSetOn(sbw,index)" style="text-decoration: none">{{ sbw.name }}</a>
+
+            <!--<a href="javascript:;" class="main sub-item">地区名称地区名称</a>-->
+
+        </div>
+        <div class="subway subway1">
+            <!--<a href="javascript:;" :class="[{on:index == twoOn2},'sub-item1','sub-item']" v-for="(smallSbw,index) in bigSubs" :key="index" @click.stop="sbw2SetOn(smallSbw,index)" ref="value2">{{ smallSbw.name }}</a>-->
+
+
+            <a href="javascript:;" :class="[{on:index == activeClass2 },'sub-item1','sub-item']"
+               v-for="(smallSbw,index) in bigSubs" :key="index" @click.stop="sbw2SetOn(smallSbw,index)" ref="value2"
+               style="text-decoration: none">{{ smallSbw.name }}</a>
+
+
+            <!--<a href="javascript:;" class="sub-item sub-item1">地区名称地区名称</a>-->
+
+        </div>
+
+
+    </div>
+    <!--一般事务-->
+    <div class="sitejapan-box2" style="top: .79rem;">
+        <a href="javascript:;" class="case-item" id="leiBie_set_on" @click="leiBie_set_on" style="text-decoration: none">全部类别</a>
+        <a :class="[{on:item.id == titleIndex},'case-item']" :data-id="item.id" v-for="(item,index) in category"
+           :key="item.id" @click.stop="SetClassOn(item,index)" ref="value3" style="text-decoration: none">{{ item.name
+            }}</a>
+        <!--<a href="javascript:;" class="case-item on">餐饮</a>-->
+
+    </div>
+</div>
+<script>
+    $(function () {
+
+        $(".tab-recruit .item1").click(
+            function () {
+                $(".sitejapan-box").slideToggle();
+                $("#mask1").toggle();
+                $(this).toggleClass("thisone");
+                $(".tab-recruit .item2").removeClass("thisone");
+                $(".tab-recruit .item3").removeClass("thisone");
+                $(".sitejapan-box2").slideUp();
+                $(".sitejapan-box1").slideUp();
+                $("#mask2").hide();
+                $("#mask3").hide();
+            }
+        );
+
+        $("#mask1").click(function () {
+            $(".sitejapan-box").slideUp();
+            $(".sitejapan-box1").slideUp();
+            $(".sitejapan-box2").slideUp();
+            $(".tab-recruit .item").removeClass("thisone");
+            $(this).hide();
+        });
+
+
+        $('.sitejapan-box').delegate('.item', 'click', function () { // 委托绑定，后面添加的都会绑定到，不然要等到加载完后
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(".sitejapan-mask").hide();
+            $(".tab-recruit .item").removeClass("thisone");
+            setTimeout(function () {
+                $(".sitejapan-box").slideUp()
+            }, 100);
+            $(".item1 span").html($(this).text()); // 设置工作地区 地址
+        });
+
+
+        // $(".sitejapan-box .item").click(function(){
+        //     $(this).addClass("on").siblings("a").removeClass("on");
+        //     $(".sitejapan-mask").hide();
+        //     $(".tab-recruit .item").removeClass("thisone");
+        //     setTimeout(function(){$(".sitejapan-box").slideUp()},100);
+        //     $(".item1 span").html($(this).text()); // 设置工作地区 地址
+        // });
+        $(".tab-recruit .item2").click(
+            function () {
+                $(".sitejapan-box1").slideToggle();
+                $("#mask2").toggle();
+                $(this).toggleClass("thisone");
+                $(".tab-recruit .item1").removeClass("thisone");
+                $(".tab-recruit .item3").removeClass("thisone");
+                $(".sitejapan-box").slideUp();
+                $(".sitejapan-box2").slideUp();
+                $("#mask1").hide();
+                $("#mask3").hide();
+            }
+        );
+        // $(".subway .main").click(function(){ //地铁路线第一排切换样式
+        //     $(this).addClass("on").siblings("a").removeClass("on");
+        //
+        // });
+
+        // console.log(11);
+
+
+        $(".sitejapan-box1 .sub-item1").click(function () {
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(".sitejapan-mask").hide();
+            $(".tab-recruit .item").removeClass("thisone");
+            setTimeout(function () {
+                $(".sitejapan-box1").slideUp()
+            }, 100);
+        });
+
+
+        $("#mask2").click(function () {
+            $(".sitejapan-box").slideUp();
+            $(".sitejapan-box1").slideUp();
+            $(".sitejapan-box2").slideUp();
+            $(".tab-recruit .item").removeClass("thisone");
+            $(this).hide();
+        });
+        $(".tab-recruit .item3").click(
+            function () {
+                $(".sitejapan-box2").slideToggle();
+                $("#mask3").toggle();
+                $(this).toggleClass("thisone");
+                $(".tab-recruit .item1").removeClass("thisone");
+                $(".tab-recruit .item2").removeClass("thisone");
+                $(".sitejapan-box").slideUp();
+                $(".sitejapan-box1").slideUp();
+                $("#mask1").hide();
+                $("#mask2").hide();
+            }
+        );
+        // $(".sitejapan-box2 .case-item").click(function(){
+        // 	// $(this).addClass("on").siblings("a").removeClass("on");
+        // 	$(".sitejapan-mask").hide();
+        // 	$(".tab-recruit .item").removeClass("thisone");
+        // 	setTimeout(function(){$(".sitejapan-box2").slideUp()},100);
+        // 	$(".item3 span").html($(this).text()); // 设置工作地区 地址
+        // });
+        $("#mask3").click(function () {
+            $(".sitejapan-box").slideUp();
+            $(".sitejapan-box1").slideUp();
+            $(".sitejapan-box2").slideUp();
+            $(".tab-recruit .item").removeClass("thisone");
+            $(this).hide();
+        });
+
+
+    })
+</script>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                provinceID: '', // 首页进来的时候传过来的ID，这边需要解析成对应的省份，再发送请求
+
+                activeClass: -1, // 0为默认选择第一个，-1为不选择
+                activeClass2: -1, // 0为默认选择第一个，-1为不选择
+
+                oneOn: 0, // 初始化工作地区on的索引
+                twoOn: 0, // 初始化地铁路线左侧on的索引
+                titleIndex: getUrlParam('id'),
+                areas: [],
+                category: [],
+                title: '全部类别',
+                area: '全部地区',
+                subs: [], // 地铁路线左侧
+
+                twoOn2: 0, // 初始化地铁路线右侧on的索引
+                bigSubs: [], // 地铁路线右侧
+                bigSubs_zi_di_qu: [], // 地铁路线右侧子地区
+                metro: '全部路线',
+                allJob: [],
+                _id1: '', // 局部更新工作地区 现在地的id
+
+                // 局部加条件刷新，
+                urlProvince: getUrlParam('province'), // 首页url传过来的地址
+                province: '',
+                // search: getUrlParam('a'),
+                search: getUrlParam('a'),
+                aaadizhi: '',
+                lei_bie: '',
+
+
+                // 每变化选项一次 都重新获取 头部的  工作地区/地铁路线/全部的值
+                province1: '', // 工作地区
+                subway: '', // 地铁路线
+                all_category: '', // 全部
+            }
+        },
+        created() {
+            this.whereFrom();
+            console.log(decodeURIComponent(this.search));
+        },
+        methods: {
+
+            jobList() {
+
+                this.$axios.get('/recruitment_info/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        // search: this.search,  // 搜索的关键字
+                        // province: this.aaadizhi,  // 工作地区
+
+                        search: this.search,  // 搜索的关键字
+                        province: this.urlProvince ? '' : this.urlProvince  // 首页url传过来的地址
+
+                    }
+                })
+                    .then(res => {
+                        this.allJob = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        alert('请求全部工作列表失败');
+                    })
+            },
+
+            areaSetOn(area, index) {
+                // this.oneOn = index;
+                // this.area = area.name;
+                // $(".sitejapan-mask").hide();
+                // $(".tab-recruit .item").removeClass("thisone");
+                // setTimeout(function(){$(".sitejapan-box").slideUp()},100);
+                // // $(".item1 span").html($(this).text()); // 设置工作地区 地址
+                // console.log(this.index);
+
+                this.province1 = this.$refs.value1[index].innerText;
+                console.log(this.province1);
+
+                // if (area.name == '全部') {
+                //     this.area = '全部地区';
+                // }
+
+                // 如果能获取到ID说明是从十个  类别那边进来的 不需要search参数！
+                var data = {};
+                if (getUrlParam('id')) {
+                    data = {
+                        province: this.province1,  // 工作地区
+                        // province: area.name,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                } else {
+
+                    data = {
+                        // search: this.search,  // 搜索的关键字
+                        province: this.province1,  // 工作地区
+                        // province: area.name,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                }
+
+                this.$axios.get('/recruitment_info/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    // params: {
+                    //     search: this.search,  // 搜索的关键字
+                    //     province: this.province1,  // 工作地区
+                    //     // province: area.name,  // 工作地区
+                    //     metro_station: '', // 地铁线路
+                    //     job_type: '',  // 工作类别
+                    //
+                    // }
+                    params: data
+                })
+                    .then(res => {
+                        this.allJob = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        alert('请求全部工作列表失败');
+                    });
+
+                this.oneOn = index;
+                this.area = area.name;
+
+
+                $(".sitejapan-mask").hide();
+                $(".tab-recruit .item").removeClass("thisone");
+                setTimeout(function () {
+                    $(".sitejapan-box").slideUp()
+                }, 100);
+                // $(".item1 span").html($(this).text()); // 设置工作地区 地址
+
+            },
+
+            area_set_on() {
+                $("#area_set_on").addClass("on").siblings("a").removeClass("on");
+                this.$axios.get("/recruitment_info/", {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        province: '',  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                }).then(res => {
+                    this.allJob = res.data.results;
+                    console.log(res.data.results);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            }, // 工作地区里面的全部
+
+            // 全部路线的里面的 全部
+            subway_set_on() {
+                this.metro = "全部路线"; // 设置标题为全部路线
+                $("#subway_set_on").addClass("on"); // 自己加上on
+                $(".subway .sub-item").removeClass("on"); // 下面的所有都移除on
+
+                this.$axios.get("/recruitment_info/", {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        province: this.province1,  // 工作地区
+                        metro_station: '', // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                }).then(res => {
+                    this.allJob = res.data.results;
+                    console.log(res.data.results);
+                }).catch(error => {
+                    console.log(error);
+                });
+            },// 全部路线的里面的 全部
+
+            sbwSetOn(sbw, index) {
+                // this.twoOn = index;
+                this.activeClass = index;
+                $("#subway_set_on").removeClass("on");
+                // $(".subway1 .sub-item1").removeClass("on");
+
+                // $(".subway").on('click', '.main', function () {
+                //     console.log(111);
+                //     $(this).addClass("on").siblings("a").removeClass("on");
+                // });
+                console.log(sbw);
+                let name = sbw.name;
+                for (let i in this.subs) {
+                    if (this.subs[i].name == name) {
+                        this.bigSubs = this.subs[i].child;
+                        break;
+                    }
+                }
+
+            },
+
+            sbw2SetOn(smallSbw, index) {
+                $("#subway_set_on").removeClass("on");
+                // if ()
+                this.activeClass2 = index; // 添加on的样式
+                this.subway = this.$refs.value2[index].innerText; // 留来搜索的关键词
+                this.metro = this.$refs.value2[index].innerText; // 标题上赋值
+                // console.log(this.$refs.value2[index].innerText);
+
+
+                // 如果能获取到ID说明是从十个  类别那边进来的 不需要search参数！
+                var data = {};
+                if (getUrlParam('id')) {
+                    data = {
+                        province: this.province1,  // 工作地区
+                        // province: area.name,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                } else {
+                    data = {
+                        // search: this.search,  // 搜索的关键字
+                        province: this.province1,  // 工作地区
+                        // province: area.name,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                }
+
+                this.$axios.get('/recruitment_info/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: data
+                })
+                    .then(res => {
+                        this.allJob = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        alert('请求全部工作列表失败');
+                    });
+
+                this.twoOn2 = index;
+                $(".sitejapan-mask").hide();
+                $(".tab-recruit .item").removeClass("thisone");
+                setTimeout(function () {
+                    $(".sitejapan-box1").slideUp()
+                }, 100);
+            },
+
+            leiBie_set_on() {
+                this.title = "全部类别";
+                $("#leiBie_set_on").addClass("on").siblings("a").removeClass("on");
+                $(".sitejapan-mask").hide();
+                $(".tab-recruit .item").removeClass("thisone");
+                setTimeout(function () {
+                    $(".sitejapan-box2").slideUp()
+                }, 100);
+
+                this.$axios.get("/recruitment_info/", {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        province: this.province1,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: '',  // 工作类别
+                    }
+                }).then(res => {
+                    this.allJob = res.data.results;
+                    console.log(res.data.results);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            }, // 类别设置全部
+
+            SetClassOn(item, index) {
+                $("#leiBie_set_on").removeClass("on");
+                console.log(item);
+                this.titleIndex = item.id;
+                this.title = item.name;
+                this.lei_bie = item.value;
+                // console.log(this.title);
+                $(".sitejapan-mask").hide();
+                $(".tab-recruit .item").removeClass("thisone");
+                setTimeout(function () {
+                    $(".sitejapan-box2").slideUp()
+                }, 100);
+                var key = this.$refs.value3[index].innerText;
+                // this.all_category = this.$refs.value3[index].innerText;
+                console.log(this.$refs.value3[index].innerText);
+                if (key == '一般事务') {
+                    this.all_category = 'AFFAIRS';
+                }
+                else if (key == '销售') {
+                    this.all_category = 'SALES';
+                }
+                else if (key == '餐饮') {
+                    this.all_category = 'FOOD';
+                }
+                else if (key == '贩卖') {
+                    this.all_category = 'SELLING';
+                }
+                else if (key == '服务接待') {
+                    this.all_category = 'RECEPTION';
+                }
+                else if (key == '建筑装修') {
+                    this.all_category = 'DECORATE';
+                }
+                else if (key == 'IT相关') {
+                    this.all_category = 'IT';
+                }
+                else if (key == '按摩店') {
+                    this.all_category = 'MASSAGE';
+                }
+                else if (key == '工厂') {
+                    this.all_category = 'FACTORY';
+                }
+                else if (key == '司机') {
+                    this.all_category = 'DRIVER';
+                }
+
+                // 如果能获取到ID说明是从十个  类别那边进来的 不需要search参数！
+                var data = {};
+                if (getUrlParam('id')) {
+                    data = {
+                        province: this.province1,  // 工作地区
+                        // province: area.name,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                }
+                else {
+                    data = {
+                        // search: this.search,  // 搜索的关键字
+                        province: this.province1,  // 工作地区
+                        // province: area.name,  // 工作地区
+                        metro_station: this.subway, // 地铁线路
+                        job_type: this.all_category,  // 工作类别
+                    }
+                }
+
+                this.$axios.get('/recruitment_info/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: data
+                })
+                    .then(res => {
+                        this.allJob = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        alert('请求全部工作列表失败');
+                    });
+            },
+
+            workAreas() { //获取工作地区
+                this.$axios.get('/place/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })
+                    .then(res => {
+                        this.areas = res.data;
+                        console.log(res.data);
+
+                        for (let i = 0; i < res.data.length; i++) {
+                            if (res.data[i].id == this.provinceID) {
+                                this.area = res.data[i].name
+                            }
+                            // this.aaadizhi = res.data[i].name;
+                            this._id1 = res.data[i].id;
+
+                            // console.log(this._id1); // 获取工作地区的单个id值，留作更新用
+                        }
+
+                    })
+                    .catch(error => {
+                        alert('请求工作地区失败');
+                    })
+            },
+
+            subwayLoad() { // 地铁路线
+                this.$axios.get('/metro/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })
+                    .then(res => {
+                        this.subs = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求地铁路线左侧失败');
+                    })
+            },
+
+            subwayLoad2(bigSubs_zi_di_qu) {
+                this.$axios.get('/metro/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })
+                    .then(res => {
+                        // this.bigSubs = res.data;
+                        console.log(res.data);
+
+                        for (var i = 0; i < res.data.length; i++) {  //  获取到地铁 的大地区，左侧的
+                            var bigSubs_zi = res.data[i].child;
+                            console.log(bigSubs_zi);
+
+                            for (var j = 0; j < bigSubs_zi.length; j++) {  //  获取到地铁 的子地区，右侧的
+                                this.bigSubs_zi_di_qu = bigSubs_zi[j].name;
+                                console.log(this.bigSubs_zi_di_qu);
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        alert('请求地铁路线右侧失败');
+                    })
+            },
+
+            getCategory() {
+                this.$axios.get('/job_type/', {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) //获取首页类别
+                    .then(res => {
+                        this.category = res.data;
+                        console.log(res.data);
+
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].id == this.titleIndex) {
+                                this.title = res.data[i].name;
+
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        alert('请求类别失败');
+                    })
+            },
+
+            // 地址和关键字请求 列表
+            provinceKeyGetList() {
+                var a = getUrlParam('a');
+                a = Base64.decode(a); // 解码
+                // alert(a);
+                // 首页传入参数进行搜索
+                this.$axios.get("/recruitment_info/", {
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        province: this.area == '全部' || this.area == '全部地区' ? '' : this.area,
+                        // search: getUrlParam('a')
+                        search: a
+                    }
+                }).then(res => {
+                    this.allJob = res.data.results;
+                    // alert(res.data.results.length);
+                    console.log(res.data.results);
+                }).catch(error => {
+                    console.log(error);
+                });
+            },
+
+            // 这个方法是判断  从首页搜索入口进入列表页 还是从 10个小类别进入的列表页
+            whereFrom() {
+                let ID = getUrlParam('id');
+                if (ID && ID != '') {
+                    this.$axios.get("/recruitment_info/", {
+                        headers: {
+                            'Authorization': "JWT " + localStorage.getItem("usertoken")
+                        },
+                        params: {
+                            job_type: getUrlParam('job_type')
+                        }
+                    }).then(res => {
+                        this.allJob = res.data.results;
+                        console.log(res.data.results);
+                        this.workAreas();
+                        this.subwayLoad();
+                        this.subwayLoad2();
+                        this.getCategory();
+                    }).catch(error => {
+                        console.log(error);
+                    })
+                }
+                else {
+                    this.provinceID = getUrlParam('province');
+                    console.log(this.provinceID);
+
+                    //获取工作地区
+                    this.$axios.get('/place/', {
+                        headers: {
+                            'Authorization': "JWT " + localStorage.getItem("usertoken")
+                        },
+                    })
+                        .then(res => {
+                            this.areas = res.data;
+                            console.log(res.data);
+
+
+                            for (let i = 0; i < res.data.length; i++) {
+                                if (res.data[i].id == this.provinceID) {
+                                    this.area = res.data[i].name
+                                }
+                            }
+
+                            setTimeout(() => {
+                                this.provinceKeyGetList();
+                                this.workAreas();
+                                this.subwayLoad();
+                                this.subwayLoad2();
+                                // this.jobList();
+                                this.getCategory();
+                            }, 200)
+                        })
+                        .catch(error => {
+                            alert('请求工作地区失败');
+                        });
+
+                }
+            }
+        }
+    });
+
+
+</script>
+
+
+</body>
+</html>

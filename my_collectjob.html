@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>收藏职位</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/job.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/axios.config.js"></script>
+
+</head>
+
+<body>
+<div class="page" id="app">
+	<!--<div class="header">-->
+		<!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+		<!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+		<!--<h1 class="title">收藏职位</h1>-->
+	<!--</div>-->
+	<div class="content">
+		<dl class="recruit-list-mod recruit-list-mod1">
+			<dt class="dt" v-for="item in infoList" :key="item.id">
+				<a :href="'job_detail.html?id=' + item.recruitment.id" class="info">
+					<div class="fl">
+						<h1>{{ item.recruitment.name }}</h1>
+						<h2>{{ item.recruitment.company_name }}</h2>
+						<ul class="list">
+							<li>
+								<span class="s1">{{ item.recruitment.province + item.recruitment.city + item.recruitment.address }} 北京东城</span>
+							</li>
+							<li>
+								<span class="s2">{{ formatDate(item.recruitment.publish_time) }}</span>
+								<span class="s3">{{ item.recruitment.visitor_volume }}</span>
+							</li>
+						</ul>
+					</div>
+					<div class="fr">
+						<h1>日币</h1>
+						<h2>{{ item.recruitment.wage}}</h2>
+						<h3>月给</h3>
+						<div class="type">{{ item.recruitment.nature_work}}</div>
+					</div>
+
+				</a>
+				<!-- <a class="btn-collect"> -->
+				<!--<a class="btn-collect" @click="jobHide()">-->
+					<!--取消<br>收藏-->
+				<!--</a>-->
+
+				<a  class="btn-collect" @click="jobHide(item)" style="text-decoration: none">
+					取消<br>收藏
+				</a>
+			</dt>
+			
+		</dl>
+	</div>
+</div>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		data() {
+		    return {
+				infoList: [], // 收藏的职位列表
+			}
+		},
+		created() {
+		    this.collectList();
+		},
+		methods: {
+            collectList() {  // 收藏的职位列表
+                this.$axios.get('/collect/?page_size=5',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.infoList = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        alert('请求收藏职位列表失败,请登入');
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+						},1500)
+                    })
+            }, // 收藏的职位列表
+
+            jobHide(item) {
+                axios({
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    method: 'delete',
+                    url: '/collect/'+item.id+"/",
+                }).then(res => {
+                    // window.location.reload(); // 重新加载当前文档
+                    console.log(res);
+
+                    console.log('/collect/'+ item.id + '/');
+                    // this.collectList();
+					let collect_index = "";
+                    for (let index in this.infoList) {
+                        if (this.infoList[index].id == item.id) {
+                            collect_index = index;
+                            break;
+                        }
+                    }
+                    if (collect_index) this.infoList.splice(collect_index, 1);
+                    alert('取消收藏成功');
+                })
+                    .catch(error => {
+                        alert('取消收藏失败');
+                    });
+
+            },
+		}
+	});
+
+    // 时间格式化
+    function formatDate(time){
+        var date = new Date(time);
+
+        var year = date.getFullYear(),
+            month = date.getMonth() + 1,//月份是从0开始的
+            day = date.getDate(),
+            hour = date.getHours(),
+            min = date.getMinutes(),
+            sec = date.getSeconds();
+        var newTime = year + '-' +
+            month + '-' +
+            day + ' ';
+        // var newTime = year + '-' +
+        //     month + '-' +
+        //     day + ' ' +
+        //     hour + ':' +
+        //     min + ':' +
+        //     sec;
+        return newTime;
+    }
+</script>
+
+</body>
+</html>

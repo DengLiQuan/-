@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>求职招聘</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="css/job.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/iview.css">
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/js.js?v=2"></script>
+	<script src="js/imgsize.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/axios.min.js"></script>
+	<script src="js/axios.config.js"></script>
+	<script src="js/iview.js"></script>
+
+
+</head>
+
+<body>
+<div id="app">
+	<div class="page" >
+		<!--<div class="header">-->
+			<!--<h1 class="title">求职招聘</h1>-->
+		<!--</div>-->
+		<div class="content">
+			<div class="job-search-mod">
+				<a class="site">
+					<span>现在地</span>
+				</a>
+				<div class="searchinfo">
+					<input type="text" placeholder="关键词/职位/公司" class="txt" ref="input1">
+
+					<a>
+						<input type="button" class="btn" @click.prevent="isNone">
+					</a>
+
+
+				</div>
+			</div>
+
+			<!--轮播图开始-->
+			<div class="job-banner">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="(item,index) in imageBanner">
+
+
+                            <!--@click.prevent="bannerRecruitment(item.recruitment)"-->
+                            <a :href="'job_detail.html?recruitment=' + item.recruitment"><img :src="item.image" class="pic" /></a>
+                        </div>
+						<!-- <div class="swiper-slide"><a href=""><img src="images/job_banner.png" class="pic"/></a></div>
+                        <div class="swiper-slide"><a href=""><img src="images/job_banner.png" class="pic"/></a></div>
+                        <div class="swiper-slide"><a href=""><img src="images/job_banner.png" class="pic"/></a></div>
+                        <div class="swiper-slide"><a href=""><img src="images/job_banner.png" class="pic"/></a></div> -->
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+
+				<script>
+                    setTimeout(function () { // 轮播图配置
+                        $(function(){
+                            var swiper1 = new Swiper('.job-banner .swiper-container', {
+                                pagination: '.swiper-pagination',
+                                paginationClickable: true,
+                                autoplay:2000,
+                            });
+                        })
+                    },1000)
+
+				</script>
+			</div>
+			<div class="job-func-mod">
+				<!--传入id进入2级页面-->
+				<a :href="'job_list.html?id='+ item.id + '&job_type=' + item.value" class="job-item" v-for="item in category" :key="item.id" >
+					<img :src="item.icon" class="icon">
+					<h1>{{ item.name }}</h1>
+				</a>
+				<!--<a href="job_list.html" class="job-item">
+                    <img src="images/jobfunc_2.png" class="icon">
+                    <h1>销售</h1>
+                </a>-->
+			</div>
+
+			<!--最近浏览-->
+			<div class="casename-top">
+				<p>
+					<span>最近浏览</span><i></i>
+				</p>
+			</div>
+			<dl class="look-recently-box">
+				<dd>
+					<a class="item" :href="'job_detail.html?url=recruitment_info&id=' + info.recruitment.id" v-for="info in history" :key="info.recruitment.id">
+						<h1><span>{{ info.recruitment.name }}/</span>{{ info.recruitment.company_name }}</h1>
+						<div class="look-del">
+							<span class="type">{{ info.recruitment.nature_work }}</span>
+							<p class="t1">{{ formatDate(info.recruitment.publish_time) }}</p>
+							<p class="t1">{{ info.recruitment.wage }}日币</p>
+						</div>
+					</a>
+
+					<!--<a class="item" href="job_detail.html">-->
+					<!--<h1><span>销售员/</span>福州锐掌网络科技有限公司</h1>-->
+					<!--<div class="look-del">-->
+					<!--<span class="type type1">小时工</span>-->
+					<!--<p class="t1">刚刚</p>-->
+					<!--<p class="t1">22万-70万日币</p>-->
+					<!--</div>-->
+					<!--</a>-->
+
+				</dd>
+				<dt>
+					<i></i>
+					<a class="moreview" @click="more()">更多浏览</a>
+					<!--<a class="moreview" href="job_list.html" @click="more()">更多浏览</a>-->
+				</dt>
+			</dl>
+			<!--名企推荐-->
+			<div class="casename-top">
+				<p>
+					<span>名企推荐</span><i></i>
+				</p>
+			</div>
+			<div class="company-recom-mod">
+				<a :href="'job_detail.html?url=recruitment_info&is_famous=true&id=' + info.id" v-for="info in mingCompany" :key="info.id"><img :src="info.logo"></a>
+
+				<!-- <a :href="'job_detail.html?recruitment_info/' + info.id" v-for="info in mingCompany" :key="info.id" sonId="info.id"><img :src="info.logo"></a> -->
+				<!--<a href="job_detail.html"><img src="images/job_p1.png"></a>-->
+
+
+			</div>
+			<!--本月推荐-->
+			<div class="casename-top">
+				<p>
+					<span>本月推荐</span><i></i>
+				</p>
+			</div>
+			<div class="company-recom-mod">
+				<a :href="'job_detail.html?url=recruitment_info&is_recommend=true&id=' + month.id"  v-for="month in currentMonth" :key="month.id"><img :src="month.logo"></a>
+				<!--<a href="job_detail.html"><img src="images/job_p1.png"></a>-->
+
+			</div>
+			<!--最新上线-->
+			<div class="casename-top">
+				<p>
+					<span>最新上线</span><i></i>
+				</p>
+			</div>
+			<div class="company-recom-mod">
+				<a :href="'job_detail.html?page_size=5&id=' + item.id" v-for="item in NewCompany" :key="item.id"><img :src="item.logo"></a>
+				<!--<a href="job_detail.html"><img src="images/job_p1.png"></a>-->
+
+			</div>
+		</div>
+		<!--底部-->
+		<!--<div class="footer">-->
+			<!--<div class="nav">-->
+				<!--<a class="item" href="index.html"><img src="images/nav1.png" class="pic"/>首页</a>-->
+				<!--<a class="item" href="phone.html"><img src="images/nav4.png" class="pic"/>拨号</a>-->
+				<!--<a class="item on" href="job.html"><img src="images/nav5_on.png" class="pic"/>求职招聘</a>-->
+				<!--<a class="item" href="distribution.html"><img src="images/nav2.png" class="pic"/>分销</a>-->
+				<!--&lt;!&ndash; <a class="item" href="user.html"><img src="images/nav3.png" class="pic"/>我的</a> &ndash;&gt;-->
+				<!--<a class="item" href="user.html"><img src="images/nav3.png" class="pic"/>我的</a>-->
+			<!--</div>-->
+		<!--</div>-->
+	</div>
+
+	<!--现在地-->
+	<div class="sitejapan-mask" style="height: calc(100vh - .79rem - .9rem); top: .79rem;"></div>
+	<div class="sitejapan-box" style="top: .79rem;">
+		<a href="javascript:;" class="on item" @click="SetClassOn('', '')">全部</a>
+		<!--<a href="javascript:;" :class="['item', {on: index==placeNum}]" v-for="(item,index) in area1" :key="index" @click="SetClassOn(item,index)">{{ item.name }}</a>-->
+		<a href="javascript:;" :class="['item']" v-for="(item,index) in area1" :key="index" @click="SetClassOn(item,index)">{{ item.name }}</a>
+		<!--<a href="javascript:;" class="item">上海</a>-->
+
+	</div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        //显示隐藏地址
+        $(".job-search-mod .site").click(
+            function(){
+                // $(".sitejapan-box").slideToggle();
+                // $(".sitejapan-mask").show();
+
+                $(".sitejapan-box").slideToggle();
+                $(".sitejapan-mask").slideToggle("fast");
+            }
+        );
+        $(".sitejapan-mask").click(function(){
+            $(".sitejapan-box").slideToggle();
+            $(".sitejapan-mask").hide();
+        });
+        $('.sitejapan-box').delegate('.item','click',function () { // 委托绑定，后面添加的都会绑定到，不然要等到加载完后
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(".sitejapan-mask").hide();
+            setTimeout(function(){$(".sitejapan-box").slideToggle()},100);
+            $(".site span").html($(this).text()); // 设置现在地  的地址
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                imageBanner: [],
+                area: [],
+                category: [],
+                categoryId: [],
+                history: [],
+                mingCompany: [],
+                currentMonth: [],
+                NewCompany: [],
+
+                msg: '', // 首页搜索查询关键字
+                result1: '', // 首页搜索查询关键字
+                result2: '', // 首页地址关键字
+                provinceID: '', // 首页地址关键字ID
+
+                // 地址的
+                area1:[],
+                placeNum: '',
+            }
+        },
+        created() {
+            this.getToken();
+            this.getArea();
+            this.getLunBoImg();
+            this.getCategory();
+        },
+        methods: {
+            // bannerRecruitment(ID) {
+            //     console.log(ID);
+            //     window.location.href = 'job_detail.html';
+            // },
+            getArea() {
+                // axiosGET('/place/',{},function(res){
+                //
+                // },function (error) {
+                //
+                // });
+                this.$axios.get('/place/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        // this.area = res.data;
+                        this.area1 = res.data;
+                        // var newAll = {
+                        //     child:[],
+						// 	id: 100,
+						// 	name: '全部'
+						// };
+                        // this.area1.splice(0,0,newAll);
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        console.log('请求地区失败');
+                    })
+            },
+            SetClassOn(item,index) { // 设置样式on
+                this.placeNum = index;
+                if (item){
+                    this.result2 = item.name;
+                    this.provinceID = item.id;
+				} else {
+                    this.result2 = "";
+                    this.provinceID = "";
+				}
+
+                console.log(this.result2);
+
+                // console.log(item.id)
+            },
+
+            getLunBoImg(){
+                this.$axios.get('/banner/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) //获取job轮播图 图片
+                    .then(res => {
+                        this.imageBanner = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        console.log('请求轮播图失败');
+                    })
+            }, // 轮播图
+
+            isNone() {
+                this.result1 = this.$refs.input1.value;
+                if (this.result1 == '') {
+                    return;
+                }
+                else {
+                    // window.location.href = 'job_list.html?province=' + this.provinceID + '&a=' + this.result1;
+                    window.location.href = 'job_list.html?province=' + this.provinceID + '&a=' +  Base64.encode( this.result1); // 编码
+                }
+            }, // 判断是否为空，否则跳转到搜索列表界面
+
+            getCategory() {
+                this.$axios.get('/job_type/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) //获取首页类别
+                    .then(res => {
+                        this.category = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        console.log('请求类别失败');
+                    })
+            }, // 10个类别
+
+            zhaoPinList() { // 最近浏览,添加参数 ?page_size=4 就是只显示4条数据
+                this.$axios.get("/browse/?page_size=3",{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })// 获取招聘信息
+                    .then(res => {
+                        this.history = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        console.log('请求最近浏览列表失败');
+                    });
+            }, // 最近浏览
+            more() {
+                this.$axios.get("/browse/",{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })// 获取招聘信息
+                    .then(res => {
+                        this.history = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        console.log('请求最近浏览列表失败');
+                    });
+            }, // 更多浏览
+            companys() { //名企推荐
+                var my_headers = {};
+                if (localStorage.getItem("usertoken")){
+                    my_headers = {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+					};
+				}
+                this.$axios.get('/recruitment_info/?is_famous=true',{
+                    headers: my_headers,
+                })
+
+                    .then(res => {
+                        this.mingCompany = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        console.log('请求名企推荐列表失败');
+                    })
+            }, // 名企推荐
+            getMonth() { // 本月推荐
+                var my_headers = {};
+                if (localStorage.getItem("usertoken")){
+                    my_headers = {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    };
+                }
+                this.$axios.get('/recruitment_info/?is_recommend=true',{
+                    headers: my_headers,
+                })
+
+                    .then(res => {
+                        this.currentMonth = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        console.log('请求本月推荐列表失败');
+                    })
+            }, // 本月推荐
+            getNewCompany() { // 最新上线
+                var my_headers = {};
+                if (localStorage.getItem("usertoken")){
+                    my_headers = {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    };
+                }
+                this.$axios.get('/recruitment_info/',{
+                    headers: my_headers,
+                    params: {
+                        page_size: 5 //获取5条
+                    }
+                })
+                    .then(res => {
+                        this.NewCompany = res.data.results;
+                        console.log(res.data.results);
+                    })
+                    .catch(error => {
+                        console.log('请求最新推荐列表失败');
+                    })
+            }, // 最新推荐
+            isLogin() { // 点击 我的，时候，判断是否登入过，否则重定向到登入页面
+                if (localStorage.getItem("usertoken") !=="") {
+                    window.location.href = 'user.html'; // 进入我的  个人中心
+                }else {
+                    this.$Message.warning({
+                        content: '账号未登录，即将返回登录页',
+                    });
+                    window.location.href = 'login.html'; // 重定向到登录页面
+                }
+            },
+
+
+            getToken() {
+                wb_token = getUrlParam('token');
+                // alert(wb_token);
+                console.log(wb_token);
+                if (wb_token) {
+                    axios({
+                        method: 'get',
+                        url: '/user/get_new_token/'+ wb_token + '/',
+                    })
+                        .then(res => {
+                            var usertoken = res.data.token;
+                            // console.log(res);
+                            // console.log(usertoken);
+                            localStorage.setItem("usertoken",usertoken);
+                            this.zhaoPinList();
+                            this.companys();
+                            this.getMonth();
+                            this.getNewCompany();
+                        })
+                        .catch(error => {
+                            console.log(error.response.status);
+                            if (error.response.status == '428') {
+                                localStorage.removeItem("usertoken");
+                                console.log('请登入');
+                                // window.location.href = '';
+                            }
+                            this.companys();
+                            this.getMonth();
+                            this.getNewCompany();
+                        });
+				}else {
+                    localStorage.removeItem("usertoken");
+                    console.log('请登入');
+                    // window.location.href = '';
+				}
+
+			}  // 获取本地Token，
+        }
+    });
+
+</script>
+</body>
+</html>

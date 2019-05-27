@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+
+</head>
+
+<body>
+<div class="page" style="background: #fff;">
+	<div class="header">
+		<a href="javascript:history.go(-1)" class="btn_back">返回</a>
+		<h1 class="title">活动详情</h1>
+		<a onclick="dialog('#app_share')" class="btn_share">分享</a>
+	</div>
+	<div class="content m2">
+		<div class="activity-delbox">
+			<img src="images/p1.jpg" class="pic">
+			<div class="info">
+				<div class="tit">活动名称活动名称活动名称</div>
+				<div class="time">2018-10-01</div>
+				<p class="dd">我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</p>
+			</div>
+		</div>
+	</div>
+	<div class="popu-join-btn">
+		<a href="activity_join.html" class="btn-join btn-gray">报名</a>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+<!--弹窗-->
+<div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--app分享-->
+<div class="dialog" id="app_share">
+	<div class="dialog_content">
+		<div class="alert alert1">
+			<p class="desc1">分享</p>
+			<div class="app_share">
+				<a href="" class="items">
+					<img src="images/app_wx.png" class="icon">
+					微信好友
+				</a>
+				<a href="" class="items">
+					<img src="images/app_friend.png" class="icon">
+					朋友圈
+				</a>
+			</div>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--微信分享-->
+<div class="dialog" id="share_wx" onClick="dialogClose()">
+	<img src="images/share_bg.png" style="width:100%; position:fixed; left:0; top:0;">
+</div>
+</body>
+</html>

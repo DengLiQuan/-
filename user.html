@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>我的</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/job.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<!--<link rel="stylesheet" href="css/iview.css">-->
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/axios.config.js"></script>
+<script src="js/iview.js"></script>
+
+
+</head>
+
+<body>
+<div class="page" id="app">
+	<!--<div class="header">-->
+		<!--<h1 class="title">我的</h1>-->
+	<!--</div>-->
+	<div class="content">
+		<div class="user_mod">
+			<div class="user_reset">
+				<a class="me">
+					<div class="fl">
+						<img src="images/myt2pic.png" class="logo"/>
+						<h1>{{ name }}</h1>
+						<!--<h1>smnyz166</h1>-->
+						<h2>邀请码：156151651</h2>
+					</div>		
+				</a>
+				<a href="javascript:;" class="ererer" onclick="dialog('#d1')">
+					<img src="images/icon_erweima.png">
+				</a>	
+			</div>	
+		</div>
+		<div class="mydi2 mydicollect">
+			<ul class="myd2top">
+				<li class="myd2titem">
+					<a href="">
+						<p class="md2t1">电信积分</p>
+						<p class="md2t2">1000</p>
+					</a>
+
+				</li>
+				<li class="myd2titem">
+					<a href="my_collectjob.html">
+						<p class="md2t1">收藏职位</p>
+						<p class="md2t2">1000</p>
+					</a>
+				</li>
+				<li class="myd2titem">
+					<a :href="'my_givejob.html?id=1'">
+						<p class="md2t1">已投递简历</p>
+						<p class="md2t2">1000</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="user_being">
+			<a href="user_opinionlist.html" class="do"><img src="images/user_icon10.png" class="pic" /><h1>意见反馈</h1></a>
+			<a href="user_helpdetail.html" class="do"><img src="images/user_icon11.png" class="pic" /><h1>关于我们</h1></a>
+			<a href="user_help.html" class="do"><img src="images/user_icon8.png" class="pic" /><h1>帮助中心</h1></a>
+			<a href="user_registered.html" class="do"><img src="images/user_icon15.png" class="pic" /><h1>我的报名</h1></a>
+			<a href="apply.html" class="do"><img src="images/user_icon12.png" class="pic" /><h1>申请代理</h1></a>
+			<a href="mall.html" class="do"><img src="images/user_icon19.png" class="pic" /><h1>积分商城</h1></a>
+			<a href="my_givejob.html?id=0" class="do"><img src="images/user_icon20.png" class="pic" /><h1>我的简历</h1></a>
+			<!--<a href="my_resume.html" class="do"><img src="images/user_icon20.png" class="pic" /><h1>我的简历</h1></a>-->
+			<a href="my_collectjob.html" class="do"><img src="images/user_icon21.png" class="pic" /><h1>收藏职位</h1></a>
+			<a href="user_set.html" class="do"><img src="images/user_icon9.png" class="pic" /><h1>设置</h1></a>
+			<a href="" class="do"><img src="images/user_icon18.png" class="pic" /><h1>版本更新</h1></a>
+		</div>
+	</div>
+	<!--底部-->
+    <!--<div class="footer">-->
+		<!--<div class="nav">-->
+			<!--&lt;!&ndash; <a class="item" href="index.html"><img src="images/nav1.png" class="pic"/>首页</a>-->
+			<!--<a class="item" href="phone.html"><img src="images/nav4.png" class="pic"/>拨号</a>-->
+			<!--<a class="item" href="mall.html"><img src="images/nav5.png" class="pic"/>积分商城</a>-->
+			<!--<a class="item" href="distribution.html"><img src="images/nav2.png" class="pic"/>分销</a>-->
+			<!--<a class="item on" href="user.html"><img src="images/nav3_on.png" class="pic"/>我的</a> &ndash;&gt;-->
+
+			<!--<a class="item" href="index.html"><img src="images/nav1.png" class="pic"/>首页</a>-->
+			<!--<a class="item" href="phone.html"><img src="images/nav4.png" class="pic"/>拨号</a>-->
+			<!--<a class="item" href="job.html"><img src="images/nav5.png" class="pic"/>求职招聘</a>-->
+			<!--<a class="item" href="distribution.html"><img src="images/nav2.png" class="pic"/>分销</a>-->
+			<!--<a class="item on" href="user.html"><img src="images/nav3_on.png" class="pic"/>我的</a>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+
+<!--弹窗-->
+<div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert" style="padding: .9rem 0 0 0; width: 5.6rem;">
+			<div class="ertip-box">
+				<img src="images/icon_erweima.png">
+			</div>
+			<img src="images/job_p3.png" class="pic-er">
+			<p class="erer-desc">我的二维码</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                name:localStorage.getItem("username"),
+            }
+        },
+        created() {
+			this.clearName();
+        },
+        methods:{
+			clearName() {
+			    // console.log(localStorage.getItem("usertoken"));
+			    if (localStorage.getItem("usertoken") == '') {
+			        this.name = '请登入';
+				}
+			}
+        }
+    })
+</script>
+</body>
+</html>

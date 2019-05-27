@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--suppress ALL -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>我的简历</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/job.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/js.js"></script>
+    <script src="js/imgsize.js"></script>
+    <script src="js/swiper.min.js"></script>
+
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/axios.config.js"></script>
+    <script src="js/iview.js"></script>
+
+</head>
+
+<body>
+<div class="page" id="app">
+    <!--<div class="header">-->
+        <!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+        <!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+        <!--<h1 class="title" >我的简历</h1>-->
+    <!--</div>-->
+
+    <!--<div class="content" style="padding:1.59rem 0 0 0;">-->
+    <!--<div class="content" style="padding:0.7rem 0 0 0;">-->
+
+    <div class="content">
+        <div class="jobPage">
+            <div class="invite-job-mod box">
+
+                <!--<a href="my_resume.html" class="item">-->
+                <a href="my_resumeedit.html?id=1" class="item">
+                    <h1>创建正社员简历</h1>
+                    <img src="images/job_recuit1.png" class="pic">
+                </a>
+                <!--<a href="my_resume.html" class="item">-->
+                <a href="my_resumeedit.html?id=2" class="item">
+                    <h1>创建小时工简历</h1>
+                    <img src="images/job_recuit2.png" class="pic">
+                </a>
+
+                <!--<a href="" class="item" v-for="title in ResumeList" :key="title.id" @click.prevent="send_resume(a_single_resume_id)">-->
+                <a href="" class="item" v-for="title in ResumeList" :key="title.id" @click.prevent="send_resume(title.id)">
+                    <h1>{{ title.resume_name }}</h1>
+                    <p  class="tou-di">投递</p>
+                    <!--<img src="images/job_recuit1.png" class="pic">-->
+                    <img :src="title.nature_work == '正社员' ? 'images/job_recuit1.png' : 'images/job_recuit2.png'" class="pic"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                ResumeList: [], // 简历列表 标题信息
+                zhao_pin_info_id: getUrlParam('id'), // 招聘详情页的id， 投递简历时用
+                a_single_resume_id: '', // 单个简历id,投递简历时用
+            }
+        },
+        created() {
+            this.getResumeList();
+        },
+        methods: {
+            getResumeList() {
+                axios({
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    method: 'get',
+                    url: '/resume/',
+                }).then(res => {
+                    // window.location.reload(); // 重新加载当前文档
+                    console.log(res.data.results);
+                    this.ResumeList = res.data.results;
+
+                    for (var i = 0; i<res.data.results.length; i++) {
+                        this.a_single_resume_id = res.data.results[i].id;
+                        console.log("单个简历的id是"+ this.a_single_resume_id);
+                    }
+                })
+                    .catch(error => {
+                        alert('获取简历列表失败，网络错误');
+                    });
+            },  // 获取简历列表
+
+            // send_resume(a_single_resume_id) {
+            send_resume(item) {
+                // console.log(this.zhao_pin_info_id);
+                console.log(item);
+                if (confirm('是否投递该简历')) {
+                    axios({
+                        headers: {
+                            'Authorization': "JWT " + localStorage.getItem("usertoken")
+                        },
+                        method: 'post',
+                        url: '/submit/',
+                        data: {
+                            // resume: this.zhao_pin_info_id,
+                            // recruitment: a_single_resume_id
+                            resume: item, // 所属简历ID
+                            recruitment: this.zhao_pin_info_id // 所属招聘ID
+                        }
+                    }).then(res => {
+                        alert('投递成功');
+                        setTimeout(() => {
+                            history.go(-1);
+                        },1500);
+
+                    }).catch(error => {
+                        alert('投递失败，网络错误');
+                    })
+                    } // 发送post投递简历
+                }
+
+
+        }
+
+    });
+
+
+    //通过正则匹配获取当前页面的url中的参数
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var r =  window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r!=null){
+            strValue= unescape(r[2]);
+        }
+        return strValue;
+    }
+
+</script>
+
+
+
+
+</body>
+</html>

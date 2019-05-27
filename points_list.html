@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+<script>
+$(function(){
+	$(".tab_dis a").click(function(){
+		$(this).addClass("on").siblings("a").removeClass("on");
+		var i=$(this).index();
+		$(".paypage .box").eq(i).show().siblings(".box").hide();
+	})
+})
+</script>
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<h1 class="title">电信积分</h1>
+	</div>
+	<div class="content m2">
+		<div class="mydi1 mydi1_1">
+			<img src="images/myt2pic1.png" alt="" class="myd1pic2" />
+			<p class="myd1t1">电信积分</p>
+			<p class="myd1t2">1000.00</p>
+			<a href="javascript:dialog('#price_des');" class="myd1sp"><img src="images/icon_pw3.png" alt="" class="myd1spic" />积分规则？</a>
+		</div>
+	
+		<div class="distribution_box distribution_box_top">
+			<div class="tab_dis">
+				<a href="javascript:;" class="on">积分来源</a>
+				<a href="javascript:;">兑换记录</a>
+			</div>
+			<div class="paypage">
+				<!--提款明细-->
+				<div class="box mywded" >
+					<div class="mywde">
+						<div class="mywdt1">
+							<span class="state">已获得</span>
+							
+						</div>
+						<div class="mywdbo">
+							<div class="mywdble">
+								<p class="mywdbt1">话费积分</p>
+								<p class="mywdbt2">2018.04.16 18:30</p>
+							</div>
+							<p class="mywdblr">+100.00元</p>
+						</div>
+					
+					</div>
+					
+					<div class="box mywde">
+						<div class="mywdt1">
+							<span class="state">已获得</span>
+							
+						</div>
+						<div class="mywdbo">
+							<div class="mywdble">
+								<p class="mywdbt1">话费积分</p>
+								<p class="mywdbt2">2018.04.16 18:30</p>
+							</div>
+							<p class="mywdblr">+100.00元</p>
+						</div>
+						
+					
+					</div>
+				</div>
+				<!--兑换记录-->
+				<div class="box mywded"style="display: none;">
+					<div class="mywde">
+						<div class="mywdt1">
+							<span class="state">已兑换</span>
+						</div>
+						<div class="mywdbo mywdbo1">
+							<div class="mywdble2">
+								<img src="images/myt2pic4.png" alt="">
+								<div class="float">
+									<p class="mywdbt1">话费积分</p>
+									<p class="mywdbt2">2018.04.16 18:30</p>
+								</div>
+							</div>
+							<p class="mywdblr2">-100</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--弹窗-->
+<div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--佣金说明-->
+<div class="dialog" id="price_des">
+	<div class="dialog_content">
+		<div class="alert alert1">
+			<p class="desc1">佣金说明</p>
+			<p class="pricesay">
+				我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容
+			</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

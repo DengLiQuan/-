@@ -1,0 +1,931 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>编辑简历</title>
+
+    <link rel="stylesheet" href="css/iview.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/job.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/js.js"></script>
+    <script src="js/imgsize.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/axios.config.js"></script>
+    <script src="js/iview.js"></script>
+
+
+
+    <script type="text/javascript">
+        function mainPage(){
+            $(".page").hide();
+            $("#main_page").show()
+        }
+        function skillEdit(){
+            $(".page").hide();
+            $("#skill_edit").show()
+        }
+    </script>
+</head>
+
+<body>
+<div class="page" id="app">
+    <!--<div class="header">-->
+        <!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+        <!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+        <!--<h1 class="title">编辑简历</h1>-->
+    <!--</div>-->
+
+
+    <!--<div class="content" style="padding: .79rem 0 .96rem 0;" >-->
+    <div class="content" style="padding: 0 0 .96rem 0;" >
+        <div class="order_headname">个人信息</div>
+        <div class="order_issure1">
+            <ul class="ttip_mod">
+                <li class="item">
+                    <div class="tpp">出生年月日</div>
+                    <!--<div class="right"><input type="date" class="txt" placeholder="请选择日期" v-model="patchData.birthday" :value="birthday"/></div>-->
+                    <!--<div class="right">-->
+                        <!--<input type="date" class="txt" v-model="patchData.birthday" :value="birthday">-->
+                    <!--</div>-->
+                    <div class="right"><input type="date" v-model="patchData.birthday" :value="birthday"></div>
+                </li>
+                <li class="item">
+                    <div class="tpp">联系电话</div>
+                    <div class="right"><input type="text" class="txt" placeholder="请输入联系电话" v-model="patchData.mobile" :value="mobile"/></div>
+                </li>
+                <li class="item">
+                    <div class="tpp">联系邮箱</div>
+                    <div class="right"><input type="text" class="txt" placeholder="请输入联系邮箱" v-model="patchData.mail" :value="mail"/></div>
+                </li>
+                <!--<li class="item">-->
+                    <!--<div class="tpp">现住所</div>-->
+                    <!--<div class="right right1">-->
+                        <!--<select class="sel" placeholder="请输入" v-model="patchData.province" id="xzd1" @change="change1">-->
+                            <!--&lt;!&ndash;<option>请选择</option>&ndash;&gt;-->
+                            <!--<option v-for="adr in area" :key="adr.id"  :value="adr.name">{{adr.name }}</option>-->
+                            <!--&lt;!&ndash;<option>杭州</option>&ndash;&gt;-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="right right1">-->
+                        <!--<select class="sel" placeholder="请输入" v-model="patchData.city" :disabled="isAble">-->
+                            <!--&lt;!&ndash;<option>请选择</option>&ndash;&gt;-->
+                            <!--<option v-for="adr2 in area2" :key="adr2.id" :value="adr2.name">{{ adr2 }}</option>-->
+                            <!--&lt;!&ndash;<option>杭州</option>&ndash;&gt;-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</li>-->
+
+
+                <li class="item">
+                    <div class="tpp">现住所</div>
+                    <div class="right right1">
+                        <!--<span class="absolute" id="absolute1">请输入</span>-->
+                        <select class="sel"  v-model="patchData.province" id="xzd1" @change="change1">
+                        <!--<select class="sel"  v-model="patchData.province" id="xzd1">-->
+                            <!--<select class="sel" placeholder="请输入" v-model="postData.province" id="xzd1">-->
+                            <option>请选择</option>
+                            <option v-for="adr in area" :key="adr.id" :value="adr.name">{{adr.name }}</option>
+                            <!--<option>杭州</option>-->
+                        </select>
+                    </div>
+                    <div class="right right1">
+                        <!--<span class="absolute" id="absolute2">请输入</span>-->
+                        <select class="sel" v-model="patchData.city">
+                            <!--<select class="sel" placeholder="请输入" v-model="postData.city">-->
+                            <option>请选择</option>
+                            <option v-for="adr2 in area2" :key="adr2.id" v-model="area2" :value="adr2.name">{{ adr2.name }}</option>
+                            <!--<option>杭州</option>-->
+                        </select>
+                    </div>
+                </li>
+
+
+                <li class="item" v-show="work != '小时工'">
+                    <div class="tpp">详细地址</div>
+                    <div class="right"><input type="text" class="txt" placeholder="请输入详细地址" v-model="patchData.address" :value="address"/></div>
+                </li>
+
+                <!--<li class="item">-->
+                    <!--<div class="tpp">最寄駅</div>-->
+                    <!--<div class="right right1">-->
+                        <!--<select class="sel" placeholder="请输入" v-model="patchData.metro_name">-->
+                            <!--<option v-for="met in metro" :key="met.id" :value="met.name">{{ met.name }}</option>-->
+                            <!--&lt;!&ndash;<option>杭州</option>&ndash;&gt;-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="right right1">-->
+                        <!--<select class="sel" placeholder="请输入" v-model="patchData.metro_station">-->
+                            <!--<option v-for="met2 in metro2" :key="met2.id" :value="met2.name">{{ met2.name }}</option>-->
+                            <!--&lt;!&ndash;<option>杭州</option>&ndash;&gt;-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</li>-->
+
+                <li class="item">
+                    <div class="tpp">最寄駅</div>
+                    <div class="right right1">
+                        <!--<span class="absolute" id="absolute3">请输入</span>-->
+                        <select class="sel" placeholder="请输入" v-model="patchData.metro_name" @change="change2" id="zjy1">
+                        <!--<select class="sel" placeholder="请输入" v-model="patchData.metro_name" id="zjy1">-->
+                            <!--<select class="sel" placeholder="请输入" v-model="postData.metro_name" id="zjy1">-->
+                            <option>请选择</option>
+                            <option v-for="met in metro" :key="met.id" :value="met.name">{{ met.name }}</option>
+                            <!--<option>杭州</option>-->
+                        </select>
+                    </div>
+                    <div class="right right1">
+                        <!--<span class="absolute" id="absolute4">请输入</span>-->
+                        <!--<select class="sel" v-model="patchData.metro_station" :disabled="isAble2" id="zjy2" @change="change4">-->
+                        <select class="sel" v-model="patchData.metro_station" id="zjy2">
+                            <!--<select class="sel" placeholder="请输入" v-model="postData.metro_station" id="zjy2">-->
+                            <option>请选择</option>
+                            <option v-for="met2 in metro2" :key="met2.id" :value="met2.name">{{ met2.name }}</option>
+                            <!--<option>杭州</option>-->
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">日本在留资格</div>
+                    <div class="right right1" >
+                        <select class="sel"  v-model="patchData.immigration">
+                            <!--<option>请选择</option>-->
+                            <option v-for="statu in status" :key="statu.id" :value="statu.name" >{{ statu.name }}</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">来日年数</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.stay_time">
+                            <!--<option>请选择</option>-->
+                            <option v-for="day in days" :key="day.id" :value="day.name">{{ day.name }}</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="item" v-if="show">
+                    <div class="tpp">配偶者</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.spouse" id="spouse">
+                            <!--<option>请选择</option>-->
+                            <option :value="true">有</option>
+                            <option :value="false">无</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item" v-if="show"  v-show="work != '小时工'">
+                    <div class="tpp">抚养家族数</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.family_num">
+                            <!--<option>请选择</option>-->
+                            <option  v-for="fam in family" :key="fam.id" :value="fam.name">{{ fam.name }}</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">日语口语水平</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.japanese_grade">
+                            <!--<option>请选择</option>-->
+                            <option v-for="gossip in Japan" :key="gossip.id" :value="gossip.name">{{ gossip.name }}</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="item" v-if="show"  v-show="work != '小时工'">
+                    <div class="tpp">日语能力试验</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.language_ability">
+                            <!--<option>请选择</option>-->
+                            <option v-for="langu in language" :key="langu.id" :value="langu.name">{{ langu.name }}</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">最终学历</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.education">
+                            <!--<option>请选择</option>-->
+                            <option v-for="educa in educational" :key="educa.id" :value="educa.name">{{ educa.name }}</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="item">
+                    <div class="tpp">户籍所在地</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.census_register">
+                            <!--<option>请选择</option>-->
+                            <option v-for="cen in census" :key="cen.id" :value="cen.name">{{ cen.name }}</option>
+                        </select>
+                    </div>
+                </li>
+
+                <li class="item">
+                    <div class="tpp">求职状态</div>
+                    <div class="right right1">
+                        <select class="sel" v-model="patchData.job_status">
+                            <!--<option>请选择</option>-->
+                            <option v-for="jobSta in job_status" :key="jobSta.id" :value="jobSta.name">{{ jobSta.name }}</option>
+                        </select>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="popu-join-btn">
+            <!--<a href="my_resume.html" class="btn-join btn-gray" @click="postResume()">保存</a>-->
+            <!--<a href="my_resume.html" class="btn-join btn-gray" @click.prevent="postResume()" v-if="postData.nature_work=='EMPLOYEE'">保存</a>-->
+            <!--<a href="my_resume.html" class="btn-join btn-gray" @click.prevent="postHourResume()" v-if="postData.nature_work!='EMPLOYEE'">保存</a>-->
+            <!--<a href="" class="btn-join btn-gray" @click.prevent="updateFunc()">保存</a>-->
+            <button type="button" class="btn btn-lg btn-join" @click="updateFunc()" >保存</button>
+        </div>
+
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                work: '', // 判断 正社员还是小时工
+
+                userInfo: {
+                    avatar: 'https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=62d46c39067b020818c437b303b099b6/d4628535e5dde7119c3d076aabefce1b9c1661ba.jpg'
+                },
+                isAble: true,
+                isAble2: true,
+
+                addSts:{
+                    name:'学校名称',
+                    specialty:'专业',
+                    enrollment_date:"入学时间",
+                    graduation_date:'毕业时间',
+                    education:'学历',
+                },
+                addSts2:{
+                    name:'会社名称',
+                    position:'职位',
+                    job_content:'工作内容',
+                    join_date:'加入时间',
+                    quit_date:'退社时间'
+                },
+
+                postData:{
+                    resume_name : "",// 简历名称
+                    name : "",// 姓名
+                    phonetic_notation : "",// 日语注音
+                    gender : "",// 性别: male男 female女
+                    mobile : "",//  电话号码
+                    mail : "",//  电子邮箱
+                    address : "",//  详细地址
+                    motivation : "",//  求职动机
+                    professional_skill: "",//  专业技能
+                    interests : "",//  兴趣爱好
+                    birthday : "",//  生日
+                    spouse : "",// 配偶
+                    // head_portrait : "",// 头像
+                    province : "",// 现住地一级行政区ID
+                    city : "",// 现住地下级地区ID
+                    metro_name : "",// 最寄駅线路名称
+                    metro_station : "",// 最寄駅站点名称
+                    census_register : "",// 户籍所在地
+                    immigration : "",// 日本在留资格
+                    stay_time : "",// 来日年数
+                    family_num : "",// 抚养家族数
+                    japanese_grade : "",// 日语水平
+                    language_ability : "",// 日语能力试验
+                    education : "",// 最终学历
+                    job_status : "",// 求职状态
+                    nature_work: "",// 工作性质
+                    edu_exp : [],// 教育经历
+                    work_exp : [],// 工作经验
+                },
+
+                patchData: {
+                    birthday : "",//  生日
+                    mobile : "",//  电话号码
+                    mail : "",//  电子邮箱
+                    province : "",// 现住地一级行政区ID
+                    city : "",// 现住地下级地区ID
+                    metro_name : "",// 最寄駅线路名称
+                    metro_station : "",// 最寄駅站点名称
+                    immigration : "",// 日本在留资格
+                    stay_time : "",// 来日年数
+                    spouse : "",// 配偶
+                    family_num : "",// 抚养家族数
+                    japanese_grade : "",// 日语水平
+                    language_ability : "",// 日语能力试验
+                    education : "",// 最终学历
+                    job_status : "",// 求职状态
+
+                },
+
+                resume_name: '', // 	简历名称
+                info_name:'',  // 姓名
+                phonetic_notation: '', // 日语注音
+                mobile: '', // 联系电话
+                mail: '', //电子邮箱
+                head_portrait: '', // 头像
+                address: '', // 详细地址
+                motivation:'',// 求职动机
+                professional_skill:'', //专业技能
+                interests: '', // 兴趣爱好
+                birthday: '', // 生日
+
+
+                info: [], // 用来保存所有的信息
+                status: [], // 日本再留资格
+                days: [], //来日年数
+                family: [], // 抚养家族数
+                Japan: [],  // 日语口语水平
+                language: [], // 日语能力试验
+                educational: [], // 最终学历
+                job_status: [],  // 求职状态
+                pay_type: [], //  支付方式
+                welfare : [], //  福利
+                job_category : [], //  工作性质
+                area: [], // 现住所1级
+                area2: [], // 现住所2级
+                metro: [], // 地铁1级
+                metro2: [], // 地铁2级
+                census: [], // 户籍所在地 地址
+                id: '', // 判断id是不是等于1，如果是为正社员简历，2为小时工简历
+                show: true,
+
+                edu_exp: [], // 保存数据的列表
+                schoolName: '',
+                specialty: '',
+                education: '',
+                enrollment_date: '',
+                graduation_date: '',
+
+                work_exp: [], // 保存工作经验的列表
+                nameSociety: '', // 入社名称
+                position: '', // 职位
+                job_content: '', // 工作内容
+                join_date: '', // 加入时间
+                quit_date: '', // 退社时间
+
+            }
+        },
+        created() {
+            this.IMMIGRATION();
+            this.STAY_TIME();
+            this.FAMILY_NUM();
+            this.JAPANESE_GRADE();
+            this.LANGUAGE_ABILITY();
+            this.EDUCATION();
+            this.JOB_STATUS();
+
+            //this.allData();
+            this.getArea();
+            this.Metro();
+            this.getCensus();
+            this.judgeID();
+            $(".edu-exp").hide();
+            $(".work-exp").hide();
+            this.getUrlId();
+            this.getOneResume(); // 单个简历请求 ，默认值赋值
+
+
+        },
+        methods: {
+            getUrlId() {
+                if (getUrlParam('id')==1) {
+                    this.postData.nature_work = "EMPLOYEE"
+                }else {
+                    this.postData.nature_work = "HOURS_EMPLOYEE"
+                }
+            },
+
+            // 日本在留资格请求
+            IMMIGRATION() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'IMMIGRATION'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.status = res.data;
+                        // console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求日本在留资格失败');
+                    })
+            },
+
+            // 来日年数请求
+            STAY_TIME() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'STAY_TIME'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.days = res.data;
+                        // console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 抚养家族数请求
+            FAMILY_NUM() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'FAMILY_NUM'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.family = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 日语口语水平请求
+            JAPANESE_GRADE() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'JAPANESE_GRADE'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.Japan = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 日语能力试验请求
+            LANGUAGE_ABILITY() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'LANGUAGE_ABILITY'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.language = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 最终学历
+            EDUCATION() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'EDUCATION'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.educational = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 求职状态
+            JOB_STATUS() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'JOB_STATUS'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.job_status = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            getArea() {  // 现住所
+                this.$axios.get('/place/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.area = res.data;
+                        let temp = [];
+                        console.log(res.data);
+                        var asdf = $("#xzd1").find("option:selected").text();
+                        console.log(this.patchData.province);
+                        console.log(asdf);
+
+                        for ( let i=0; i<res.data.length; i++ ) {
+                            temp.push(res.data[i].child);
+                            // console.log(temp);
+                        }
+                        console.log(temp);
+                        for (let j=0; j<temp.length; j++) {
+                            for (var k=0; k<temp[j].length; k++) {
+                                console.log(temp[j][k].name);
+                                // this.area2 = temp[j][k].name
+                                this.area2.push(temp[j][k].name)
+                            }
+
+                        }
+                    })
+                    .catch(error => {
+                        alert('请求现住所失败');
+                    })
+            },  // 编辑简历页现住所接口
+
+
+            // 现住地选择 事件，第一个选择完后，第二个才能选择
+            change1() {
+
+                let name = $('#xzd1').val();
+                if (name != '') {
+                    for(let i in this.area) {
+                        if(this.area[i].name == name) {
+                            this.area2 = this.area[i].child;
+                            break;
+                        }
+                    }
+                    // alert(1);
+                    this.isAble = false  // 默认不可选 变成可以选择的状态
+                }
+                $('#absolute1').css({display: "none"}); // 选择完之后让 背后的文字 请输入消失 现住地一级
+            },
+            change3() {
+                $('#absolute2').css({display: "none"}); // 选择完之后让 背后的文字 请输入消失 现住地2级
+            },
+
+
+            change2() {
+                if ($('#zjy1').val() != '') {
+                    // console.log($('#zjy1').val());
+                    let name = $('#zjy1').val();
+                    for(let i in this.metro) {
+                        if(this.metro[i].name == name) {
+                            this.metro2 = this.metro[i].child;
+                            break;
+                        }
+                    }
+                    // alert(1);
+                    this.isAble2 = false  // 默认不可选 变成可以选择的状态
+                }
+                $('#absolute3').css({display: "none"});
+            },
+            change4() {
+                $('#absolute4').css({display: "none"});
+            },
+
+
+            Metro() {  // 地铁路线
+                this.$axios.get('/metro/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.metro = res.data;
+                        // this.postData.metro_name = this.metro[1].name; // 地铁一级 默认值
+                        console.log(res.data);
+
+                        // for ( let i=0; i<res.data.length; i++ ) {
+                        //     var temp = res.data[i].child;
+                        //     // console.log(temp);
+                        //     this.metro2 = temp;
+                        // }
+
+                        // for ( let i=0; i<res.data.length; i++ ) {
+                        //     if (res.data[i].name) {
+                        //         console.log(res.data[i].child);
+                        //         this.metro2 = res.data[i];
+                        //     }
+                        // }
+                        // console.log(this.metro2);
+
+                        // for(var i in res.data) {
+                        //     if(res.data[i].name) {
+                        //         this.metro2 = res.data[i].child;
+                        //     }
+                        // }
+
+                    })
+                    .catch(error => {
+                        alert('请求地铁路线(最寄駅)失败');
+                    })
+            },  // 编辑简历页地铁路线接口
+
+            getCensus() {  // 户籍所在地
+                this.$axios.get('/census/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.census = res.data;
+                        console.log(res.data);
+                    })
+                    .catch(error => {
+                        alert('请求户籍所在地地址失败');
+                    })
+            },  // 编辑简历页户籍所在地接口
+            judgeID() {  // 判断id是不是等于1，如果是为正社员简历，2为小时工简历
+                this.id = getUrlParam('id');
+                console.log(this.id);
+                if (this.id == 2) {
+                    this.show = !this.show;
+                }
+            },
+
+            // 以下是弹出教育经历
+            popEdu() {
+                $(".edu-exp").show();
+                this.addSts.name = "";
+                this.addSts.specialty="";
+                this.addSts.education="";
+                this.addSts.enrollment_date="";
+                this.addSts.graduation_date="";
+            },
+            addNone() {
+                let a =  JSON.parse(JSON.stringify(this.addSts));
+                this.postData.edu_exp.push(a);
+                $(".edu-exp").hide(); // 点击添加后，让大盒子隐藏起来
+
+            },
+            delMsg(index) {
+                console.log(index);
+                this.postData.edu_exp.splice(index, 1) // 删除一条数据
+            },
+
+            // 以下是弹出工作经历
+            popExp() {
+                $(".work-exp").show();
+                this.addSts2.name = "";
+                this.addSts2.position="";
+                this.addSts2.job_content="";
+                this.addSts2.join_date="";
+                this.addSts2.quit_date="";
+            },
+            addExp() {
+                let b = JSON.parse(JSON.stringify(this.addSts2));
+                this.postData.work_exp.push(b);
+                $(".work-exp").hide(); // 点击添加后，让大盒子隐藏起来
+
+            },
+            delExp(index) {
+                this.postData.work_exp.splice(index, 1) // 删除一条数据
+            },
+
+            // 图片 头像上传
+            // 打开图片上传
+            uploadHeadImg() {
+                this.$el.querySelector('.hiddenInput').click()
+            },
+            handleFile(e) {
+                let $target = e.target || e.srcElement;
+                let file = $target.files[0];
+                var reader = new FileReader();
+                reader.onload = (data) => {
+                    let res = data.target || data.srcElement;
+                    this.userInfo.avatar = res.result
+                };
+                reader.readAsDataURL(file);
+                // this.files = file;
+            },
+
+
+            postResume() {
+
+                let data = JSON.stringify((this.postData));
+                console.log(data);
+                axios.post("/resume/",data,{
+                    headers:{
+                        // "Content-Type":"application/x-www-form-urlencoded",
+                        "Content-Type":"application/json",
+                        "Authorization":"JWT " + localStorage.getItem("usertoken")
+                    }
+                })
+                    .then(res=>{
+                        console.log(res.data);
+                        alert('保存成功');
+                        console.log('保存成功');
+                    }).catch(error=>{
+
+                    console.log(error)
+                })
+
+            }, // 正社员简历post请求
+            postHourResume() {
+
+                let data = JSON.stringify((this.postData));
+                console.log(data);
+                axios.post("/resume/",data,{
+                    headers:{
+                        // "Content-Type":"application/x-www-form-urlencoded",
+                        "Content-Type":"multipart/form-data",
+                        "Authorization":"JWT " + localStorage.getItem("usertoken")
+                    }
+                })
+                    .then(res=>{
+                        console.log(res.data);
+                        console.log('保存成功');
+                    }).catch(error=>{
+
+                        console.log(error)
+                        try{
+                            alert(JSON.stringify(error.response.data))
+                        }catch (e) {
+                            alert(e)
+                        }
+                        for (let d in error.response.data) {
+                            alert(error.response.data[d]);
+                            break;
+                        }
+                })
+            },  // 小时工简历post请求
+            updateFunc() {
+                // console.log(this.files);
+                // let param = new FormData();
+                // for (let key in this.patchData) {
+                //     if(key == "edu_exp" || key == "work_exp"){
+                //         param.append(key, JSON.stringify(this.patchData[key]));
+                //     } else {
+                //         param.append(key, this.patchData[key]);
+                //     }
+                // }
+                // param.append("head_portrait", this.files);
+                console.log(123);
+                let data = JSON.stringify((this.patchData));
+                console.log(data);
+                console.log(getUrlParam('id'));
+                axios.patch("/resume/" + getUrlParam('id') + "/",data,{
+                    headers:{
+                        // "Content-Type":"application/x-www-form-urlencoded",
+                        "Content-Type":"application/json",
+                        "Authorization":"JWT " + localStorage.getItem("usertoken")
+                    }
+                })
+                    .then(res=>{
+                        console.log(res.data);
+                        alert('保存成功');
+                        if (checkWebview() == 'ios') {
+                            window.webkit.messageHandlers.goBack.postMessage(null); // 移动端返回上一页
+
+                        }else {
+                            window.android.goBack(); // android移动端返回上一页
+                        }
+                        // setTimeout(() => {
+                        //     history.go(-1);
+                        // }, 1500)
+                    }).catch(error=>{
+                        alert('保存失败，所有信息必填');
+                        console.log(error);
+                        try{
+                            alert(JSON.stringify(error.response.data))
+                        }catch (e) {
+                            alert(e)
+                        }
+                        for (let d in error.response.data) {
+                            alert(error.response.data[d]);
+                            break;
+                        }
+                })
+            }, // 点击保存更新简历
+
+
+            getOneResume() {
+
+                this.$axios.get('/resume/'+ getUrlParam('id') +'/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }).then(res => {
+                        console.log(res.data);
+                        this.work = res.data.nature_work;
+                        console.log(res.data.nature_work);
+
+
+                        this.patchData.province = res.data.province; // 现住所 一级
+                        for(let i in this.area) {
+                            if(this.area[i].name == res.data.province) {
+                                this.area2 = this.area[i].child;
+                                break;
+                            }
+                        }
+                        this.patchData.city = res.data.city; // 现住所 二级
+
+                        this.patchData.metro_name = res.data.metro_name; // 最寄駅 一级
+                        for(let i in this.metro) {
+                            if(this.metro[i].name ==  res.data.metro_name) {
+                                this.metro2 = this.metro[i].child;
+                                break;
+                            }
+                        }
+                        this.patchData.metro_station = res.data.metro_station; // 最寄駅 二级
+                        this.patchData.birthday = res.data.birthday;  //生日
+                        this.patchData.mobile = res.data.mobile;  //联系电话
+                        this.patchData.mail = res.data.mail;  //联系邮箱
+                        this.patchData.immigration = res.data.immigration; // 日本在留资格
+                        this.patchData.stay_time = res.data.stay_time; // 来日年数
+                        this.patchData.spouse = res.data.spouse; // 配偶者
+                        this.patchData.japanese_grade = res.data.japanese_grade; // 日语口语水平
+                        this.patchData.education = res.data.education; // 最终学历
+                        this.patchData.census_register = res.data.census_register; // 户籍所在地
+                        this.patchData.job_status = res.data.job_status; // 求职状态
+
+                        if (this.work == "小时工") {
+                            delete this.patchData.family_num;
+                            delete this.patchData.language_ability;
+                        }else {
+                            this.patchData.address = res.data.address;  //详细地址
+                            this.patchData.family_num = res.data.family_num; // 抚养家族数
+                            this.patchData.language_ability = res.data.language_ability; // 日语试验能力
+                        }
+                    })
+                    .catch(error => {
+                        alert('请求单个简历信息失败');
+                    })
+            }, // 这里是上面 文本中的单个简历请求； 然后渲染成默认值
+        },
+    });
+
+    //通过正则匹配获取当前页面的url中的参数
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var r =  window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r!=null){
+            strValue= unescape(r[2]);
+        }
+        return strValue;
+    }
+
+
+    // 返回 ios还是android
+    function checkWebview() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        if (sUserAgent.match(/MicroMessenger/i) == "micromessenger") {
+            return "wxweb";
+        }
+        else {
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            if (bIsIpad || bIsIphoneOs) {  //ios
+                return "ios";
+            } else if (bIsAndroid) {         //android
+                return "android";
+            }
+        }
+        return "web";
+    }
+
+</script>
+
+
+
+</body>
+</html>

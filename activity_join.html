@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<a href="javascript:history.go(-1)" class="btn_back">返回</a>
+		<h1 class="title">活动报名</h1>
+	</div>
+	<div class="content m2">
+		<dl class="actjoin-box">
+			<dd>人员信息<span>/Message</span></dd>
+			<dt class="items">
+				<div class="lf">性别：</div>
+				<div class="lr">
+					<div class="sex">
+						<a class="on isex">男</a>
+						<a class="isex">女</a>
+					</div>
+				</div>
+			</dt>
+			<dt class="items">
+				<div class="lf">姓名：</div>
+				<div class="lr">
+					<input type="text" placeholder="请输入姓名" class="ipt_txt">
+				</div>
+			</dt>
+			<dt class="items">
+				<div class="lf">联系电话：</div>
+				<div class="lr">
+					<input type="text" placeholder="请输入联系电话" class="ipt_txt">
+				</div>
+			</dt>
+			<dt class="items">
+				<div class="lf">身份证号：</div>
+				<div class="lr">
+					<input type="text" placeholder="请输入身份证号" class="ipt_txt">
+				</div>
+			</dt>
+		</dl>
+	</div>
+	<div class="popu-join-btn">
+		<a href="activity_join.html" class="btn-join">报名</a>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+</div>
+<!--弹窗-->
+<div class="mask"></div>
+<div class="dialog" id="d1">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc">提交成功</p>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--app分享-->
+<div class="dialog" id="app_share">
+	<div class="dialog_content">
+		<div class="alert">
+			<p class="desc1">分享</p>
+			<div class="app_share">
+				<a href="" class="items">
+					<img src="images/app_wx.png" class="icon">
+					微信好友
+				</a>
+				<a href="" class="items">
+					<img src="images/app_friend.png" class="icon">
+					朋友圈
+				</a>
+			</div>
+			<div class="ctr">
+				<a href="javascript:dialogClose()">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!--微信分享-->
+<div class="dialog" id="share_wx" onClick="dialogClose()">
+	<img src="images/share_bg.png" style="width:100%; position:fixed; left:0; top:0;">
+</div>
+</body>
+</html>

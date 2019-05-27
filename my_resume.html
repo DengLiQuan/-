@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>我的简历</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/job.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/axios.config.js"></script>
+
+</head>
+
+<body>
+<div class="page" id="app">
+	<!--<div class="header">-->
+		<!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+		<!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+		<!--<h1 class="title">我的简历</h1>-->
+	<!--</div>-->
+	<!--<div class="content m">-->
+	<div class="content">
+		<div class="myresume-menu-box" >
+			<div class="myr-box myr-box1">
+				<!--<a href="my_resumeedit.html">-->
+				<a :href="'my_resumeedit_name.html?id=' + getUrlParam('id')" style="text-decoration: none">
+					<div class="resume-name">
+						<!--<img src="images/face.png" class="pic">-->
+						<img :src="info.head_portrait" class="pic">
+						<div class="rr1 goedit">{{ info.name }}</div>
+						<dl class="property">
+							<dt>{{ info.immigration }}</dt>
+							<dt>{{ info.education }}</dt>
+							<dt>{{ info.job_status }}</dt>
+						</dl>
+					</div>
+					<!--<dl class="myeduction">-->
+						<!--<dt>180****5015</dt>-->
+						<!--<dt>smcjy166@163.com</dt>-->
+					<!--</dl>-->
+				</a>
+			</div>
+			<div class="myr-box">
+				<a :href="'my_resumeedit_info.html?id='+ getUrlParam('id')" style="text-decoration: none">
+					<div class="casename-top casename-top1 goedit">
+						<p>
+							<span>个人信息</span><i></i>
+						</p>
+					</div>
+					<ul class="needconditions">
+						<li>
+							<span>出生年月日：</span>{{ info.birthday }}
+						</li>
+						<li>
+							<span>联系电话：</span>{{ info.mobile }}
+						</li>
+						<li>
+							<span>联系邮箱：</span>{{ info.mail }}
+						</li>
+						<li>
+							<span>现住所：</span>{{ info.province + info.city }}
+						</li>
+						<li>
+							<span>最寄駅：</span>{{ info.metro_name + info.metro_station }}
+						</li>
+						<li>
+							<span>日本在留资格：</span>{{ info.immigration }}
+						</li>
+						<li>
+							<span>来日年数：</span>{{ info.stay_time }}
+						</li>
+						<li>
+							<span>配偶者：</span>{{ info.spouse? '有' : '无' }}
+						</li>
+						<li v-if="info.nature_work == '正社员'">
+							<span>抚养家族数：</span>{{ info.family_num }}
+						</li>
+						<li>
+							<span>日语口语水平：</span>{{ info.japanese_grade }}
+						</li>
+						<li v-if="info.nature_work == '正社员'">
+							<span>日语能力试验：</span>{{ info.language_ability }}
+						</li>
+						<li>
+							<span>最终学历：</span>{{ info.education }}
+						</li>
+						<li>
+							<span>户籍所在地：</span>{{ info.census_register }}
+						</li>
+						<li>
+							<span>求职状态：</span>{{ info.job_status }}
+						</li>
+					</ul>
+				</a>
+			</div>
+			<div class="myr-box">
+				<div class="casename-top casename-top1">
+					<p>
+						<span>教育经历</span><i></i>
+					</p>
+				</div>
+				<div class="workexper">
+					<div class="wor-item" v-for="edu in edu_info" :key="edu.id">
+						<a :href="'my_resumeedit_edu.html?id='+ getUrlParam('id')" style="text-decoration: none">
+							<h1 class="goedit">{{ edu.name ? edu.name: '学校名字'}}</h1>
+							<dl>
+								<dt>{{ edu.education ? edu.education: '学历' }}</dt>
+								<dt>{{ edu.specialty ? edu.specialty: '专业'}}</dt>
+								<dt>{{ edu.enrollment_date ? edu.enrollment_date : '入学时间'}} 至 {{ edu.graduation_date ? edu.graduation_date : '毕业时间'}}</dt>
+							</dl>
+						</a>
+					</div>
+				</div>
+				<!--<a href="" class="eddr-btn">添加教育经历</a>-->
+			</div>
+
+			<div class="myr-box"  v-if="info.nature_work == '正社员'">
+				<div class="casename-top casename-top1">
+					<p>
+						<span>工作经验</span><i></i>
+					</p>
+				</div>
+				<div class="workexper">
+
+					<div class="wor-item" v-for="exp in exp_info" :key="exp.id">
+						<a :href="'my_resumeedit_exp.html?id='+ getUrlParam('id')" style="text-decoration: none">
+							<h1 class="goedit">{{ exp.name ? exp.name: '公司名称'}}</h1>
+							<dl>
+								<dt>{{ exp.position ? exp.position : '职位'}}</dt>
+								<dt>{{ exp.join_date ? exp.join_date : '加入时间' }} 至 {{ exp.quit_date ? exp.quit_date: '退社时间'}}</dt>
+							</dl>
+							<p>
+								{{ exp.job_content? exp.job_content : '工作内容' }}
+							</p>
+						</a>
+					</div>
+
+				</div>
+				<!--<a href="" class="eddr-btn">添加工作经验</a>-->
+			</div>
+			<!--<div class="myr-box">-->
+				<!--<div class="casename-top casename-top1">-->
+					<!--<p>-->
+						<!--<span>项目经验</span><i></i>-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div class="workexper">-->
+					<!--<div class="wor-item">-->
+						<!--<a href="my_resumeedit.html">-->
+							<!--<h1 class="goedit">项目名称项目名称</h1>-->
+							<!--<p>-->
+								<!--描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内述内容描述内容描述内容描述内-->
+							<!--</p>-->
+						<!--</a>-->
+					<!--</div>-->
+					<!--<div class="wor-item">-->
+						<!--<a href="my_resumeedit.html">-->
+							<!--<h1 class="goedit">项目名称项目名称</h1>-->
+							<!--<p>-->
+								<!--描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内容描述内述内容描述内容描述内容描述内-->
+							<!--</p>-->
+						<!--</a>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<a href="" class="eddr-btn">添加项目经验</a>-->
+			<!--</div>-->
+
+			<!--<div class="myr-box">-->
+				<!--<div class="casename-top casename-top1">-->
+					<!--<p>-->
+						<!--<span>证书</span><i></i>-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div class="workexper">-->
+					<!--<div class="wor-item">-->
+						<!--<a href="resume_edit.html">-->
+							<!--<h1 class="goedit">证书名称证书名称</h1>-->
+							<!--<dl>-->
+								<!--<dt>2011.9-2015.6</dt>-->
+							<!--</dl>-->
+						<!--</a>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<a href="" class="eddr-btn">添加证书</a>-->
+			<!--</div>-->
+			<div class="myr-box">
+				<a :href="'my_resumeedit_motive.html?id=' + getUrlParam('id')" style="text-decoration: none">
+					<div class="casename-top casename-top1 goedit">
+						<p>
+							<span>就职动机</span><i></i>
+						</p>
+					</div>
+					<div class="workexper">
+						<div class="wor-item">
+							<p>{{ info.motivation }}</p>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="myr-box"  v-if="info.nature_work == '正社员'">
+				<a :href="'my_resumeedit_skill.html?id=' + getUrlParam('id')" style="text-decoration: none">
+					<div class="casename-top casename-top1 goedit">
+						<p>
+							<span>专业技能，资格</span><i></i>
+						</p>
+					</div>
+					<div class="workexper">
+						<div class="wor-item">
+							<p>{{ info.professional_skill }}</p>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="myr-box"  v-if="info.nature_work == '正社员'">
+				<a :href="'my_resumeedit_interest.html?id=' + getUrlParam('id') " style="text-decoration: none">
+					<div class="casename-top casename-top1 goedit">
+						<p>
+							<span>兴趣爱好</span><i></i>
+						</p>
+					</div>
+					<div class="workexper">
+						<div class="wor-item">
+							<p>{{ info.interests }}</p>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="myr-box">
+				<button type="button" class="btn btn-primary btn-lg btn-block" @click="deleteResume">删除简历</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                info:[],
+				edu_info:[], // 教育经历
+                exp_info:[], // 工作经验
+            }
+        },
+        created() {
+			this.getOneResume(); // 获取单个简历信息
+        },
+        methods: {
+			getOneResume() {
+                this.$axios.get('/resume/'+ getUrlParam('id') +'/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                })
+                    .then(res => {
+                        this.info = res.data;
+                        console.log(res.data);
+
+                        // 教育经历
+                        console.log(res.data.edu_exp);
+                        // for (var i=0; i<res.data.edu_exp.length; i++){
+                        //     this.edu_info = res.data.edu_exp[i]
+						// }
+                        this.edu_info =  res.data.edu_exp;
+						console.log(this.edu_info);
+
+                        // 工作经验
+                        console.log(res.data.work_exp);
+                        // for (var j=0; j<res.data.work_exp.length; j++){
+                        //     this.exp_info = res.data.work_exp[j]
+                        // }
+                        this.exp_info = res.data.work_exp;
+                        console.log(this.exp_info)
+
+                    })
+                    .catch(error => {
+                        alert('请求单个简历信息失败');
+                    })
+			},
+
+            deleteResume() {
+			    var resumeId = getUrlParam('id');
+			    console.log(resumeId);
+                if (confirm('是否删除当前简历')) {
+                    axios.delete('/resume/' + resumeId + '/',{
+                        headers: {
+                            'Authorization': "JWT " + localStorage.getItem("usertoken")
+                        },
+					})
+                        .then(res => {
+                            alert('删除成功');
+                            if (checkWebview() == 'ios') {
+                                window.webkit.messageHandlers.goBack.postMessage(null); // 移动端返回上一页
+
+                            }else {
+                                window.android.goBack(); // android移动端返回上一页
+                            }
+                            // setTimeout(() => {
+                            //     history.go(-1);
+                            // }, 1500)
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            // this.$Message.error('网络故障，请重试')
+                            alert('删除失败，网络故障，请重试');
+                        })
+                }
+			}// 删除单个简历
+        }
+    });
+
+
+    //通过正则匹配获取当前页面的url中的参数
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var r =  window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r!=null){
+            strValue= unescape(r[2]);
+        }
+        return strValue;
+    }
+
+    // 返回 ios还是android
+    function checkWebview() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        if (sUserAgent.match(/MicroMessenger/i) == "micromessenger") {
+            return "wxweb";
+        }
+        else {
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            if (bIsIpad || bIsIphoneOs) {  //ios
+                return "ios";
+            } else if (bIsAndroid) {         //android
+                return "android";
+            }
+        }
+        return "web";
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bd3b624e-ff68-47f8-be46-b604dee6e347" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-196491104">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="14" />
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="14" />
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="63" />
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="63" />
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-2003945566">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.59" value="1" />
+          <entry key="project.open.time.86" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="4" />
+          <entry key="html" value="11" />
+          <entry key="js" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="4" />
+          <entry key="HTML" value="11" />
+          <entry key="JavaScript" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="6" />
+          <entry key="html" value="6129" />
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="6" />
+          <entry key="HTML" value="6129" />
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="1365386583">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="4" />
+          <entry key="js" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="4" />
+          <entry key="JavaScript" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="923" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="923" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="483567268">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="183" />
+          <entry key="html" value="6173" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="183" />
+          <entry key="HTML" value="6173" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="2" />
+          <entry key="html" value="16" />
+          <entry key="js" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="2" />
+          <entry key="HTML" value="16" />
+          <entry key="JavaScript" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1323887194">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="33" />
+          <entry key="project.open.time.0" value="5" />
+          <entry key="project.open.time.1" value="8" />
+          <entry key="project.open.time.10" value="3" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.38" value="2" />
+          <entry key="project.open.time.39" value="1" />
+          <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.41" value="2" />
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.51" value="1" />
+          <entry key="project.open.time.55" value="1" />
+          <entry key="project.open.time.56" value="2" />
+          <entry key="project.open.time.64" value="1" />
+          <entry key="project.open.time.70" value="1" />
+          <entry key="project.open.time.82" value="1" />
+          <entry key="project.open.time.93" value="1" />
+          <entry key="project.opened" value="35" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="29" />
+          <entry key="html" value="185" />
+          <entry key="js" value="18" />
+          <entry key="png" value="17" />
+          <entry key="ts" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="29" />
+          <entry key="HTML" value="185" />
+          <entry key="Image" value="17" />
+          <entry key="JavaScript" value="18" />
+          <entry key="TypeScript" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="227" />
+          <entry key="html" value="10875" />
+          <entry key="js" value="13" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="227" />
+          <entry key="HTML" value="10875" />
+          <entry key="JavaScript" value="13" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="173205611">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.50" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="html" value="3004" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTML" value="3004" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="2" />
+          <entry key="html" value="5" />
+          <entry key="js" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="2" />
+          <entry key="HTML" value="5" />
+          <entry key="JavaScript" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/job_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1798">
+              <caret line="297" column="39" lean-forward="true" selection-start-line="297" selection-start-column="39" selection-end-line="297" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/job.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1259">
+              <caret line="447" column="51" lean-forward="true" selection-start-line="447" selection-start-column="51" selection-end-line="447" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my_givejob.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3423">
+              <caret line="420" selection-start-line="420" selection-end-line="420" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#dt#0;n#dl#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/my_resumeedit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="659">
+              <caret line="1165" column="46" lean-forward="true" selection-start-line="1165" selection-start-column="46" selection-end-line="1165" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>updateFunc</find>
+      <find>delMsg</find>
+      <find>edu-hide</find>
+      <find>edu-exp</find>
+      <find>show-li-2</find>
+      <find>delExp</find>
+      <find>addEdu</find>
+      <find>edu_info</find>
+      <find>area</find>
+      <find>areaSetOn</find>
+      <find>jobList</find>
+      <find>escape</find>
+      <find>esca</find>
+      <find>getUrlParam</find>
+      <find>alert</find>
+      <find>remOn</find>
+      <find>area_set_on</find>
+      <find>subway_set_on</find>
+      <find>activeClass2</find>
+      <find>change11</find>
+      <find>base</find>
+      <find>deliveredInfo</find>
+      <find>zhao_pin_info</find>
+      <find>dt</find>
+      <find>i4</find>
+      <find>collect</find>
+      <find>collect_user</find>
+      <find>getToken</find>
+      <find>allData</find>
+      <find>disabled</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>,</replace>
+      <replace>: ,</replace>
+      <replace>: this.,</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/网博htmlv3.0/js/js.js" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/js/base64.js" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/job_list222.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_givejob1.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/user.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resume_name.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_givejob.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/js/axios.config.js" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/login.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/job_list.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit222.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_collectjob.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_givejob2.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/job.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/job_detail.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resume.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_info111.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_name.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_motive.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_skill.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_interest.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_edu.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_exp.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/css/css.css" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/css/reset.css" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/css/job.css" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/001.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_info.html" />
+        <option value="$PROJECT_DIR$/网博htmlv3.0/my_resumeedit.html" />
+        <option value="$PROJECT_DIR$/my_givejob2.html" />
+        <option value="$PROJECT_DIR$/aaaa.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_name.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_info.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_motive.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_skill.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_interest.html" />
+        <option value="$PROJECT_DIR$/my_resume.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_edu.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit_exp.html" />
+        <option value="$PROJECT_DIR$/js/axios.config.js" />
+        <option value="$PROJECT_DIR$/js/js.js" />
+        <option value="$PROJECT_DIR$/job_list.html" />
+        <option value="$PROJECT_DIR$/css/job.css" />
+        <option value="$PROJECT_DIR$/job_detail.html" />
+        <option value="$PROJECT_DIR$/my_collectjob.html" />
+        <option value="$PROJECT_DIR$/my_givejob.html" />
+        <option value="$PROJECT_DIR$/job.html" />
+        <option value="$PROJECT_DIR$/my_resumeedit.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-168" />
+    <option name="y" value="36" />
+    <option name="width" value="1095" />
+    <option name="height" value="716" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="网博6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="网博6" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.HTML" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bd3b624e-ff68-47f8-be46-b604dee6e347" name="Default Changelist" comment="" />
+      <created>1556016275198</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556016275198</updated>
+      <workItem from="1556016277857" duration="3422000" />
+      <workItem from="1556066486842" duration="37852000" />
+      <workItem from="1556152460578" duration="32627000" />
+      <workItem from="1556238905649" duration="36904000" />
+      <workItem from="1556333274859" duration="21556000" />
+      <workItem from="1556411272692" duration="39201000" />
+      <workItem from="1556497218195" duration="55089000" />
+      <workItem from="1556583908843" duration="20340000" />
+      <workItem from="1556607860007" duration="6422000" />
+      <workItem from="1556617134214" duration="2440000" />
+      <workItem from="1556622646955" duration="765000" />
+      <workItem from="1556624250732" duration="625000" />
+      <workItem from="1556627586298" duration="609000" />
+      <workItem from="1557016460942" duration="1629000" />
+      <workItem from="1557018177951" duration="31325000" />
+      <workItem from="1557102796288" duration="23736000" />
+      <workItem from="1557138026234" duration="3016000" />
+      <workItem from="1557189034529" duration="22517000" />
+      <workItem from="1557275828808" duration="13409000" />
+      <workItem from="1557361427677" duration="11982000" />
+      <workItem from="1557448640972" duration="32407000" />
+      <workItem from="1557540852200" duration="40497000" />
+      <workItem from="1557640696638" duration="23688000" />
+      <workItem from="1557707622427" duration="39303000" />
+      <workItem from="1557794476247" duration="35629000" />
+      <workItem from="1557881101431" duration="43508000" />
+      <workItem from="1557966916886" duration="6003000" />
+      <workItem from="1557973781345" duration="34030000" />
+      <workItem from="1558053502106" duration="15536000" />
+      <workItem from="1558171577393" duration="696000" />
+      <workItem from="1558176527899" duration="4272000" />
+      <workItem from="1558312927803" duration="281000" />
+      <workItem from="1558315451819" duration="1789000" />
+      <workItem from="1558346301372" duration="2875000" />
+      <workItem from="1558398772488" duration="572000" />
+      <workItem from="1558401781017" duration="152000" />
+      <workItem from="1558517157904" duration="650000" />
+      <workItem from="1558519581577" duration="436000" />
+      <workItem from="1558521818644" duration="179000" />
+      <workItem from="1558526554970" duration="52000" />
+      <workItem from="1558527967680" duration="77000" />
+      <workItem from="1558584250192" duration="2916000" />
+      <workItem from="1558690725204" duration="4799000" />
+      <workItem from="1558936923358" duration="548000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="656361000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21654373" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="File Transfer" order="11" weight="0.27952328" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.24360341" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15405117" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3296582" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="File Transfer" order="11" weight="0.37378114" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.24360341" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/css/user.css" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/css/swiper.css" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/css/iview.css" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/css/css.css" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/css/reset.css" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/css/job.css" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/001.html" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/job_detail.html" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/my_resumeedit_info.html" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/my_givejob.html" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/my_resume.html" />
+    <entry file="file://$PROJECT_DIR$/网博htmlv3.0/my_resumeedit.html" />
+    <entry file="file://$PROJECT_DIR$/my_givejob1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="41" column="63" lean-forward="true" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="4" column="81013" selection-start-line="4" selection-start-column="81007" selection-end-line="4" selection-end-column="81013" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="5336" column="22" lean-forward="true" selection-start-line="5336" selection-start-column="22" selection-end-line="5336" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aaaa.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="56" column="30" lean-forward="true" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_name.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="425" column="5" lean-forward="true" selection-start-line="408" selection-start-column="4" selection-end-line="425" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_motive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="287" column="5" selection-start-line="287" selection-start-column="5" selection-end-line="287" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_skill.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="673">
+          <caret line="230" column="25" selection-start-line="222" selection-start-column="24" selection-end-line="230" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="75" column="31" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_interest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="224" column="25" lean-forward="true" selection-start-line="216" selection-start-column="24" selection-end-line="224" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/001.html" />
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_exp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="100" column="17" lean-forward="true" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_edu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="117" column="116" selection-start-line="117" selection-start-column="116" selection-end-line="117" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/axios.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2777">
+          <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18000">
+          <caret line="720" column="24" selection-start-line="720" selection-start-column="20" selection-end-line="720" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21600">
+          <caret line="864" column="29" selection-start-line="864" selection-start-column="29" selection-end-line="864" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resume.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2275">
+          <caret line="91" column="29" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_givejob2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="32" column="49" selection-start-line="32" selection-start-column="49" selection-end-line="32" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_time.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/job_banner.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/jobfunc_9.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_site1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_share.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_pw3.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_pw2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_opinion1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_opinion.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_members.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_jobtag1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_jobtag.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/icon_erweima.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-731" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/job.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23225">
+          <caret line="929" column="35" lean-forward="true" selection-start-line="929" selection-start-column="35" selection-end-line="929" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_collectjob.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="57" column="91" selection-start-line="57" selection-start-column="91" selection-end-line="57" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="97" column="54" selection-start-line="97" selection-start-column="54" selection-end-line="97" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1798">
+          <caret line="297" column="39" lean-forward="true" selection-start-line="297" selection-start-column="39" selection-end-line="297" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1259">
+          <caret line="447" column="51" lean-forward="true" selection-start-line="447" selection-start-column="51" selection-end-line="447" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_givejob.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3423">
+          <caret line="420" selection-start-line="420" selection-end-line="420" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#dt#0;n#dl#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_resumeedit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="1165" column="46" lean-forward="true" selection-start-line="1165" selection-start-column="46" selection-end-line="1165" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

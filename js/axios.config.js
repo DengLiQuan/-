@@ -1,0 +1,10 @@
+Vue.prototype.$axios = axios;
+//axios.defaults.baseURL = 'http://118.89.27.207:8000'; //全局IP地址
+//axios.defaults.baseURL = 'http://192.168.1.5:8000'; //全局IP地址
+// axios.defaults.baseURL = 'http://192.168.1.3:8000'; //全局IP地址
+axios.defaults.baseURL = 'http://test.wangbo.ie1e.com:8001'; //全局IP地址
+//axios.defaults.baseURL = 'http://118.89.27.207:8002'; //全局IP地址
+//axios.defaults.baseURL = 'http://www.wwtliu.com'; //全局IP地址
+//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+//axios.defaults.headers.post['Content-Type'] = 'application/json';
+//Axios.defaults.headers.common['Authentication-Token'] = store.state.token;

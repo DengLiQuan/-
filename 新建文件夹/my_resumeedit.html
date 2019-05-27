@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<title>编辑简历</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="css/job.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/js.js"></script>
+	<script src="js/imgsize.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/axios.min.js"></script>
+	<script src="js/axios.config.js"></script>
+
+
+	<script type="text/javascript">
+        function mainPage(){
+            $(".page").hide();
+            $("#main_page").show()
+        }
+        function skillEdit(){
+            $(".page").hide();
+            $("#skill_edit").show()
+        }
+	</script>
+</head>
+
+<body>
+<div class="page" id="main_page">
+	<!--<div class="header">-->
+	<!--&lt;!&ndash; <a href="javascript:mainPage()" class="btn_back">返回</a> &ndash;&gt;-->
+	<!--<a href="javascript:history.go(-1)" class="btn_back">返回</a>-->
+	<!--<h1 class="title">编辑简历</h1>-->
+	<!--</div>-->
+
+
+	<!--<div class="content" style="padding: .79rem 0 .96rem 0;" >-->
+	<div class="content" style="padding: 0 0 .96rem 0;">
+		<div class="order_headname">简历名称</div>
+		<div class="order_issure1">
+			<ul class="ttip_mod">
+				<li class="item">
+					<div class="right"><input type="text" class="txt" placeholder="例：简历-1" v-model="postData.resume_name" :value="resume_name"/></div>
+				</li>
+			</ul>
+			<img src="images/ticket_3.png" class="ticket-bg">
+		</div>
+
+		<div class="order_headname">个人信息</div>
+		<div class="order_issure1">
+			<ul class="ttip_mod">
+				<li class="item">
+					<div class="tpp">姓名</div>
+					<div class="right"><input type="text" class="txt" placeholder="请输入姓名" v-model="postData.name" :value="info_name"/></div>
+				</li>
+				<li class="item">
+					<div class="tpp">日语注音</div>
+					<div class="right"><input type="text" class="txt" v-cloak placeholder="请输入日语注音" v-model="postData.phonetic_notation" :value="phonetic_notation"/></div>
+				</li>
+				<li class="item">
+					<div class="tpp">性别</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.gender" placeholder="性别">
+							<!--<option>请选择</option>-->
+							<option v-for="s in sex" :value="s.key" :key="s.key">{{ s.name }}</option>
+						</select>
+					</div>
+				</li>
+				<li class="item">
+					<div class="tpp">出生年月日</div>
+					<!--<div class="right"><input type="date" v-model="postData.birthday" :value="birthday"/></div>-->
+					<!--<div class="right"><input type="date" value="2015-09-24" v-model="postData.birthday" :value="birthday"/></div>-->
+					<div class="right"><input type="date" v-model="postData.birthday" :value="birthday"></div>
+				</li>
+				<li class="item">
+					<div class="tpp">联系电话</div>
+					<div class="right"><input type="text" class="txt" placeholder="请输入联系电话" v-model="postData.mobile" :value="mobile"/></div>
+				</li>
+				<li class="item">
+					<div class="tpp">联系邮箱</div>
+					<div class="right"><input type="text" class="txt" placeholder="请输入联系邮箱" v-model="postData.mail" :value="mail"/></div>
+				</li>
+				<li class="item">
+					<div class="tpp">现住所</div>
+					<div class="right right1">
+                        <span class="absolute" id="absolute1">请输入</span>
+						<select class="sel"  v-model="postData.province" id="xzd1" @change="change1">
+							<!--<select class="sel" placeholder="请输入" v-model="postData.province" id="xzd1">-->
+							<!--<option>请选择</option>-->
+							<option v-for="adr in area" :key="adr.id" :value="adr.name">{{adr.name }}</option>
+							<!--<option>杭州</option>-->
+						</select>
+					</div>
+					<div class="right right1">
+                        <span class="absolute" id="absolute2">请输入</span>
+						<select class="sel" v-model="postData.city" :disabled="isAble" @change="change3">
+							<!--<select class="sel" placeholder="请输入" v-model="postData.city">-->
+							<!--<option>请选择</option>-->
+							<option v-for="adr2 in area2" :key="adr2.id" v-model="area2" :value="adr2.name">{{ adr2.name }}</option>
+							<!--<option>杭州</option>-->
+						</select>
+					</div>
+				</li>
+				<li class="item">
+					<div class="tpp">详细地址</div>
+					<div class="right"><input type="text" class="txt" placeholder="请输入现住所" v-model="postData.address" :value="address"/></div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">最寄駅</div>
+					<div class="right right1">
+                        <span class="absolute" id="absolute3">请输入</span>
+						<select class="sel" placeholder="请输入" v-model="postData.metro_name" @change="change2" id="zjy1">
+							<!--<select class="sel" placeholder="请输入" v-model="postData.metro_name" id="zjy1">-->
+							<!--<option>请选择</option>-->
+							<option v-for="met in metro" :key="met.id" :value="met.name">{{ met.name }}</option>
+							<!--<option>杭州</option>-->
+						</select>
+					</div>
+					<div class="right right1">
+                        <span class="absolute" id="absolute4">请输入</span>
+						<select class="sel" v-model="postData.metro_station" :disabled="isAble2" id="zjy2" @change="change4">
+							<!--<select class="sel" placeholder="请输入" v-model="postData.metro_station" id="zjy2">-->
+							<!--<option>请选择</option>-->
+							<option v-for="met2 in metro2" :key="met2.id" :value="met2.name">{{ met2.name }}</option>
+							<!--<option>杭州</option>-->
+						</select>
+					</div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">日本在留资格</div>
+					<div class="right right1" >
+						<select class="sel"  v-model="postData.immigration">
+							<!--<option>请选择</option>-->
+							<option v-for="statu in status" :key="statu.id" :value="statu.name" >{{ statu.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">来日年数</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.stay_time">
+							<!--<option>请选择</option>-->
+							<option v-for="day in days" :key="day.id" :value="day.name">{{ day.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item" v-if="show">
+					<div class="tpp">配偶者</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.spouse">
+							<!--<option>请选择</option>-->
+							<option v-for="s in spouse" :value="s.key" :key="s.key">{{ s.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item" v-if="show">
+					<div class="tpp">抚养家族数</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.family_num">
+							<!--<option>请选择</option>-->
+							<option  v-for="fam in family" :key="fam.id" :value="fam.name">{{ fam.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">日语口语水平</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.japanese_grade">
+							<!--<option>请选择</option>-->
+							<option v-for="gossip in Japan" :key="gossip.id" :value="gossip.name">{{ gossip.name }}</option>
+						</select>
+					</div>
+				</li>
+				<li class="item" v-if="show">
+					<div class="tpp">日语能力试验</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.language_ability">
+							<!--<option>请选择</option>-->
+							<option v-for="langu in language" :key="langu.id" :value="langu.name">{{ langu.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">最终学历</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.education">
+							<!--<option>请选择</option>-->
+							<option v-for="educa in educational" :key="educa.id" :value="educa.name">{{ educa.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">户籍所在地</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.census_register">
+							<!--<option>请选择</option>-->
+							<option v-for="cen in census" :key="cen.id" :value="cen.name">{{ cen.name }}</option>
+						</select>
+					</div>
+				</li>
+
+				<li class="item">
+					<div class="tpp">求职状态</div>
+					<div class="right right1">
+						<select class="sel" v-model="postData.job_status">
+							<!--<option>请选择</option>-->
+							<option v-for="jobSta in job_status" :key="jobSta.id" :value="jobSta.name">{{ jobSta.name }}</option>
+						</select>
+					</div>
+				</li>
+
+			</ul>
+			<img src="images/ticket_3.png" class="ticket-bg">
+		</div>
+
+		<div class="order_headname">教育经历</div>
+		<div>
+			<ul class="ttip_mod">
+				<li class="item" v-for="(list,index) in postData.edu_exp" :key="index">
+
+					<ul style="display: block"  >
+						<li><p>{{ list.name }}<a href="" @click.prevent="delMsg(index)" class="red-del">&nbsp;&nbsp;&nbsp;&nbsp;删除</a></p></li>
+						<li><p>{{ list.enrollment_date ? list.enrollment_date : '入学时间' }}&nbsp;&nbsp;至&nbsp;&nbsp;{{ list.graduation_date ? list.graduation_date : '毕业时间' }}</p></li>
+						<li><p>{{ list.education }}</p></li>
+						<li><p>{{ list.specialty }}</p></li>
+					</ul>
+
+				</li>
+			</ul>
+			<!--addSts:{-->
+			<!--name:'学校名称',-->
+			<!--specialty:'专业',-->
+			<!--enrollment_date:"入学时间",-->
+			<!--graduation_date:'毕业时间',-->
+			<!--education:'学历',-->
+			<!--},-->
+			<ul class="add-edu edu-exp">
+				<li><input type="text" class="form-control" placeholder="请输入学校名" v-model="addSts.name"></li>
+				<li class="study-ru">入学时间:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" v-model="addSts.enrollment_date"></li>
+				<li class="study-bi">毕业时间:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" v-model="addSts.graduation_date"></li>
+				<li><input type="text" class="form-control" placeholder="获得学历" v-model="addSts.education"></li>
+				<li><input type="text" class="form-control" placeholder="请输入学习专业" v-model="addSts.specialty"></li>
+				<button type="button" class="btn btn-default btn-lg btn-block" @click.prevent="addNone">+添加教育经历</button>
+			</ul>
+			<a href="" class="btn-edu" @click.prevent="popEdu()">+添加教育经历</a>
+
+			<!--<img src="images/ticket_3.png" class="ticket-bg">-->
+		</div>
+
+		<div v-if="show">
+			<div class="order_headname">工作经验</div>
+
+			<!--name'会社名称'-->
+			<!--position'职位'-->
+			<!--job_content'工作内容'-->
+			<!--join_date'加入时间'-->
+			<!--quit_date'退社时间'-->
+			<div>
+				<ul class="ttip_mod">
+					<li class="item" v-for="(lis,index) in postData.work_exp" :key="index">
+						<ul style="display: block">
+							<li><p>{{ lis.name }}<a href="" @click.prevent="delExp(index)" class="red-del">&nbsp;&nbsp;&nbsp;&nbsp;删除</a></p></li>
+							<li><p>{{ lis.position }}</p></li>
+							<li><p>{{ lis.join_date ? lis.join_date : '入社时间' }}&nbsp;&nbsp;至&nbsp;&nbsp;{{ lis.quit_date ? lis.quit_date : '退社时间' }}</p></li>
+							<li><p>{{ lis.job_content }}</p></li>
+						</ul>
+						<!--<input type="button" value="+添加教育经历" class="btn-edu">-->
+						<!--<p class="btn-edu">+添加工作经验</p>-->
+					</li>
+				</ul>
+
+				<ul class="add-edu work-exp" >
+					<li><input type="text" class="form-control" placeholder="请输入社会名称" v-model="addSts2.name"></li>
+					<li><input type="text" class="form-control" placeholder="所属职位" v-model="addSts2.position"></li>
+					<li class="study-ru">入社时间:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" v-model="addSts2.join_date"></li>
+					<li class="study-bi">退社时间:&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" v-model="addSts2.quit_date"></li>
+					<li><textarea class="form-control" rows="3" placeholder="请输入您的职责范围、工作任务(限输入1000字)" v-model="addSts2.job_content"></textarea></li>
+					<button type="button" class="btn btn-default btn-lg btn-block" @click.prevent="addExp">+添加工作经验</button>
+				</ul>
+				<a href="" class="btn-edu" @click.prevent="popExp()">+添加工作经验</a>
+				<!--<img src="images/ticket_3.png" class="ticket-bg">-->
+			</div>
+
+		</div>
+
+		<div class="order_headname">就职动机</div>
+		<div class="order_issure1">
+			<ul class="ttip_mod">
+
+				<li class="item">
+					<div class="right"><input type="text" class="txt" placeholder="请输入您的就职动机" v-model="postData.motivation"/></div>
+				</li>
+
+
+			</ul>
+			<img src="images/ticket_3.png" class="ticket-bg">
+		</div>
+
+		<div v-if="show">
+			<div class="order_headname">专业技能，资格</div>
+			<div class="order_issure1">
+				<ul class="ttip_mod">
+					<!--<li class="item">-->
+					<!--<div class="tpp">上传头像</div>-->
+					<!--<div class="face-upload">-->
+					<!--<img src="images/face.png">-->
+					<!--<input type="file">-->
+					<!--</div>-->
+					<!--</li>-->
+					<li class="item">
+						<div class="right"><input type="text" class="txt" placeholder="请输入您的技能，资格" v-model="postData.professional_skill"/></div>
+					</li>
+				</ul>
+				<img src="images/ticket_3.png" class="ticket-bg">
+			</div>
+		</div>
+
+		<div v-if="show">
+			<div class="order_headname">兴趣爱好</div>
+			<div class="order_issure1">
+				<ul class="ttip_mod">
+					<!--<li class="item">-->
+					<!--<div class="tpp">上传头像</div>-->
+					<!--<div class="face-upload">-->
+					<!--<img src="images/face.png">-->
+					<!--<input type="file">-->
+					<!--</div>-->
+					<!--</li>-->
+					<li class="item">
+						<div class="right"><input type="text" class="txt" placeholder="请输入您的兴趣爱好" v-model="postData.interests"/></div>
+
+					</li>
+
+
+				</ul>
+				<img src="images/ticket_3.png" class="ticket-bg">
+			</div>
+		</div>
+
+		<div class="order_headname">添加照片</div>
+		<div class="order_issure1">
+			<ul class="ttip_mod">
+				<li class="item">
+					<div class="face-upload">
+						<img :src="userInfo.avatar" @click.stop="uploadHeadImg">
+						<input type="file" v-model="postData.head_portrait" @change="handleFile" class="hiddenInput"/>
+					</div>
+				</li>
+
+			</ul>
+			<img src="images/ticket_3.png" class="ticket-bg">
+		</div>
+
+
+	</div>
+	<div class="popu-join-btn">
+		<!--<a href="my_resume.html" class="btn-join btn-gray" @click="postResume()">保存</a>-->
+		<!--<a href="my_resume.html" class="btn-join btn-gray" @click.prevent="postResume()" v-if="postData.nature_work=='EMPLOYEE'">保存</a>-->
+		<!--<a href="my_resume.html" class="btn-join btn-gray" @click.prevent="postHourResume()" v-if="postData.nature_work!='EMPLOYEE'">保存</a>-->
+		<!--<button type="button" class="btn btn-default">（默认样式）Default</button>-->
+		<button type="button" class="btn btn-default btn-lg btn-block btn-join btn-gray" @click.prevent="postResume()" v-if="postData.nature_work=='EMPLOYEE'">保存</button>
+		<button type="button" class="btn btn-default btn-lg btn-block btn-join btn-gray" @click.prevent="postHourResume()" v-if="postData.nature_work!='EMPLOYEE'">保存</button>
+	</div>
+</div>
+
+
+<!--标签选择-->
+<div class="page" id="skill_edit" style="display: none;">
+	<div class="header">
+		<a href="javascript:mainPage()" class="btn_back">返回</a>
+		<h1 class="title">选择标签</h1>
+	</div>
+	<div class="content m2">
+		<div class="skills-menu-box">
+			<dl>
+				<dd>已选(3)</dd>
+				<dt>
+					<a href="" class="item on">标签标签</a>
+					<a href="" class="item on">标签标签</a>
+					<a href="" class="item on">标签标签</a>
+				</dt>
+			</dl>
+			<dl>
+				<dt>
+					<a href="" class="item">标签标签</a>
+					<a href="" class="item">标签标签</a>
+					<a href="" class="item">标签标签</a>
+					<a href="" class="item">标签标签</a>
+					<a href="" class="item">标签标签</a>
+				</dt>
+			</dl>
+		</div>
+	</div>
+	<div class="popu-join-btn">
+		<a href="" class="btn-join btn-gray">保存</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#main_page',
+        data() {
+            return {
+                userInfo: {
+                    avatar: 'https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=62d46c39067b020818c437b303b099b6/d4628535e5dde7119c3d076aabefce1b9c1661ba.jpg'
+                },
+
+                isAble: true,
+                isAble2: true,
+
+                sex: [
+                    {
+                        key: 'MALE',
+                        name: '男'
+                    },
+                    {
+                        key: 'FEMALE',
+                        name: '女'
+                    }
+                ],
+
+                spouse: [
+                    {
+                        key: true,
+                        name: '有'
+                    },
+                    {
+                        key: false,
+                        name: '无'
+                    }
+                ],
+
+                addSts:{
+                    name:'学校名称',
+                    specialty:'专业',
+                    enrollment_date:"入学时间",
+                    graduation_date:'毕业时间',
+                    education:'学历',
+                },
+                addSts2:{
+                    name:'会社名称',
+                    position:'职位',
+                    job_content:'工作内容',
+                    join_date:'加入时间',
+                    quit_date:'退社时间'
+                },
+
+                postData:{
+                    resume_name : "",// 简历名称
+                    name : "",// 姓名
+                    phonetic_notation : "",// 日语注音
+                    gender : "",// 性别: male男 female女
+                    mobile : "",//  电话号码
+                    mail : "",//  电子邮箱
+                    address : "",//  详细地址
+                    motivation : "",//  求职动机
+                    professional_skill: "",//  专业技能
+                    interests : "",//  兴趣爱好
+                    birthday : "",//  生日
+                    spouse : "",// 配偶
+                    head_portrait : "",// 头像
+                    province : "",// 现住地一级行政区ID
+                    city : "",// 现住地下级地区ID
+                    metro_name : "",// 最寄駅线路名称
+                    metro_station : "",// 最寄駅站点名称
+                    census_register : "",// 户籍所在地
+                    immigration : "",// 日本在留资格
+                    stay_time : "",// 来日年数
+                    family_num : "",// 抚养家族数
+                    japanese_grade : "",// 日语水平
+                    language_ability : "",// 日语能力试验
+                    education : "",// 最终学历
+                    job_status : "",// 求职状态
+                    nature_work: "",// 工作性质
+                    edu_exp : [],// 教育经历
+                    work_exp : [],// 工作经验
+                },
+
+                resume_name: '', // 	简历名称
+                info_name:'',  // 姓名
+                phonetic_notation: '', // 日语注音
+                mobile: '', // 联系电话
+                mail: '', //电子邮箱
+                head_portrait: '', // 头像
+                address: '', // 详细地址
+                motivation:'',// 求职动机
+                professional_skill:'', //专业技能
+                interests: '', // 兴趣爱好
+                birthday: '', // 生日
+
+
+                info: [], // 用来保存所有的信息
+                status: [], // 日本再留资格
+                days: [], //来日年数
+                family: [], // 抚养家族数
+                Japan: [],  // 日语口语水平
+                language: [], // 日语能力试验
+                educational: [], // 最终学历
+                job_status: [],  // 求职状态
+                pay_type: [], //  支付方式
+                welfare : [], //  福利
+                job_category : [], //  工作性质
+                area: [], // 现住所1级
+                area2: [], // 现住所2级
+                metro: [], // 地铁1级
+                metro2: [], // 地铁2级
+                census: [], // 户籍所在地 地址
+                id: '', // 判断id是不是等于1，如果是为正社员简历，2为小时工简历
+                show: true,
+
+                edu_exp: [], // 保存数据的列表
+                schoolName: '',
+                specialty: '',
+                education: '',
+                enrollment_date: '',
+                graduation_date: '',
+
+                work_exp: [], // 保存工作经验的列表
+                nameSociety: '', // 入社名称
+                position: '', // 职位
+                job_content: '', // 工作内容
+                join_date: '', // 加入时间
+                quit_date: '', // 退社时间
+
+            }
+        },
+        created() {
+            this.postData.gender = this.sex[0].key; // 性别 默认值
+            this.postData.spouse = this.spouse[0].key; // 配偶 默认值
+
+            this.IMMIGRATION();
+            this.STAY_TIME();
+            this.FAMILY_NUM();
+            this.JAPANESE_GRADE();
+            this.LANGUAGE_ABILITY();
+            this.EDUCATION();
+            this.JOB_STATUS();
+
+            //this.allData();
+
+            this.getArea(); // 现住地
+            this.Metro();  // 最寄駅
+            this.getCensus();
+            this.judgeID();
+            $(".edu-exp").hide();
+            $(".work-exp").hide();
+            this.getUrlId();
+
+
+        },
+        methods: {
+            getUrlId() {
+                if (getUrlParam('id')==1) {
+                    this.postData.nature_work = "EMPLOYEE"
+                }else {
+                    this.postData.nature_work = "HOURS_EMPLOYEE"
+                }
+            },
+
+            // 日本在留资格请求
+            IMMIGRATION() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'IMMIGRATION'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.status = res.data;
+                        // console.log(res.data);
+                        this.postData.immigration = this.status[0].name; // 日本在留资格请求 默认值
+                    })
+                    .catch(error => {
+                        alert('请求日本在留资格失败');
+                    })
+            },
+
+            // 来日年数请求
+            STAY_TIME() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'STAY_TIME'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.days = res.data;
+                        // console.log(res.data);
+                        this.postData.stay_time = this.days[0].name; // 日本在留资格 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 抚养家族数请求
+            FAMILY_NUM() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'FAMILY_NUM'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.family = res.data;
+                        // console.log(res.data);
+                        this.postData.family_num = this.family[0].name; // 抚养家族数请求 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 日语口语水平请求
+            JAPANESE_GRADE() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'JAPANESE_GRADE'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.Japan = res.data;
+                        // console.log(res.data);
+                        this.postData.japanese_grade = this.Japan[0].name; // 日语口语水平默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 日语能力试验请求
+            LANGUAGE_ABILITY() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'LANGUAGE_ABILITY'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.language = res.data;
+                        // console.log(res.data);
+                        this.postData.language_ability = this.language[0].name; // 日语能力试验 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 最终学历
+            EDUCATION() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'EDUCATION'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.educational = res.data;
+                        // console.log(res.data);
+                        this.postData.education = this.educational[0].name; // 日语能力试验 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+            // 求职状态
+            JOB_STATUS() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                    params: {
+                        param_type: 'JOB_STATUS'
+                    }
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.job_status = res.data;
+                        // console.log(res.data);
+                        this.postData.job_status = this.job_status[0].name; // 求职状态 默认值
+                    })
+                    .catch(error => {
+                        alert('请求来日年数失败');
+                    })
+            },
+
+
+            allData() {
+                this.$axios.get('/param_data/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.info = res.data;
+                        console.log(res.data);
+                        for (let i = 0; i<this.info.length; i++) {
+                            // console.log(this.info[i].param_type);
+                            var temp = this.info[i].param_type.split(':');
+                            if (temp[0] == 'IMMIGRATION') {
+                                this.status.push(temp[1]);
+                                //console.log(this.status)
+                            }
+                            else if (temp[0] == 'STAY_TIME') {
+                                this.days.push(temp[1]);
+                                //console.log(this.days);
+                            }
+                            else if (temp[0] == 'FAMILY_NUM') {
+                                this.family.push(temp[1]);
+                                //console.log(this.family);
+                            }
+                            else if (temp[0] == 'JAPANESE_GRADE') {
+                                this.Japan.push(temp[1]);
+                                //console.log(this.Japan);
+                            }
+                            else if (temp[0] == 'LANGUAGE_ABILITY') {
+                                this.language.push(temp[1]);
+                                //console.log(this.language);
+                            }
+                            else if (temp[0] == 'EDUCATION') {
+                                this.educational.push(temp[1]);
+                                //console.log(this.educational);
+                            }
+                            else if (temp[0] == 'JOB_STATUS') {
+                                this.job_status.push(temp[1]);
+                                // console.log(this.job_status);
+                            }
+                            else if (temp[0] == 'PAY_TYPE') {
+                                this.pay_type.push(temp[1]);
+                                //console.log(this.pay_type);
+                            }
+                            else if (temp[0] == 'WELFARE') {
+                                this.welfare.push(temp[1]);
+                                //console.log(this.welfare);
+                            }
+                            else {
+                                this.job_category.push(temp[1]);
+                                //console.log(this.job_category);
+                            }
+                            // console.log(temp[0]);
+                            // console.log(temp[1]);
+                        }
+                    })
+                    .catch(error => {
+                        alert('请求地区失败');
+                    })
+            }, // 编辑简历页详细信息
+
+            getArea() {  // 现住所
+                this.$axios.get('/place/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取 现在地
+                    .then(res => {
+                        this.area = res.data;
+                        // this.postData.province = this.area[0].name; // 现住地一级 默认值
+                        console.log(res.data);
+
+                        // for(let i in res.data) {
+                        //     if(res.data[i].name) {
+                        //         this.area2 = res.data[i].child;
+                        //     }
+                        // }
+
+                        // for ( let i=0; i<res.data.length; i++ ) {
+                        //     temp.push(res.data[i].child);
+                        //     // console.log(temp);
+                        // }
+                        // console.log(temp);
+                        // for (let j=0; j<temp.length; j++) {
+                        //     for (var k=0; k<temp[j].length; k++) {
+                        //         console.log(temp[j][k].name);
+                        //         // this.area2 = temp[j][k].name
+                        //         this.area2.push(temp[j][k].name)
+                        //     }
+						//
+                        // }
+						//
+                        // this.postData.city = this.area[3].child[0].name; // 现住地2级 默认值
+
+                    })
+                    .catch(error => {
+                        alert('请求现住所失败');
+                    })
+            },  // 编辑简历页现住所接口
+
+            // 现住地选择 事件，第一个选择完后，第二个才能选择
+            change1() {
+
+                let name = $('#xzd1').val();
+                if (name != '') {
+                    for(let i in this.area) {
+                        if(this.area[i].name == name) {
+                            this.area2 = this.area[i].child;
+                            break;
+                        }
+                    }
+                    // alert(1);
+                    this.isAble = false  // 默认不可选 变成可以选择的状态
+                }
+                $('#absolute1').css({display: "none"}); // 选择完之后让 背后的文字 请输入消失 现住地一级
+            },
+            change3() {
+                $('#absolute2').css({display: "none"}); // 选择完之后让 背后的文字 请输入消失 现住地2级
+            },
+
+
+            change2() {
+                if ($('#zjy1').val() != '') {
+                    // console.log($('#zjy1').val());
+                    let name = $('#zjy1').val();
+                    for(let i in this.metro) {
+                        if(this.metro[i].name == name) {
+                            this.metro2 = this.metro[i].child;
+                            break;
+                        }
+                    }
+                    // alert(1);
+                    this.isAble2 = false  // 默认不可选 变成可以选择的状态
+                }
+                $('#absolute3').css({display: "none"});
+            },
+            change4() {
+                $('#absolute4').css({display: "none"});
+            },
+
+            Metro() {  // 地铁路线
+                this.$axios.get('/metro/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.metro = res.data;
+                        // this.postData.metro_name = this.metro[1].name; // 地铁一级 默认值
+                        console.log(res.data);
+
+                        for ( let i=0; i<res.data.length; i++ ) {
+                            var temp = res.data[i].child;
+                            // console.log(temp);
+                            this.metro2 = temp;
+                        }
+
+                        // for ( let i=0; i<res.data.length; i++ ) {
+                        //     if (res.data[i].name) {
+                        //         console.log(res.data[i].child);
+                        //         this.metro2 = res.data[i];
+                        //     }
+                        // }
+                        // console.log(this.metro2);
+
+                        // for(var i in res.data) {
+                        //     if(res.data[i].name) {
+                        //         this.metro2 = res.data[i].child;
+                        //     }
+                        // }
+
+                        // this.postData.metro_station = this.metro2[0].name; // 地铁2级 默认值
+                    })
+                    .catch(error => {
+                        alert('请求地铁路线(最寄駅)失败');
+                    })
+            },  // 编辑简历页地铁路线接口
+
+            getCensus() {  // 户籍所在地
+                this.$axios.get('/census/',{
+                    headers: {
+                        'Authorization': "JWT " + localStorage.getItem("usertoken")
+                    },
+                }) // 获取首页的现在地
+                    .then(res => {
+                        this.census = res.data;
+                        // console.log(res.data);
+                        this.postData.census_register = this.census[0].name; // 日语能力试验 默认值
+                    })
+                    .catch(error => {
+                        alert('请求户籍所在地地址失败');
+                    })
+            },  // 编辑简历页户籍所在地接口
+            judgeID() {  // 判断id是不是等于1，如果是为正社员简历，2为小时工简历
+                this.id = getUrlParam('id');
+                console.log(this.id);
+                if (this.id == 2) {
+                    this.show = !this.show;
+                }
+            },
+
+            // 以下是弹出教育经历
+            popEdu() {
+                $(".edu-exp").show();
+                this.addSts.name = "";
+                this.addSts.specialty="";
+                this.addSts.education="";
+                this.addSts.enrollment_date="";
+                this.addSts.graduation_date="";
+            },
+            addNone() {
+                let a =  JSON.parse(JSON.stringify(this.addSts));
+                this.postData.edu_exp.push(a);
+                $(".edu-exp").hide(); // 点击添加后，让大盒子隐藏起来
+
+            },
+            delMsg(index) {
+                console.log(index);
+                this.postData.edu_exp.splice(index, 1) // 删除一条数据
+            },
+
+            // 以下是弹出工作经历
+            popExp() {
+                $(".work-exp").show();
+                this.addSts2.name = "";
+                this.addSts2.position="";
+                this.addSts2.job_content="";
+                this.addSts2.join_date="";
+                this.addSts2.quit_date="";
+            },
+            addExp() {
+                let b = JSON.parse(JSON.stringify(this.addSts2));
+                this.postData.work_exp.push(b);
+                $(".work-exp").hide(); // 点击添加后，让大盒子隐藏起来
+
+            },
+            delExp(index) {
+                this.postData.work_exp.splice(index, 1) // 删除一条数据
+            },
+
+            // 图片 头像上传
+            // 打开图片上传
+            uploadHeadImg() {
+                this.$el.querySelector('.hiddenInput').click()
+            },
+            handleFile(e) {
+                let $target = e.target || e.srcElement;
+                let file = $target.files[0];
+                var reader = new FileReader();
+                reader.onload = (data) => {
+                    let res = data.target || data.srcElement;
+                    this.userInfo.avatar = res.result
+                };
+                reader.readAsDataURL(file);
+                this.files = file
+            },
+
+
+            postResume() {
+
+                // let data = JSON.stringify((this.postData));
+                // console.log(data);
+                // axios.post("/resume/",data,{
+                //     headers:{
+                //         // "Content-Type":"application/x-www-form-urlencoded",
+                //         "Content-Type":"application/json",
+                //         "Authorization":"JWT " + localStorage.getItem("usertoken")
+                //     }
+                // })
+                //     .then(res=>{
+                //         console.log(res.data);
+                //         alert('保存成功');
+                // 		console.log('保存成功');
+                //     }).catch(error=>{
+                //
+                // 		console.log(error)
+                // })
+
+                let param = new FormData();
+                for (let key in this.postData) {
+                    if(key == "edu_exp" || key == "work_exp"){
+                        param.append(key, JSON.stringify(this.postData[key]));
+                    } else {
+                        param.append(key, this.postData[key]);
+                    }
+                }
+                param.append("head_portrait", this.files);
+                console.log(param);
+                axios.post("/resume/",param,{
+                    headers:{
+                        "Content-Type":"multipart/form-data",
+                        "Authorization":"JWT " + localStorage.getItem("usertoken")
+                    }
+                })
+                    .then(res=>{
+                        console.log(res.data);
+                        alert('保存成功');
+                        setTimeout( () => {
+                            history.go(-1);
+						},1500)
+                    }).catch(error=>{
+                    	//console.log(error);
+                    	//alert('保存失败，所有信息必填1');
+                        for (let d in error.response.data) {
+                            alert(error.response.data[d]);
+                            break;
+						}
+                })
+            }, // 正社员简历post请求
+
+
+            // postHourResume() {
+            //     let data = JSON.stringify((this.postData));
+            //     console.log(data);
+            //     axios.post("/resume/hour_create/",data,{
+            //         headers:{
+            //             // "Content-Type":"application/x-www-form-urlencoded",
+            //             "Content-Type":"application/json",
+            //             "Authorization":"JWT " + localStorage.getItem("usertoken")
+            //         }
+            //     })
+            //         .then(res=>{
+            //             console.log(res.data);
+            // 			console.log('保存成功');
+            //         }).catch(error=>{
+            //
+            //         console.log(error)
+            //     })
+            // },  // 小时工简历post请求
+
+            postHourResume() {
+                let param = new FormData();
+                for (let key in this.postData) {
+                    if(key == "edu_exp" || key == "work_exp"){
+                        param.append(key, JSON.stringify(this.postData[key]));
+                    } else {
+                        param.append(key, this.postData[key]);
+                    }
+                }
+                param.append("head_portrait", this.files);
+                axios.post("/resume/hour_create/",param,{
+                    headers:{
+                        "Content-Type":"multipart/form-data",
+                        "Authorization":"JWT " + localStorage.getItem("usertoken")
+                    }
+                })
+                    .then(res=>{
+                        console.log(res.data);
+                        alert('保存成功');
+                        setTimeout( () => {
+                            history.go(-1);
+                        },1500)
+                    }).catch(error=>{
+                    	//console.log(error);
+                    	//alert('保存失败，所有信息必填');
+                        for (let d in error.response.data) {
+                            alert(error.response.data[d]);
+                            break;
+						}
+                })
+            },  // 小时工简历post请求
+
+        }
+    });
+
+    //通过正则匹配获取当前页面的url中的参数
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var r =  window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r!=null){
+            strValue= unescape(r[2]);
+        }
+        return strValue;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>网博</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/css.css">
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.9.1.js"></script>
+<script src="js/js.js"></script>
+<script src="js/imgsize.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/jquery.SuperSlide.js"></script>
+<script>
+$(function(){
+	$(".tab_dis a").click(function(){
+		$(this).addClass("on").siblings("a").removeClass("on");
+		var i=$(this).index();
+		$(".paypage .box").eq(i).show().siblings(".box").hide();
+	})
+})
+</script>
+</head>
+
+<body>
+<div class="page">
+	<div class="header">
+		<h1 class="title">拨号</h1>
+	</div>
+
+	<div class="content m2">
+		<div class="findshop-search">
+            <input type="text" class="ipt dail_search" placeholder="输入姓名或者电话">
+            <input type="button" class="btn">
+        </div>
+		
+		<div class="dail_box">
+			<a href="" class="dail_tel">
+				<div class="dail_text">
+					<h1>李薇薇</h1>
+					<h2>18059053419</h2>
+				</div>
+				<span>11:10</span>
+			</a>
+		</div>
+		<div class="dail_box">
+			<a href="" class="dail_tel">
+				<div class="dail_text">
+					<h1>李薇薇</h1>
+					<h2>18059053419</h2>
+				</div>
+				<span>11:10</span>
+			</a>
+		</div>
+		<div class="dail_box">
+			<a href="" class="dail_tel">
+				<div class="dail_text">
+					<h1>李薇薇</h1>
+					<h2>18059053419</h2>
+				</div>
+				<span>11:10</span>
+			</a>
+		</div>
+		<div class="keypad_box">
+		<a href="" class="keypad">
+		<img src="images/dial_icon.png" alt="">
+		<h1>拨号</h1>
+		</a>
+	</div>
+
+		</div>
+	</div>
+	<!--底部-->
+    <div class="footer">
+		<div class="nav">
+			<a class="item" href="index.html"><img src="images/nav1.png" class="pic"/>首页</a>
+			<a class="item on" href="dial.html"><img src="images/nav4_on.png" class="pic"/>拨号</a>
+			<a class="item" href="mall.html"><img src="images/nav5.png" class="pic"/>积分商城</a>
+			<a class="item" href="distribution.html"><img src="images/nav2.png" class="pic"/>分销</a>
+			<a class="item" href="user.html"><img src="images/nav3.png" class="pic"/>我的</a>
+		</div>
+	</div>
+	<!--侧边栏-->
+	<div class="toolbar">
+		<a href="javascript:window.scrollTo(0,0)" class="item" id="toTop"><img src="images/toolbar_3.png" class="pic"/></a>
+	</div>
+
+
+</body>
+</html>
