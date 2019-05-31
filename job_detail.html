@@ -159,6 +159,7 @@
                 collect_id: '', // 取消收藏时候用的id
 
                 collect_user_total: '', // 该职位收藏的总数
+				// phoneNum: '', // 电话号码
             }
         },
         // props: ["sonId"],
@@ -181,6 +182,7 @@
                 this.$dialog.confirm({
                     // title: '确定拔打',
                     message: "电话号码：15122233344",
+                    // message:'电话号码：' + this.phoneNum,
                 })
                     .then(function () {
                         // 点击确定执行
@@ -204,6 +206,7 @@
                             this.time = formatDate(this.companyInfoList.publish_time);
                             // alert(1);
                             console.log(res.data);
+                            // this.phoneNum = res.data.mobile;
                             this.collect_user_total = res.data.collect_user.length;
                             // console.log(res.data.collect_user.length);
                             this.is_collect = res.data.is_collect;
@@ -241,6 +244,7 @@
                     this.time = formatDate(this.companyInfoList.publish_time);// 发布时间
 					// alert(1);
 					console.log(res.data);
+					// this.phoneNum = res.data.mobile;
 					this.collect_user_total = res.data.collect_user.length;
 					// console.log(res.data.collect_user.length);
 					this.is_collect = res.data.is_collect;
@@ -257,11 +261,46 @@
 					    this.been_collecting = 'images/icon_collect.png'
 					}
                     // alert(2);
+
 				})
 				.catch(error => {
 					alert('请求单个招聘信息失败');
 				})
 			}, // 获取单个招聘信息，需要从列表页进入
+
+            getCompanyInfoAgain() {
+                if (getUrlParam('recruitment')) {
+                    this.$axios.get('/recruitment_info/'+ getUrlParam('recruitment')+ '/' ,{
+                        headers: {
+                            'Authorization': "JWT " + localStorage.getItem("usertoken")
+                        }
+                    })
+                        .then(res => {
+                            this.companyInfoList = res.data;
+                            // alert(2);
+                        })
+                        .catch(error => {
+                            alert('网络错误，请重试');
+                        })
+                }
+                else {
+                    var my_headers = {};
+                    if (localStorage.getItem("usertoken")){
+                        my_headers = {
+                            'Authorization': "JWT " + localStorage.getItem("usertoken")
+                        };
+                    }
+                    this.$axios.get('/recruitment_info/'+ getUrlParam('id')+ '/' ,{
+                        headers: my_headers,
+                    })
+                        .then(res => {
+                            this.companyInfoList = res.data;
+                        })
+                        .catch(error => {
+                            alert('网络错误，请重试');
+                        })
+				}
+			},
 
             clickCollect() {
 				var id_token = localStorage.getItem("usertoken"); // 1.获取本地存储的token
@@ -312,6 +351,7 @@
                         this.companyInfoList.collect_user.push(res.data); // 把这个对象放到 收藏列表里面，显示多一个人的头像
                         this.collect_user_total = this.companyInfoList.collect_user.length; // 收藏的总数也多一个
                         alert('收藏成功');
+                        this.getCompanyInfoAgain();
                     })
                         .catch(error => {
                             alert('收藏失败，网络错误');

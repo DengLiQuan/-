@@ -133,7 +133,7 @@
                         </select>
                     </div>
                     <div class="right right1">
-                        <span class="absolute" id="absolute4">请输入</span>
+                        <span class="absolute" id="absolute4" :style="styleObj">请输入</span>
                         <select class="sel" v-model="postData.metro_station" :disabled="isAble2" id="zjy2"
                                 @change="change4">
                             <!--<select class="sel" placeholder="请输入" v-model="postData.metro_station" id="zjy2">-->
@@ -561,6 +561,7 @@
         el: '#main_page',
         data() {
             return {
+                styleObj: '',
                 userInfo: {
                     //avatar: 'https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=62d46c39067b020818c437b303b099b6/d4628535e5dde7119c3d076aabefce1b9c1661ba.jpg'
                     avatar: 'images/face.png',
@@ -930,7 +931,8 @@
                 $('#absolute3').css({display: "none"});
             },
             change4() {
-                $('#absolute4').css({display: "none"});
+                this.styleObj = "display: none";
+                // $('#absolute4').css({display: "none"});
             },
             change5() {
                 $('#absolute5').css({display: "none"});
